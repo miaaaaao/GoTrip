@@ -1,3 +1,3 @@
 # GoTrip
-Test repository for practice
-Try creating a branch to edit/add files
+Web application for group trip planning.
+Made with MEAN stack tools
