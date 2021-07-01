@@ -6,9 +6,10 @@ var ParseDashboard = require('parse-dashboard');
 const path = require('path');
 const args = process.argv || [];
 const test = args.some(arg => arg.includes('jasmine'));
+const SimpleSendGridAdapter = require('parse-server-sendgrid-adapter');
 
-const databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
-const mongoAtlas = "mongodb+srv://goTripMongoAtlas:wf5vAe7sz7gfbrXh@cluster0.t1uau.mongodb.net/goTrip?retryWrites=true&w=majority"
+//const databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
+const databaseUri = `mongodb+srv://goTripMongoAtlas:wf5vAe7sz7gfbrXh@cluster0.t1uau.mongodb.net/goTrip?retryWrites=true&w=majority`
 
 var options = { allowInsecureHTTP: false };
 
@@ -16,7 +17,7 @@ if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
 }
 const config = {
-  databaseURI: databaseUri || mongoAtlas,
+  databaseURI: databaseUri,
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'GoTripAppID',
   masterKey: process.env.MASTER_KEY || '==HyUH78YT$5%33==*&99', 
@@ -24,6 +25,13 @@ const config = {
   liveQuery: {
     classNames: ['Posts', 'Comments'], // List of classes to support for query subscriptions
   },
+  publicServerURL: 'https://goTrip.lucasdacosta.com/parse', // change by the Heroku url to make it able confirm and reset the email and password
+  verifyUserEmails: true,
+  appName: 'GoTrip',
+  emailAdapter: SimpleSendGridAdapter({
+    apiKey: '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',
+    fromAddress: 'gotrip.helpcenter@gmail.com',
+  })
 };
 
 const app = express();
