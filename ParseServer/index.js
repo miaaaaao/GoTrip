@@ -30,7 +30,7 @@ const config = {
   appName: 'GoTrip',
   emailAdapter: SimpleSendGridAdapter({
     apiKey: process.env.SENDGRID,
-    fromAddress: 'gotrip.helpcenter@gmail.com',
+    fromAddress: 'info@go-trip.tech',
   })
 };
 

@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   serverId: 'GoTripAppID',
   serverMasterKey: '==HyUH78YT$5%33==*&99',
-  serverUrl: 'http://127.0.0.1:1337/api',
+  serverUrl: 'https://gotrip-app.herokuapp.com/api',
 
 };
 
