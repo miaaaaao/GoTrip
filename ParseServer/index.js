@@ -11,7 +11,7 @@ const SimpleSendGridAdapter = require('parse-server-sendgrid-adapter');
 //const databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 const databaseUri = process.env.MONGODB_URI;
 
-var options = { allowInsecureHTTP: false };
+var options = { allowInsecureHTTP: true };
 
 if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
@@ -66,12 +66,6 @@ if (!test) {
 // Parse Server plays nicely with the rest of your web routes
 app.get('/', function (req, res) {
   res.status(200).send('I dream of being a website.  Please star the parse-server repo on GitHub!');
-});
-
-// There will be a test page available on the /test path of your server url
-// Remove this before launching your app
-app.get('/test', function (req, res) {
-  res.sendFile(path.join(__dirname, '/public/test.html'));
 });
 
 const port = process.env.PORT || 1337;
