@@ -9,9 +9,9 @@ const test = args.some(arg => arg.includes('jasmine'));
 const SimpleSendGridAdapter = require('parse-server-sendgrid-adapter');
 
 //const databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
-const databaseUri = `mongodb+srv://goTripMongoAtlas:wf5vAe7sz7gfbrXh@cluster0.t1uau.mongodb.net/goTrip?retryWrites=true&w=majority`
+const databaseUri = process.env.MONGODB_URI;
 
-var options = { allowInsecureHTTP: false };
+var options = { allowInsecureHTTP: true };
 
 if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
@@ -21,16 +21,16 @@ const config = {
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'GoTripAppID',
   masterKey: process.env.MASTER_KEY || '==HyUH78YT$5%33==*&99', 
-  serverURL: process.env.SERVER_URL || 'http://localhost:1337/api', // Don't forget to change to https if needed
+  serverURL: process.env.SERVER_URL || 'https://gotrip-app.herokuapp.com/api', // Don't forget to change to https if needed
   liveQuery: {
     classNames: ['Posts', 'Comments'], // List of classes to support for query subscriptions
   },
-  publicServerURL: 'https://goTrip.lucasdacosta.com/parse', // change by the Heroku url to make it able confirm and reset the email and password
-  verifyUserEmails: true,
+  publicServerURL: 'https://gotrip-app.herokuapp.com/api', // change by the Heroku url to make it able confirm and reset the email and password
+  //verifyUserEmails: true,
   appName: 'GoTrip',
   emailAdapter: SimpleSendGridAdapter({
-    apiKey: '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',
-    fromAddress: 'gotrip.helpcenter@gmail.com',
+    apiKey: process.env.SENDGRID,
+    fromAddress: 'info@go-trip.tech',
   })
 };
 
@@ -40,14 +40,22 @@ const app = express();
 var dashboard = new ParseDashboard({
   "apps": [
     {
-      "serverURL": "http://localhost:1337/api",
+      "serverURL": "https://gotrip-app.herokuapp.com/api",
       "appId": "GoTripAppID",
       "masterKey": "==HyUH78YT$5%33==*&99",
       "appName": "GoTrip",
       "iconName": "goTrip-logo.png",
     }
   ], 
-  "iconsFolder": "icons"
+  "iconsFolder": "icons",
+  "users": 
+  [
+    {
+        "user":"goTrip",
+        "pass":"goTrip123",
+        "apps": [{"appId": "GoTripAppID"}]
+    }
+  ]
 }, options);
 
 // Serve static assets from the /public folder
@@ -66,12 +74,6 @@ if (!test) {
 // Parse Server plays nicely with the rest of your web routes
 app.get('/', function (req, res) {
   res.status(200).send('I dream of being a website.  Please star the parse-server repo on GitHub!');
-});
-
-// There will be a test page available on the /test path of your server url
-// Remove this before launching your app
-app.get('/test', function (req, res) {
-  res.sendFile(path.join(__dirname, '/public/test.html'));
 });
 
 const port = process.env.PORT || 1337;
