@@ -26,7 +26,7 @@ const config = {
     classNames: ['Posts', 'Comments'], // List of classes to support for query subscriptions
   },
   publicServerURL: 'https://gotrip-app.herokuapp.com/api', // change by the Heroku url to make it able confirm and reset the email and password
-  verifyUserEmails: true,
+  //verifyUserEmails: true,
   appName: 'GoTrip',
   emailAdapter: SimpleSendGridAdapter({
     apiKey: process.env.SENDGRID,
