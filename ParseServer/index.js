@@ -9,7 +9,7 @@ const test = args.some(arg => arg.includes('jasmine'));
 const SimpleSendGridAdapter = require('parse-server-sendgrid-adapter');
 
 //const databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
-const databaseUri = `mongodb+srv://goTripMongoAtlas:wf5vAe7sz7gfbrXh@cluster0.t1uau.mongodb.net/goTrip?retryWrites=true&w=majority`
+const databaseUri = process.env.MONGODB_URI;
 
 var options = { allowInsecureHTTP: false };
 
@@ -21,15 +21,15 @@ const config = {
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'GoTripAppID',
   masterKey: process.env.MASTER_KEY || '==HyUH78YT$5%33==*&99', 
-  serverURL: process.env.SERVER_URL || 'http://localhost:1337/api', // Don't forget to change to https if needed
+  serverURL: process.env.SERVER_URL || 'https://gotrip-app.herokuapp.com/api', // Don't forget to change to https if needed
   liveQuery: {
     classNames: ['Posts', 'Comments'], // List of classes to support for query subscriptions
   },
-  publicServerURL: 'https://goTrip.lucasdacosta.com/parse', // change by the Heroku url to make it able confirm and reset the email and password
+  publicServerURL: 'https://gotrip-app.herokuapp.com/api', // change by the Heroku url to make it able confirm and reset the email and password
   verifyUserEmails: true,
   appName: 'GoTrip',
   emailAdapter: SimpleSendGridAdapter({
-    apiKey: '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',
+    apiKey: process.env.SENDGRID,
     fromAddress: 'gotrip.helpcenter@gmail.com',
   })
 };
@@ -40,7 +40,7 @@ const app = express();
 var dashboard = new ParseDashboard({
   "apps": [
     {
-      "serverURL": "http://localhost:1337/api",
+      "serverURL": "https://gotrip-app.herokuapp.com/api",
       "appId": "GoTripAppID",
       "masterKey": "==HyUH78YT$5%33==*&99",
       "appName": "GoTrip",
