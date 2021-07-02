@@ -47,7 +47,15 @@ var dashboard = new ParseDashboard({
       "iconName": "goTrip-logo.png",
     }
   ], 
-  "iconsFolder": "icons"
+  "iconsFolder": "icons",
+  "users": 
+  [
+    {
+        "user":"goTrip",
+        "pass":"goTrip123",
+        "apps": [{"appId": "GoTripAppID"}]
+    }
+  ]
 }, options);
 
 // Serve static assets from the /public folder
