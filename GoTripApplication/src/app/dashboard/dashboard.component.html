@@ -2,32 +2,42 @@
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <h2>Hello <span class="textHighlightBlue">John Warn!</span> Ready to the 
+                <h2>Hello <span class="textHighlightBlue">{{userName}}</span> Ready to the 
                     next adventure?</h2>
             </div>
         </div>
+        <!--Current trips-->
         <div class="row containerWhite">
-            <div class="row" style="border:1px solid red; max-height: 30px;">
-                <div class="col">
-                    <span class="textSecundary fs-5">Current Trip</span>
-                </div>
+            <div class="col-12 mb-3" style="border:1px solid red;">
+                <span class="textSecundary fs-5">Current Trip</span>
             </div>
-            <div class="row" style="border:1px solid red">
-                <div class="col-3" style="border:1px solid red">
-                    <app-active-trip-card></app-active-trip-card>
-                </div>
+            <div class="col-12" style="min-height: 170px;">
+                <div class="row row-cols-4" style="border:1px solid red; min-height: 166px;">
+                    <div class="col-3" style="border:1px solid red">
+                        <!-- Trip card component -->
+                        <app-active-trip-card></app-active-trip-card>
+                    </div>
                 
-            </div>
+                </div>
+            </div> 
         </div>
+        <!--Past trips-->
         <div class="row containerWhite">
-            <div class="col">
-                <span class="textSecundary fs-5">Past Trip</span>  
+            <div class="col-12 mb-3" style="border:1px solid red;">
+                <span class="textSecundary fs-5">Past Trip</span>
             </div>
-            <div class="row justify-content-center">
-                <figure class="text-center">
-                    <span class="text-muted">No Past trip available</span>
-                </figure>
-            </div>  
+            <div class="col-12" style="min-height: 170px;">
+                <div class="row row-cols-4" style="border:1px solid red; min-height: 166px;">
+                    <div class="col-3" style="border:1px solid red">
+                        <!-- past Trip card component -->
+                    </div>
+                </div>
+                <div class="row" style="border:1px solid red; min-height: 166px;">
+                    <figure class="text-center">
+                        <span class="text-muted">No Past trip available</span>
+                    </figure>
+                </div>
+            </div> 
         </div>
     </div>
 </div>
