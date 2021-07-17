@@ -1,0 +1,11 @@
+.backgroundDefault{
+    background-color: #F8F9FD;
+    min-height: 100VH;
+}
+
+.containerWhite {
+    background: #FFFFFF;
+    border: 1px solid #EBECF0;
+    box-sizing: border-box;
+    border-radius: 6px;
+}
