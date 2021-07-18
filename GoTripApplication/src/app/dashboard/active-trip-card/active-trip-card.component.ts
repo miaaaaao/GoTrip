@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./active-trip-card.component.css']
 })
 export class ActiveTripCardComponent implements OnInit {
-
+  invitedUser: boolean = true;
   constructor() { }
 
   ngOnInit(): void {

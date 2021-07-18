@@ -8,32 +8,36 @@
         </div>
         <!--Current trips-->
         <div class="row containerWhite">
-            <div class="col-12 mb-3" style="border:1px solid red;">
+            <div class="col-12 mb-3">
                 <span class="textSecundary fs-5">Current Trip</span>
             </div>
             <div class="col-12" style="min-height: 170px;">
-                <div class="row row-cols-4" style="border:1px solid red; min-height: 166px;">
-                    <div class="col-3" style="border:1px solid red">
+                <div class="row row-cols-4" style="min-height: 166px;">
+                    <div class="col-3" >
                         <!-- Trip card component -->
                         <app-active-trip-card></app-active-trip-card>
                     </div>
-                
+                    <!-- Create trip planner -->
+                    <div class="col-3">
+                        <app-create-new-trip-plan-button></app-create-new-trip-plan-button>
+                    </div>
                 </div>
             </div> 
         </div>
         <!--Past trips-->
         <div class="row containerWhite">
-            <div class="col-12 mb-3" style="border:1px solid red;">
+            <div class="col-12 mb-3">
                 <span class="textSecundary fs-5">Past Trip</span>
             </div>
             <div class="col-12" style="min-height: 170px;">
-                <div class="row row-cols-4" style="border:1px solid red; min-height: 166px;">
-                    <div class="col-3" style="border:1px solid red">
+                <div class="row row-cols-4" style=" min-height: 166px;">
+                    <div class="col-3">
                         <!-- past Trip card component -->
+                       <app-old-trip-card></app-old-trip-card>
                     </div>
                 </div>
-                <div class="row" style="border:1px solid red; min-height: 166px;">
-                    <figure class="text-center">
+                <div class="row" style="min-height: 166px;">
+                    <figure class="justify-content-center d-flex align-items-center">
                         <span class="text-muted">No Past trip available</span>
                     </figure>
                 </div>

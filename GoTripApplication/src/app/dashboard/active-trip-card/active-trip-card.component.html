@@ -1,15 +1,19 @@
 <div class="container tripcardContainer">
     <!--This only shows to users who are invited-->
-    <div class="row row-cols-auto justify-content-end" style="min-height: 75px; border:1px solid red">
-        <div class="col mt-3" style="border:1px solid red">
-            <span class="cardLable">DECLINE</span>
+    <div *ngIf="invitedUser" class="row row-cols-auto justify-content-end" style="min-height: 75px">
+        <div class="col mt-3" >
+            <span class="cardLableInvitation">DECLINE</span>
         </div>
-        <div class="col mt-3" style="border:1px solid red">
-            <span class="cardLable">ACCEPT</span>
+        <div class="col mt-3">
+            <span class="cardLableInvitation">ACCEPT</span>
         </div>
-      </div>
-    <!--This only shows to users who trip's owner-->
-
+    </div>
+    <!--This only shows to users who is the trip's owner-->
+    <div *ngIf="!invitedUser" class="row row-cols-auto justify-content-end" style="min-height: 75px;">
+        <div class="col mt-3">
+            <span class="cardLableOwner">OWNER</span>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-8">
