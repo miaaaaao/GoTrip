@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-active-trip-card',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActiveTripCardComponent implements OnInit {
   invitedUser: boolean = true;
+  @Input() tripPlan:any;
+
   constructor() { }
 
   ngOnInit(): void {
+   
   }
 
 }

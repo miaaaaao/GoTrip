@@ -8,6 +8,8 @@ import { NewTripFormComponent } from './new-trip-form/new-trip-form.component';
 import { CreateNewTripPlanButtonComponent } from './dashboard/create-new-trip-plan-button/create-new-trip-plan-button.component';
 import { OldTripCardComponent } from './dashboard/old-trip-card/old-trip-card.component';
 
+import {getTrip} from './getTrip.service';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,7 @@ import { OldTripCardComponent } from './dashboard/old-trip-card/old-trip-card.co
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [getTrip,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

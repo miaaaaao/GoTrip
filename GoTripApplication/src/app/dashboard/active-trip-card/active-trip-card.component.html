@@ -1,6 +1,6 @@
 <div class="container tripcardContainer">
     <!--This only shows to users who are invited-->
-    <div *ngIf="invitedUser" class="row row-cols-auto justify-content-end" style="min-height: 75px">
+    <div *ngIf="tripPlan.owner !== 'You'" class="row row-cols-auto justify-content-end" style="min-height: 75px">
         <div class="col mt-3" >
             <span class="cardLableInvitation">DECLINE</span>
         </div>
@@ -9,7 +9,7 @@
         </div>
     </div>
     <!--This only shows to users who is the trip's owner-->
-    <div *ngIf="!invitedUser" class="row row-cols-auto justify-content-end" style="min-height: 75px;">
+    <div *ngIf="tripPlan.owner == 'You'" class="row row-cols-auto justify-content-end" style="min-height: 75px;">
         <div class="col mt-3">
             <span class="cardLableOwner">OWNER</span>
         </div>
@@ -17,20 +17,20 @@
 
     <div class="row">
         <div class="col-8">
-            <span class="title">Summer Trip</span>
+            <span class="title">{{tripPlan.title}}</span>
         </div>
         <div class="col-4 d-flex justify-content-center">
-            <span class="date">TBC</span>
+            <span class="date">{{tripPlan.date}}</span>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <span class="city">Siegen</span>
+            <span class="city">{{tripPlan.city}}</span>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <span class="ownership">Created by you</span>
+            <span class="ownership">Created by {{tripPlan.owner}}</span>
         </div>
     </div>
 </div>
