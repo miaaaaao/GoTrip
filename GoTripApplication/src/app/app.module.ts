@@ -9,7 +9,12 @@ import { CreateNewTripPlanButtonComponent } from './dashboard/create-new-trip-pl
 import { OldTripCardComponent } from './dashboard/old-trip-card/old-trip-card.component';
 
 import {getTrip} from './getTrip.service';
+import { Router, RouterModule, Routes } from '@angular/router';
 
+const appRoutes: Routes = [
+  {path:'', component: DashboardComponent},
+  {path:'create', component: NewTripFormComponent}
+];
 
 @NgModule({
   declarations: [
@@ -22,7 +27,8 @@ import {getTrip} from './getTrip.service';
 
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [getTrip,],
   bootstrap: [AppComponent]
