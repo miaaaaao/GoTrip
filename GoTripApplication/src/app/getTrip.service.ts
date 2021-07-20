@@ -6,12 +6,14 @@ class TripModel {
     city: String = '';
     date: String = '';
     owner: String = '';
+    acceptedInvitation: Boolean = true;
 
-    constructor(id: String, title: String, city: String, date: String, owner: String){
+    constructor(id: String, title: String, city: String, date: String, owner: String, acceptedInvitation: Boolean){
         this.title = title;
         this.city = city;
         this.date = date;
         this.owner = owner;
+        this.acceptedInvitation = acceptedInvitation;
     }
 }
 
@@ -32,7 +34,10 @@ export class getTrip {
         const planInvited = new Parse.Query('TripsPlan');
         planInvited.equalTo("listUsersPending", user);
 
-        const mainQuery = Parse.Query.or(planOwner, planInvited);
+        const planInvitationConfirmed = new Parse.Query('TripsPlan');
+        planInvitationConfirmed.equalTo("listUsersConfirmed", user);
+
+        const mainQuery = Parse.Query.or(planOwner, planInvited, planInvitationConfirmed);
 
         const results = await mainQuery.find();
         
@@ -54,7 +59,13 @@ export class getTrip {
                 const ownerResult = await findOwnerName.first();
                 owner = ownerResult?.get('username');
             }
-            let trip = new TripModel(object.id, object.get('title'), object.get('city'), data, owner);
+            //Check if invitaion was accepted
+            let acceptedInvitation = object.get('listUsersConfirmed');
+            console.log(acceptedInvitation)
+            acceptedInvitation = acceptedInvitation !== undefined ? true : false;
+            console.log(acceptedInvitation)
+
+            let trip = new TripModel(object.id, object.get('title'), object.get('city'), data, owner, acceptedInvitation);
             if(status){
                 //Trip finished
                 this.oldTrips.push(trip);
