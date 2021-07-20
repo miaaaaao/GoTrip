@@ -11,8 +11,9 @@ import { OldTripCardComponent } from './dashboard/old-trip-card/old-trip-card.co
 import {getTrip} from './getTrip.service';
 import { Router, RouterModule, Routes } from '@angular/router';
 
+//This is the route array
 const appRoutes: Routes = [
-  {path:'', component: DashboardComponent},
+  {path:'', component: DashboardComponent}, //--> change the path to 'dashboard' once the login is created
   {path:'create', component: NewTripFormComponent}
 ];
 
