@@ -21,8 +21,14 @@ export class getTrip {
     currentTrips:{}[] = [];
     oldTrips:{}[] = [];
 
+    dataClen(){
+        this.currentTrips = [];
+        this.oldTrips = []
+    };
+
     async fetchParseData(){
-        console.log('connected')
+        //Clean data before do new fetch
+        this.dataClen();
         //Creating a temporary user --> Change it for current.user
         const user = new Parse.User();
         user.id = "dffCspAh6G";
@@ -61,9 +67,7 @@ export class getTrip {
             }
             //Check if invitaion was accepted
             let acceptedInvitation = object.get('listUsersConfirmed');
-            console.log(acceptedInvitation)
             acceptedInvitation = acceptedInvitation !== undefined ? true : false;
-            console.log(acceptedInvitation)
 
             let trip = new TripModel(object.id, object.get('title'), object.get('city'), data, owner, acceptedInvitation);
             if(status){

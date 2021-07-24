@@ -10,6 +10,7 @@ import { OldTripCardComponent } from './dashboard/old-trip-card/old-trip-card.co
 
 import {getTrip} from './getTrip.service';
 import { Router, RouterModule, Routes } from '@angular/router';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 //This is the route array
 const appRoutes: Routes = [
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
     NewTripFormComponent,
     CreateNewTripPlanButtonComponent,
     OldTripCardComponent,
+    BreadcrumbComponent,
 
   ],
   imports: [

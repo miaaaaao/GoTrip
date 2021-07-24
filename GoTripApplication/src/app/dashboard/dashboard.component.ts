@@ -14,9 +14,9 @@ export class DashboardComponent implements OnInit {
   constructor(private getTrip: getTrip) { }
 
   ngOnInit(): void {
+    this.getTrip.fetchParseData();
     this.currentTrips = this.getTrip.currentTrips;
     this.oldTrips = this.getTrip.oldTrips;
-    this.getTrip.fetchParseData()
   }
 
 }
