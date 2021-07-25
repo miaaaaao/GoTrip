@@ -10,11 +10,15 @@ import { OldTripCardComponent } from './dashboard/old-trip-card/old-trip-card.co
 
 import {getTrip} from './getTrip.service';
 import { Router, RouterModule, Routes } from '@angular/router';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 
 //This is the route array
 const appRoutes: Routes = [
   {path:'', component: DashboardComponent}, //--> change the path to 'dashboard' once the login is created
-  {path:'create', component: NewTripFormComponent}
+  {path:'create', component: NewTripFormComponent},
+  {path:'login', component: LoginPageComponent},
+  {path:'signup', component:SignUpPageComponent}
 ];
 
 @NgModule({
@@ -25,6 +29,8 @@ const appRoutes: Routes = [
     NewTripFormComponent,
     CreateNewTripPlanButtonComponent,
     OldTripCardComponent,
+    LoginPageComponent,
+    SignUpPageComponent,
 
   ],
   imports: [
