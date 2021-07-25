@@ -27,6 +27,7 @@ export class getTrip {
     };
 
     async fetchParseData(){
+        try{
         //Clean data before do new fetch
         this.dataClen();
         //Creating a temporary user --> Change it for current.user
@@ -77,6 +78,9 @@ export class getTrip {
                 this.currentTrips.push(trip)
             }
           }
+        }catch(err){
+            console.log(err)
+        }  
     }
 
 };

@@ -1,3 +1,4 @@
+
 .backgroundDefault{
     background-color: #F8F9FD;
     min-height: 100VH;
@@ -8,4 +9,16 @@
     border: 1px solid #EBECF0;
     box-sizing: border-box;
     border-radius: 6px;
+}
+
+h4 {
+    color: #474F76
+}
+
+.light-Grey {
+    color: #A1B0CC;
+}
+
+::placeholder {
+    color: #7C8DB0
 }
