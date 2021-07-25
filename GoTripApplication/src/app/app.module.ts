@@ -15,7 +15,7 @@ import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component
 
 //This is the route array
 const appRoutes: Routes = [
-  {path:'', component: DashboardComponent}, //--> change the path to 'dashboard' once the login is created
+  {path:'dashboard', component: DashboardComponent}, 
   {path:'create', component: NewTripFormComponent},
   {path:'login', component: LoginPageComponent},
   {path:'signup', component:SignUpPageComponent}
