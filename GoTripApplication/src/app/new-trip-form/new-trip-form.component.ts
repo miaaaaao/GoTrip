@@ -8,7 +8,7 @@ import {germany} from './cities/germany'
 })
 export class NewTripFormComponent implements OnInit {
 
-  selectedCity: number = 0;
+  selectedCity:Number = 0;
 
   cities:{id:Number, name:String}[] = [];
 

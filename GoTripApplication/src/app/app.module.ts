@@ -10,14 +10,20 @@ import { NewTripFormComponent } from './new-trip-form/new-trip-form.component';
 import { CreateNewTripPlanButtonComponent } from './dashboard/create-new-trip-plan-button/create-new-trip-plan-button.component';
 import { OldTripCardComponent } from './dashboard/old-trip-card/old-trip-card.component';
 
-import {getTrip} from './getTrip.service';
+import { getTrip } from './getTrip.service';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
+import { ResetPageComponent } from './pages/reset-page/reset-page.component';
 
 //This is the route array
 const appRoutes: Routes = [
-  {path:'', component: DashboardComponent}, //--> change the path to 'dashboard' once the login is created
-  {path:'create', component: NewTripFormComponent}
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'create', component: NewTripFormComponent },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'signup', component: SignUpPageComponent },
+  { path: 'reset', component: ResetPageComponent },
 ];
 
 @NgModule({
@@ -29,6 +35,9 @@ const appRoutes: Routes = [
     CreateNewTripPlanButtonComponent,
     OldTripCardComponent,
     BreadcrumbComponent,
+    LoginPageComponent,
+    SignUpPageComponent,
+    ResetPageComponent,
 
   ],
   imports: [

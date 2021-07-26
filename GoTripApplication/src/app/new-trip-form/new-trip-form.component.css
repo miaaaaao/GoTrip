@@ -20,5 +20,19 @@ h4 {
 }
 
 ::placeholder {
-    color: #7C8DB0
+    color: #7C8DB0 
+}
+
+.textDescription {
+    font-size: 14px;
+}
+
+.btn-primary {
+    background-color: #605DEC;
+}
+
+.btn-secundary {
+    border: 2px solid #605DEC;
+    color: #605DEC;
+
 }
