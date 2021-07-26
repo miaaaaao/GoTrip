@@ -16,12 +16,13 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 import { ResetPageComponent } from './pages/reset-page/reset-page.component';
+import { BackgroundImageComponent } from './pages/background-image/background-image.component';
 
 //This is the route array
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'create', component: NewTripFormComponent },
-  { path: 'login', component: LoginPageComponent },
+  { path: '', component: LoginPageComponent },
   { path: 'signup', component: SignUpPageComponent },
   { path: 'reset', component: ResetPageComponent },
 ];
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
     LoginPageComponent,
     SignUpPageComponent,
     ResetPageComponent,
+    BackgroundImageComponent,
 
   ],
   imports: [
