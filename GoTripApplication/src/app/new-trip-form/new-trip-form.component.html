@@ -49,7 +49,7 @@
                         </div> 
                     </div>
                     <hr>
-                    <div class="row row-cols-2">
+                    <div class="row row-cols-2" >
                         <div class="col light-Grey">
                             <span>Invite friends</span><br>
                             <span class="textDescription">Inform your friends's email</span>
@@ -57,12 +57,15 @@
                         <div class="col">
                             <div class="row"> 
                                 <div class="col-9" >
-                                    <input type="text" class="form-control" placeholder="" > 
+                                    <input type="text" class="form-control" name="email" [(ngModel)]="invitedFriend"> 
                                 </div> 
                                 <div class="col-3  d-flex justify-content-end" >
-                                    <button type="button" class="btn btn-secundary">Invite</button>
+                                    <button type="button" class="btn btn-secundary" (click)="invite()">Invite</button>
                                 </div> 
                             </div>
+                            <!--Component to show frieds' email-->
+                            <app-invitation *ngFor="let invited of invitedFriends" [friendEmail]="invited"></app-invitation>
+
                         </div>
                     </div>
                     <div class="row mt-5">

@@ -1,3 +1,7 @@
+// 
+//This is a service to get data from Parse serve to be shown on the dashboard 
+//
+
 import * as Parse from 'parse';
 
 class TripModel {

@@ -11,12 +11,15 @@ import { CreateNewTripPlanButtonComponent } from './dashboard/create-new-trip-pl
 import { OldTripCardComponent } from './dashboard/old-trip-card/old-trip-card.component';
 
 import { getTrip } from './getTrip.service';
+import { createNewTrip } from './newTripForm.service';
+
 import { Router, RouterModule, Routes } from '@angular/router';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 import { ResetPageComponent } from './pages/reset-page/reset-page.component';
 import { BackgroundImageComponent } from './pages/background-image/background-image.component';
+import { InvitationComponent } from './new-trip-form/invitation/invitation.component';
 
 //This is the route array
 const appRoutes: Routes = [
@@ -40,6 +43,7 @@ const appRoutes: Routes = [
     SignUpPageComponent,
     ResetPageComponent,
     BackgroundImageComponent,
+    InvitationComponent,
 
   ],
   imports: [
@@ -48,7 +52,7 @@ const appRoutes: Routes = [
     NgSelectModule,
     FormsModule
   ],
-  providers: [getTrip,],
+  providers: [getTrip, createNewTrip],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
