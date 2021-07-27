@@ -34,5 +34,8 @@ h4 {
 .btn-secundary {
     border: 2px solid #605DEC;
     color: #605DEC;
+}
 
+hr {
+    border: 1px;
 }

@@ -2,8 +2,8 @@
     <div class="container">
         <app-breadcrumb></app-breadcrumb>
         <div class="row">
-            <div class="col-7 mainContainer pb-4 px-4">
-                <div class="col pt-4 pb-5">
+            <div class="col-7 mainContainer pb-4 px-4 mb-4">
+                <div class="col pt-4 pb-5 px-0">
                     <h4>Create new travel plan</h4>
                 </div>
                 <form>
@@ -26,11 +26,11 @@
                         </div>
                         <div class="col">
                             <label class="form-label">Option 1</label>
-                            <input type="text" class="form-control" placeholder="Type the title of your trip">
+                            <input type="text" class="form-control" placeholder="E.g., $100">
                             <label class="form-label mt-3">Option 2</label>
-                            <input type="text" class="form-control" placeholder="Type the title of your trip">
+                            <input type="text" class="form-control" placeholder="E.g., $200">
                             <label class="form-label mt-3">Option 3</label>
-                            <input type="text" class="form-control" placeholder="Type the title of your trip">
+                            <input type="text" class="form-control" placeholder="E.g., $300">
                         </div> 
                     </div>
                     <hr>
@@ -54,21 +54,23 @@
                             <span>Invite friends</span><br>
                             <span class="textDescription">Inform your friends's email</span>
                         </div>
-                        <div class="row">
-                            <div class="col-9">
-                                <input type="text" class="form-control" placeholder="Type the title of your trip">
-                            </div> 
-                            <div class="col-3">
-                                <button type="button" class="btn btn-secundary">Invite</button>
-                            </div> 
+                        <div class="col">
+                            <div class="row"> 
+                                <div class="col-9" >
+                                    <input type="text" class="form-control" placeholder="" > 
+                                </div> 
+                                <div class="col-3  d-flex justify-content-end" >
+                                    <button type="button" class="btn btn-secundary">Invite</button>
+                                </div> 
+                            </div>
                         </div>
                     </div>
                     <div class="row mt-5">
                         <div class="col-6">
                             <button type="button" class="btn btn-secundary">Cancel</button>
                         </div>
-                        <div class="col-6">
-                            <button type="button" class="btn btn-primary">Send</button>
+                        <div class="col-6  d-flex justify-content-end">
+                            <button type="button" class="btn btn-primary">Create</button>
                         </div>
                     </div>
                 </form> 
