@@ -40,12 +40,13 @@
                             <span class="textDescription">Define 3 options</span>
                         </div>
                         <div class="col">
+                        
                             <label class="form-label">Option 1</label>
-                            <input type="text" class="form-control" placeholder="Type the title of your trip">
+                            <app-datetimepicker></app-datetimepicker>
                             <label class="form-label mt-3">Option 2</label>
-                            <input type="text" class="form-control" placeholder="Type the title of your trip">
+                            <app-datetimepicker></app-datetimepicker>
                             <label class="form-label mt-3">Option 3</label>
-                            <input type="text" class="form-control" placeholder="Type the title of your trip">
+                            <app-datetimepicker></app-datetimepicker>
                         </div> 
                     </div>
                     <hr>
@@ -60,11 +61,11 @@
                                     <input type="text" class="form-control" name="email" [(ngModel)]="invitedFriend"> 
                                 </div> 
                                 <div class="col-3  d-flex justify-content-end" >
-                                    <button type="button" class="btn btn-secundary" (click)="invite()">Invite</button>
+                                    <button type="button" class="btn btn-secundary" (click)="invite()">Add</button>
                                 </div> 
                             </div>
                             <!--Component to show frieds' email-->
-                            <app-invitation *ngFor="let invited of invitedFriends" [friendEmail]="invited"></app-invitation>
+                            <app-invitation *ngFor="let invited of invitedFriends" [data]="invited"></app-invitation>
 
                         </div>
                     </div>

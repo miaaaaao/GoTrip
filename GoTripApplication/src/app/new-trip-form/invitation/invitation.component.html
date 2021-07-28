@@ -1,9 +1,9 @@
 <div class="row tag my-2 py-1">
     <div class="col-10 ">
-       <span>{{friendEmail.email}}</span>
+       <span>{{data.email}}</span>
     </div>
     <div class="col-2 d-flex justify-content-end align-middle" style="padding-top: 4px">
-        <i class="fa fa-times-circle fa-1x remove" aria-hidden="true"></i>
+        <i (click)="deleteEmail()" class="fa fa-times-circle fa-1x remove" aria-hidden="true"></i>
     </div>
 </div>
 

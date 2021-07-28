@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
+import { DatetimerangepickerModule } from "angular-datetimerangepicker";
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -20,6 +21,7 @@ import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component
 import { ResetPageComponent } from './pages/reset-page/reset-page.component';
 import { BackgroundImageComponent } from './pages/background-image/background-image.component';
 import { InvitationComponent } from './new-trip-form/invitation/invitation.component';
+import { DatetimepickerComponent } from './new-trip-form/datetimepicker/datetimepicker.component';
 
 //This is the route array
 const appRoutes: Routes = [
@@ -44,13 +46,15 @@ const appRoutes: Routes = [
     ResetPageComponent,
     BackgroundImageComponent,
     InvitationComponent,
+    DatetimepickerComponent,
 
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     NgSelectModule,
-    FormsModule
+    DatetimerangepickerModule,
+    FormsModule,
   ],
   providers: [getTrip, createNewTrip],
   bootstrap: [AppComponent]
