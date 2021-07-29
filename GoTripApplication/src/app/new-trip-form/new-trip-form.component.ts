@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {germany} from './cities/germany';
 import {createNewTrip} from '../newTripForm.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-new-trip-form',
@@ -13,6 +14,7 @@ export class NewTripFormComponent implements OnInit {
   invitedFriend: String = '';
   invitedFriends: {}[] = [];
 
+
   constructor(private createNewTrip: createNewTrip) {
     for(let i =0; i<germany.length; i++){
       this.cities.push({
@@ -24,10 +26,15 @@ export class NewTripFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.invitedFriends = this.createNewTrip.invitedFriends;
+    
   }
 
   invite(){
     this.createNewTrip.invite(this.invitedFriend);
+  }
+
+  createPlan(el: NgForm){
+    console.log(el)
   }
 
   

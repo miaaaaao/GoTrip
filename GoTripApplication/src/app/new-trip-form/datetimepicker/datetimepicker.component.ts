@@ -16,8 +16,9 @@ export class DatetimepickerComponent implements OnInit {
     autoApply: true,
     inactiveBeforeStart: true,
     required: true,
-    placeholder: "Select",
+    placeholder: "Select date",
     hideControls: true,
+    noDefaultRangeSelected: true
   };
 
   constructor() { }
