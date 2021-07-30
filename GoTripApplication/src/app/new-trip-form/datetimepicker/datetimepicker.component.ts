@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-datetimepicker',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./datetimepicker.component.css']
 })
 export class DatetimepickerComponent implements OnInit {
+  @Input('formId') formId: any;
+  @Output() sendData = new EventEmitter();
+
   daterangepickerOptions = {
     //startDate: "10/06/2021",
     //endDate: "09/02/2022",
@@ -21,12 +24,17 @@ export class DatetimepickerComponent implements OnInit {
     noDefaultRangeSelected: true
   };
 
+
+
   constructor() { }
 
   ngOnInit(): void {
   }
   rangeSelected(el:any){
+    this.sendData.emit({date: el, id: this.formId});
     console.log('=====> Date selected')
+   
+  
 
   }
 

@@ -30,8 +30,8 @@ export class NewTripFormComponent implements OnInit {
     invitedFriends: null,
   }
 
-
   constructor(private createNewTrip: createNewTrip) {
+    //get list of germany cities and save each item as a object inside an array
     for(let i =0; i<germany.length; i++){
       this.cities.push({
         id: i+1,
@@ -44,11 +44,16 @@ export class NewTripFormComponent implements OnInit {
     this.invitedFriends = this.createNewTrip.invitedFriends;
     
   }
-
+  //Add current written email to the array: invitedFriends to save all friends email
   invite(){
     this.createNewTrip.invite(this.invitedFriend);
   }
-
+  //Get data from the data picker
+  fillDates(el:any){
+    console.log('==>' + new Date(el.date.end));
+    console.log('===>' +el.id) 
+  }
+  //Function that run after user fills the form
   createPlan(el: NgForm){
     console.log(el)
   }
