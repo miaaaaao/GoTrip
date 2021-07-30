@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {germany} from './cities/germany';
 import {createNewTrip} from '../newTripForm.service';
 import { NgForm } from '@angular/forms';
@@ -9,10 +9,26 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./new-trip-form.component.css']
 })
 export class NewTripFormComponent implements OnInit {
-  selectedCity:Number = 0;
+  @ViewChild('formValue') sigupForm:any;
   cities:{id:Number, name:String}[] = [];
   invitedFriend: String = '';
   invitedFriends: {}[] = [];
+
+  tripForm = {
+    title: null,
+    destination: null,
+    budget: {
+      one: null,
+      two: null,
+      three: null
+    },
+    date: {
+      one: null,
+      two: null,
+      three: null
+    },
+    invitedFriends: null,
+  }
 
 
   constructor(private createNewTrip: createNewTrip) {

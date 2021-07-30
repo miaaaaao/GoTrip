@@ -10,15 +10,15 @@
                     <div class="row row-cols-2 mb-3">
                         <div class="col light-Grey">Basic</div>
                         <div class="col">
-                            <label class="form-label">Trip title</label>
-                            <input type="text" name="Title" ngModel class="form-control" placeholder="Type the title of your trip" required>
-                            <label class="form-label mt-3">Destination</label>
+                            <label class="form-label">Trip title <abbr title="This field is mandatory">*</abbr></label>
+                            <input type="text" name="Title" ngModel class="form-control" placeholder="Type the title of your trip" required maxlength="20" #title="ngModel">
+                            <span class="counterLimit d-flex justify-content-end">{{title.value.length}}/20</span>
+                            <label class="form-label mt-3">Destination <abbr title="This field is mandatory">*</abbr></label>
                              <ng-select [items]="cities"
                                     name="city"
                                     bindLabel="name"
                                     placeholder="Select city"
                                     ngModel
-                                    
                                    >
                             </ng-select>
                         </div> 
@@ -30,12 +30,21 @@
                             <span class="textDescription">Define 3 options</span>
                         </div>
                         <div class="col">
-                            <label class="form-label">Option 1</label>
-                            <input type="text" name="budget_1" ngModel class="form-control" placeholder="E.g., $100" required>
-                            <label class="form-label mt-3">Option 2</label>
-                            <input type="text" name="budget_2" ngModel class="form-control" placeholder="E.g., $200" required>
-                            <label class="form-label mt-3">Option 3</label>
-                            <input type="text" name="budget_3" ngModel class="form-control" placeholder="E.g., $300" required>
+                            <label class="form-label">Option 1 <abbr title="This field is mandatory">*</abbr></label>
+                            <input type="text" name="budget_1" ngModel class="form-control" placeholder="E.g., $100" required pattern="^[0-9]+$" #budgetOne="ngModel">
+                            <div *ngIf="!budgetOne.valid && budgetOne.dirty" class="inputErrorMessage">
+                                <span>Use only numbers (no , or .)</span>
+                            </div>
+                            <label class="form-label mt-3">Option 2 <abbr title="This field is mandatory">*</abbr></label>
+                            <input type="text" name="budget_2" ngModel class="form-control" placeholder="E.g., $200" required pattern="^[0-9]+$" #budgetTwo="ngModel">
+                            <div *ngIf="!budgetTwo.valid && budgetTwo.dirty" class="inputErrorMessage">
+                                <span>Use only numbers (no , or .)</span>
+                            </div>
+                            <label class="form-label mt-3">Option 3 <abbr title="This field is mandatory">*</abbr></label>
+                            <input type="text" name="budget_3" ngModel class="form-control" placeholder="E.g., $300" required pattern="^[0-9]+$" #budgetThree="ngModel">
+                            <div *ngIf="!budgetThree.valid && budgetThree.dirty" class="inputErrorMessage">
+                                <span>Use only numbers (no , or .)</span>
+                            </div>
                         </div> 
                     </div>
                     <hr>
@@ -45,11 +54,11 @@
                             <span class="textDescription">Define 3 options</span>
                         </div>
                         <div class="col">
-                            <label class="form-label">Option 1</label>
+                            <label class="form-label">Option 1 <abbr title="This field is mandatory">*</abbr></label>
                             <app-datetimepicker></app-datetimepicker>
-                            <label class="form-label mt-3">Option 2</label>
+                            <label class="form-label mt-3">Option 2 <abbr title="This field is mandatory">*</abbr></label>
                             <app-datetimepicker></app-datetimepicker>
-                            <label class="form-label mt-3">Option 3</label>
+                            <label class="form-label mt-3">Option 3 <abbr title="This field is mandatory">*</abbr></label>
                             <app-datetimepicker></app-datetimepicker>
                         </div> 
                     </div>
@@ -62,15 +71,14 @@
                         <div class="col">
                             <div class="row"> 
                                 <div class="col-9" >
-                                    <input type="text" class="form-control" name="email" [(ngModel)]="invitedFriend"> 
+                                    <input type="text" class="form-control" name="email" [(ngModel)]="invitedFriend" email required #inviteEmail="ngModel"> 
                                 </div> 
                                 <div class="col-3  d-flex justify-content-end" >
-                                    <button type="button" class="btn btn-secundary" (click)="invite()">Add</button>
+                                    <button type="button" class="btn btn-secundary" (click)="invite()" [disabled]="!inviteEmail.valid">Add</button>
                                 </div> 
                             </div>
                             <!--Component to show frieds' email-->
                             <app-invitation *ngFor="let invited of invitedFriends" [data]="invited"></app-invitation>
-
                         </div>
                     </div>
                     <div class="row mt-5">
