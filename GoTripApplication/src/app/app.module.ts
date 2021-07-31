@@ -13,6 +13,7 @@ import { OldTripCardComponent } from './dashboard/old-trip-card/old-trip-card.co
 
 import { getTrip } from './getTrip.service';
 import { createNewTrip } from './newTripForm.service';
+import { currentUser } from './getCurrentUserData.service';
 
 import { Router, RouterModule, Routes } from '@angular/router';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
@@ -56,7 +57,11 @@ const appRoutes: Routes = [
     DatetimerangepickerModule,
     FormsModule,
   ],
-  providers: [getTrip, createNewTrip],
+  providers: [
+    getTrip, 
+    createNewTrip, 
+    currentUser
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

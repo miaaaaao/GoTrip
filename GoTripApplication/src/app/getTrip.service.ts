@@ -1,8 +1,10 @@
 // 
 //This is a service to get data from Parse serve to be shown on the dashboard 
 //
-
+import { Injectable } from '@angular/core';
 import * as Parse from 'parse';
+
+import { currentUser } from './getCurrentUserData.service';
 
 class TripModel {
     id: String = '';
@@ -21,9 +23,14 @@ class TripModel {
     }
 }
 
+@Injectable()
 export class getTrip {
     currentTrips:{}[] = [];
     oldTrips:{}[] = [];
+
+    constructor(private currentUser: currentUser){
+        
+    }
 
     dataClen(){
         this.currentTrips = [];
@@ -36,7 +43,7 @@ export class getTrip {
         this.dataClen();
         //Creating a temporary user --> Change it for current.user
         const user = new Parse.User();
-        user.id = "dffCspAh6G";
+        user.id = this.currentUser.userId;
         
         //Search for the current user's data
         const planOwner = new Parse.Query('TripsPlan');
