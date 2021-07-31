@@ -14,4 +14,8 @@ export class createNewTrip {
       });
   } 
 
+  saveTripOnParse(formData:{}){
+    console.log(formData)
+  }
+
 }

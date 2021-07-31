@@ -23,11 +23,11 @@ export class NewTripFormComponent implements OnInit {
       three: null
     },
     date: {
-      one: null,
-      two: null,
-      three: null
+      one: {},
+      two: {},
+      three: {}
     },
-    invitedFriends: null,
+    invitedFriends: [{}],
   }
 
   constructor(private createNewTrip: createNewTrip) {
@@ -48,14 +48,31 @@ export class NewTripFormComponent implements OnInit {
   invite(){
     this.createNewTrip.invite(this.invitedFriend);
   }
-  //Get data from the data picker
+  //Get data from the data picker and save on the tripform object
   fillDates(el:any){
-    console.log('==>' + new Date(el.date.end));
-    console.log('===>' +el.id) 
+    let dateId = el.id;
+    if(dateId === 'one'){
+      this.tripForm.date.one = {start: new Date(el.date.start), end: new Date(el.date.end)} 
+    }else if (dateId === 'two'){
+      this.tripForm.date.two = {start: new Date(el.date.start), end: new Date(el.date.end)}
+    }else if (dateId === 'three'){
+      this.tripForm.date.three = {start: new Date(el.date.start), end: new Date(el.date.end)}
+    } else {
+      console.log('No ID found for this data entry')
+    }
   }
-  //Function that run after user fills the form
+  //Function that run after user fills the form and clicks on create button
   createPlan(el: NgForm){
-    console.log(el)
+    //fill tripForm object
+    this.tripForm.title = el.value.Title;
+    this.tripForm.destination = el.value.city.name;
+    this.tripForm.budget.one = el.value.budget_1;
+    this.tripForm.budget.two = el.value.budget_2;
+    this.tripForm.budget.three = el.value.budget_3;
+    this.tripForm.invitedFriends = this.invitedFriends;
+    //call function from newTripForm.service to save data into Parse
+    this.createNewTrip.saveTripOnParse(this.tripForm)
+    //Go back to dashboard
   }
 
   
