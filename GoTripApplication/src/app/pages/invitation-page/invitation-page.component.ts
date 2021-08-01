@@ -23,8 +23,6 @@ export class InvitationPageComponent implements OnInit {
       this.tripTitle = parts[0];
       this.tripCity = parts[1];
       this.tripMonth = parts[2];
-    }
-    
+    } 
   }
-
 }
