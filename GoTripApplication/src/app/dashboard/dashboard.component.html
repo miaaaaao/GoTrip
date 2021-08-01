@@ -9,7 +9,7 @@
         <!--Current trips-->
         <div class="row containerWhite">
             <div class="col-12 mb-3">
-                <span class="textSecundary fs-5">Current Trip</span>
+                <span class="textSecundary fs-5">Current Trip <span *ngIf="currentTrips.length > 0">({{currentTrips.length}})</span></span>
             </div>
             <div class="col-12" style="min-height: 170px;">
                 <div class="row row-cols-4" style="min-height: 166px;">
@@ -27,7 +27,7 @@
         <!--Past trips-->
         <div class="row containerWhite">
             <div class="col-12 mb-3">
-                <span class="textSecundary fs-5">Past Trip</span>
+                <span class="textSecundary fs-5">Past Trip <span *ngIf="oldTrips.length > 0">({{oldTrips.length}})</span></span>
             </div>
             <div class="col-12" style="min-height: 170px;">
                 <div *ngIf="oldTrips.length >= 1" class="row row-cols-4" style=" min-height: 166px;">

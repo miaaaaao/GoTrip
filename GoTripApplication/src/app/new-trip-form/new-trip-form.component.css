@@ -19,9 +19,6 @@ h4 {
     color: #A1B0CC;
 }
 
-::placeholder {
-    color: #7C8DB0 
-}
 
 .textDescription {
     font-size: 14px;
@@ -38,4 +35,23 @@ h4 {
 
 hr {
     border: 1px;
+}
+
+abbr {
+    color: rgb(230, 39, 39);
+}
+
+.counterLimit{
+    font-size: 14px;
+    color: #A1B0CC;
+    text-align: right;
+}
+
+.inputErrorMessage {
+    color: rgb(230, 39, 39);
+    font-size: 14px;
+}
+
+input.ng-invalid.ng-touched.ng-dirty , select.ng-invalid {
+	border: 1px solid red;
 }

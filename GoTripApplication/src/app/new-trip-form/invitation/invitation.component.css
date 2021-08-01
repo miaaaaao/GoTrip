@@ -1,0 +1,11 @@
+.tag {
+    background: #E9E8FC;
+    border-radius: 20px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.remove:hover {
+    color: rgb(226, 14, 14);
+    cursor: pointer;
+}

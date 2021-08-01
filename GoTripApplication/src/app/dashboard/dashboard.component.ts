@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { getTrip } from '../getTrip.service';
+import { currentUser } from '../getCurrentUserData.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,11 +8,11 @@ import { getTrip } from '../getTrip.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  userName: string = "John Warn";
+  userName: string = this.currentUser.name;
   currentTrips: {}[] = [];
   oldTrips: {}[] =[];
 
-  constructor(private getTrip: getTrip) { }
+  constructor(private getTrip: getTrip, private currentUser: currentUser) { }
 
   ngOnInit(): void {
     this.getTrip.fetchParseData();

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -8,13 +9,14 @@ import { Location } from '@angular/common';
 })
 export class BreadcrumbComponent implements OnInit {
 
-  constructor(private location: Location) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    
   }
 
   goBack(){
-    this.location.back();
+    this.router.navigate(['../dashboard'])
   }
 
 }
