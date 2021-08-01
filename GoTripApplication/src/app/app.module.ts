@@ -23,6 +23,7 @@ import { ResetPageComponent } from './pages/reset-page/reset-page.component';
 import { BackgroundImageComponent } from './pages/background-image/background-image.component';
 import { InvitationComponent } from './new-trip-form/invitation/invitation.component';
 import { DatetimepickerComponent } from './new-trip-form/datetimepicker/datetimepicker.component';
+import { InvitationPageComponent } from './pages/invitation-page/invitation-page.component';
 
 //This is the route array
 const appRoutes: Routes = [
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
   { path: '', component: LoginPageComponent },
   { path: 'signup', component: SignUpPageComponent },
   { path: 'reset', component: ResetPageComponent },
+  { path: 'invitation', component: InvitationPageComponent },
 ];
 
 @NgModule({
@@ -48,6 +50,7 @@ const appRoutes: Routes = [
     BackgroundImageComponent,
     InvitationComponent,
     DatetimepickerComponent,
+    InvitationPageComponent,
 
   ],
   imports: [
