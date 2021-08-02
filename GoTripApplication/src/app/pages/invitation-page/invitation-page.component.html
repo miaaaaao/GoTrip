@@ -1,0 +1,31 @@
+<!--This page is to be used with this url structure:
+    
+    /invitation?tripOwner=[ownerName]#[Title of the trip]#[city name]#[month] 
+
+    That link will be sent by email to the user once a loged in user creates an new trip plan. 
+    When they click on it, this page will open and get informetion from the link.
+
+    To add empty space use %20 e.g., Summer%20Trip
+-->
+
+<div class="container-fluid mainContainer">
+    <div class="row">
+      <div class="col-8 px-0">
+        <!--Background Component-->
+        <app-background-image origin="invitation"></app-background-image>
+      </div>  
+      <div class="col-4 px-4">
+        <form class="px-4">
+          <h5 class="form-title"><strong>🏝 Wow you have received a trip invitation from <span class="highlightColor">{{tripOwner}}</span></strong></h5>
+          <span><span class="highlightColor">{{tripTitle}}</span> to <span class="highlightColor">{{tripCity}}</span> in <span class="highlightColor">{{tripMonth}}</span></span>
+          <div>
+            <button type="submit" routerLink="" class="btn btn-primary btn-block sign-in">Log In to View Details</button>
+          </div>
+          <div class="text-center">
+            <a routerLink="/signup"><small>Don't have an account yet</small></a>
+          </div>
+        </form>
+      </div>  
+  </div>
+  
+  
