@@ -12,7 +12,7 @@
                         <div class="col">
                             <label class="form-label">Trip title <abbr title="This field is mandatory">*</abbr></label>
                             <input type="text" name="Title" ngModel class="form-control" placeholder="Type the title of your trip" required maxlength="15" #title="ngModel">
-                            <span class="counterLimit d-flex justify-content-end">{{title.value ? title.value.length : 0 }}/20</span>
+                            <span class="counterLimit d-flex justify-content-end">{{title.value ? title.value.length : 0 }}/15</span>
                             <label class="form-label mt-3">Destination <abbr title="This field is mandatory">*</abbr></label>
                              <ng-select [items]="cities"
                                     name="city"
