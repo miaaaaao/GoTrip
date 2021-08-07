@@ -1,10 +1,9 @@
 const sgMail = require('@sendgrid/mail');
 
 sgMail.setApiKey(process.env.SENDGRID);
+sgMail.setSubstitutionWrappers('{{', '}}');
 
 Parse.Cloud.define("sendInvitation", async (request)=>{
-    console.log("executando cloud function")
-    console.log(request.user)
     let tripData = request.params;
     let user = request.user;
     const months = ["January", "February", "March", "April", "May", "June",
@@ -18,14 +17,18 @@ Parse.Cloud.define("sendInvitation", async (request)=>{
     let month = new Date(tripData.date.one.start).getMonth(); // convert data into month
     let monthName = months[month]; // Get month name from months array
 
+    let Weblink = `http://127.0.0.1:4200/invitation?tripOwner=${tripOwner}#${tripTitle}#${city}#${monthName}`
+
 
     try{
         for (let i = 0; i < listEmails.length; ++i){
             await sgMail.send({
                 to: listEmails[i].email,
                 from: "info@go-trip.tech",
-                subject: "You was invited to a Trip",
-                text: `Checkout this link for more information: http://127.0.0.1:4200/invitation?tripOwner=${tripOwner}#${tripTitle}#${city}#${monthName}`
+                templateId: 'invitation',
+                dynamic_template_data: {Weblink},
+                //subject: "You was invited to a Trip",
+                //text: `Checkout this link for more information: http://127.0.0.1:4200/invitation?tripOwner=${tripOwner}#${tripTitle}#${city}#${monthName}`
             })
         }
         
