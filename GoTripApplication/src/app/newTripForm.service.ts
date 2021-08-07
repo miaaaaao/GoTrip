@@ -102,8 +102,7 @@ export class createNewTrip {
         tripsPlanId: tripsPlan
       })
       //Send email to invited friends
-      await Parse.Cloud.run("sendInvitation", formData)
-
+      await Parse.Cloud.run("sendInvitation", formData).then(response=>console.log(response))
 
     }catch(err){
       console.log(err)
