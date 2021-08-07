@@ -15,7 +15,7 @@ Parse.Cloud.define("sendInvitation", async (request)=>{
     let tripOwner = 'John'//request.User; // Get the user name
     let tripTitle = encodeURIComponent(tripData.title); // Remove empty space 
     let city = tripData.destination; // Get city name
-    let month = new Date(tripData.date.one).getMonth(); // convert data into month
+    let month = new Date(tripData.date.one.start).getMonth(); // convert data into month
     let monthName = months[month]; // Get month name from months array
 
 
