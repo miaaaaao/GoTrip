@@ -63,7 +63,7 @@ export class NewTripFormComponent implements OnInit {
     }
   }
   //Function that run after user fills the form and clicks on create button
-  createPlan(el: NgForm){
+  async createPlan(el: NgForm){
     //fill tripForm object
     this.tripForm.title = el.value.Title;
     this.tripForm.destination = el.value.city.name;
@@ -72,9 +72,11 @@ export class NewTripFormComponent implements OnInit {
     this.tripForm.budget.three = el.value.budget_3;
     this.tripForm.invitedFriends = this.invitedFriends;
     //call function from newTripForm.service to save data into Parse
-    this.createNewTrip.saveTripOnParse(this.tripForm)
+    await this.createNewTrip.saveTripOnParse(this.tripForm)
     //Go back to dashboard
+    this.cancel();
   }
+
   cancel(){
     this.router.navigate(['../dashboard'])
   }
