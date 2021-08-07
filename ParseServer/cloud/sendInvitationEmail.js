@@ -25,7 +25,7 @@ Parse.Cloud.define("sendInvitation", async (request)=>{
             await sgMail.send({
                 to: listEmails[i].email,
                 from: "info@go-trip.tech",
-                templateId: 'invitation',
+                templateId: 'd-f3029e2e94a048ee9087963e3dc1b497',
                 dynamic_template_data: {Weblink},
                 //subject: "You was invited to a Trip",
                 //text: `Checkout this link for more information: http://127.0.0.1:4200/invitation?tripOwner=${tripOwner}#${tripTitle}#${city}#${monthName}`
