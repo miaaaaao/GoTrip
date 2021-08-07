@@ -5,7 +5,7 @@ sgMail.setApiKey(process.env.SENDGRID);
 Parse.Cloud.define("sendInvitation", async (request, response)=>{
     console.log("executando cloud function")
     console.log(request.User)
-    let tripData = request.formData;
+    let tripData = request.params.formData;
 
     let listEmails = tripData.invitedFriends; // Separate the arrays
     let tripOwner = 'John'//request.User; // Get the user name
@@ -16,7 +16,7 @@ Parse.Cloud.define("sendInvitation", async (request, response)=>{
     try{
         for (let i = 0; i < listEmails.length; ++i){
             await sgMail.send({
-                to: listEmails[i],
+                to: listEmails[i].email,
                 from: "info@go-trip.tech",
                 subject: "You was invited to a Trip",
                 text: `Checkout this link for more information: http://127.0.0.1:4200/invitation?tripOwner=${tripOwner}#${tripTitle}#${city}#${month}`
