@@ -6,12 +6,13 @@ Parse.Cloud.define("sendInvitation", async (request)=>{
     console.log("executando cloud function")
     console.log(request.user)
     let tripData = request.params;
+    let user = request.user;
 
-    let listEmails = tripData.invitedFriends; // Separate the arrays
+    let listEmails = tripData.invitedFriends; // Array of emails
     let tripOwner = 'John'//request.User; // Get the user name
-    let tripTitle = encodeURIComponent(tripData.title);
-    let city = 'Siegen' //tripData.destination;
-    let month = 'October' //tripData.date.one; // convert data into month
+    let tripTitle = encodeURIComponent(tripData.title); // Remove empty space 
+    let city = tripData.destination; // Get city name
+    let month = tripData.date.one.getMonth(); // convert data into month
 
     try{
         for (let i = 0; i < listEmails.length; ++i){
