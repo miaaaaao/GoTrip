@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {germany} from './cities/germany';
-import {createNewTrip} from '../newTripForm.service';
+import { germany } from './cities/germany';
+import { createNewTrip } from '../newTripForm.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { currentUser } from '../getCurrentUserData.service';
 
 @Component({
   selector: 'app-new-trip-form',
@@ -16,6 +18,7 @@ export class NewTripFormComponent implements OnInit {
   invitedFriends: {}[] = [];
 
   tripForm = {
+    ownerName: this.currentUser.name, 
     title: null,
     destination: null,
     budget: {
@@ -31,7 +34,7 @@ export class NewTripFormComponent implements OnInit {
     invitedFriends: [{}],
   }
 
-  constructor(private createNewTrip: createNewTrip, private router: Router) {
+  constructor(private createNewTrip: createNewTrip, private router: Router, private currentUser: currentUser ) {
     //get list of germany cities and save each item as a object inside an array
     for(let i =0; i<germany.length; i++){
       this.cities.push({
