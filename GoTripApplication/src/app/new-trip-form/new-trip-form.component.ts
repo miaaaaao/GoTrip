@@ -77,9 +77,14 @@ export class NewTripFormComponent implements OnInit {
     await this.createNewTrip.saveTripOnParse(this.tripForm)
     //Go back to dashboard
     this.cancel();
+    //Clean friends list
+    this.createNewTrip.cleanInvitationList()
   }
 
   cancel(){
+    //Clean frinds list
+    this.createNewTrip.cleanInvitationList()
+    // Go back to dashboard
     this.router.navigate(['../dashboard'])
   }
 

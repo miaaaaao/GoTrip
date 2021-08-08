@@ -25,6 +25,10 @@ export class createNewTrip {
       });
   } 
 
+  cleanInvitationList() {
+    this.invitedFriends = []
+  }
+
   async saveTripOnParse(formData:any){
     console.log(formData)
     const TripsPlan = Parse.Object.extend('TripsPlan');
