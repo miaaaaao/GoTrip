@@ -24,6 +24,7 @@ import { BackgroundImageComponent } from './pages/background-image/background-im
 import { InvitationComponent } from './new-trip-form/invitation/invitation.component';
 import { DatetimepickerComponent } from './new-trip-form/datetimepicker/datetimepicker.component';
 import { InvitationPageComponent } from './pages/invitation-page/invitation-page.component';
+import { acceptInvitation } from './services/acceptInvitation.service';
 
 //This is the route array
 const appRoutes: Routes = [
@@ -63,7 +64,8 @@ const appRoutes: Routes = [
   providers: [
     getTrip, 
     createNewTrip, 
-    currentUser
+    currentUser,
+    acceptInvitation
   ],
   bootstrap: [AppComponent]
 })
