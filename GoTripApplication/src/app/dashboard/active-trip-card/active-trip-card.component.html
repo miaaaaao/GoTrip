@@ -1,11 +1,11 @@
-<div class="container tripcardContainer">
+<div class="container tripcardContainer" (click)="showTripDetails()">
     <!--This only shows to users who are invited-->
     <div *ngIf="tripPlan.owner !== 'You' && tripPlan.acceptedInvitation == false" class="row row-cols-auto justify-content-end my-2" style="min-height: 65px">
         <div class="col mt-3 flex-grow-0" >
-            <span class="cardLableInvitation">DECLINE</span>
+            <span class="cardLableInvitation" (click)="declineInvitation()">DECLINE</span>
         </div>
         <div class="col mt-3 flex-grow-0">
-            <span class="cardLableInvitation">ACCEPT</span>
+            <span class="cardLableInvitation" (click)="acceptInvitation()">ACCEPT</span>
         </div>
     </div>
     <!--This is shown if user acceped invitation-->
