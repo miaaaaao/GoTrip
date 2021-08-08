@@ -77,7 +77,7 @@ export class createNewTrip {
           //Save in NonUserInvited the users who does not have an account
           friendsZeroAccount.forEach(async function(email) {
             let nonUserInvited = new NonUserInvited();
-            
+
             await nonUserInvited.save({
               Email: email,
               tripsPlanId: tripsPlan
@@ -102,7 +102,7 @@ export class createNewTrip {
         tripsPlanId: tripsPlan
       })
       //Send email to invited friends
-
+      await Parse.Cloud.run("sendInvitation", formData).then(response=>console.log(response))
 
     }catch(err){
       console.log(err)
