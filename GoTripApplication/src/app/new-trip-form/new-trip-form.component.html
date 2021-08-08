@@ -6,7 +6,7 @@
                 <div class="col pt-4 pb-5 px-0">
                     <h4>Create new travel plan</h4>
                 </div>
-                <form (ngSubmit)="createPlan(formValue)" #formValue="ngForm">
+                <form (ngSubmit)="createPlan(formValue, $event.submitter.id)" #formValue="ngForm">
                     <div class="row row-cols-2 mb-3">
                         <div class="col light-Grey">Basic</div>
                         <div class="col">
@@ -86,7 +86,7 @@
                             <button type="button" class="btn btn-secundary" (click)="cancel()">Cancel</button>
                         </div>
                         <div class="col-6  d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary" [disabled]="!formValue.valid">Create</button>
+                            <button type="submit" id="createTripPlan" class="btn btn-primary" [disabled]="!formValue.valid">Create</button>
                         </div>
                     </div>
                 </form> 
