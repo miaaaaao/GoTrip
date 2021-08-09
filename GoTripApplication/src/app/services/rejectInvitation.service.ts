@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import * as Parse from 'parse';
 
-import { currentUser } from '../getCurrentUserData.service';
-import { getTrip } from '../getTrip.service';
+import { currentUser } from './getCurrentUserData.service';
+import { getTrip } from './getTrip.service';
 
 @Injectable()
 export class rejectInvitation {

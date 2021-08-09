@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { createNewTrip } from '../newTripForm.service';
+import { createNewTrip } from '../services/newTripForm.service';
 
 @Component({
   selector: 'app-breadcrumb',

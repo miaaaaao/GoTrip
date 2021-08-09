@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { getTrip } from '../getTrip.service';
-import { currentUser } from '../getCurrentUserData.service';
+import { getTrip } from '../services/getTrip.service';
+import { currentUser } from '../services/getCurrentUserData.service';
 
 @Component({
   selector: 'app-dashboard',

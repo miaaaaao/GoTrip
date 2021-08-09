@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { germany } from './cities/germany';
-import { createNewTrip } from '../newTripForm.service';
+import { createNewTrip } from '../services/newTripForm.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { currentUser } from '../getCurrentUserData.service';
+import { currentUser } from '../services/getCurrentUserData.service';
 
 @Component({
   selector: 'app-new-trip-form',

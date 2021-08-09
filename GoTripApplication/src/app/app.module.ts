@@ -11,9 +11,9 @@ import { NewTripFormComponent } from './new-trip-form/new-trip-form.component';
 import { CreateNewTripPlanButtonComponent } from './dashboard/create-new-trip-plan-button/create-new-trip-plan-button.component';
 import { OldTripCardComponent } from './dashboard/old-trip-card/old-trip-card.component';
 
-import { getTrip } from './getTrip.service';
-import { createNewTrip } from './newTripForm.service';
-import { currentUser } from './getCurrentUserData.service';
+import { getTrip } from './services/getTrip.service';
+import { createNewTrip } from './services/newTripForm.service';
+import { currentUser } from './services/getCurrentUserData.service';
 
 import { Router, RouterModule, Routes } from '@angular/router';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
