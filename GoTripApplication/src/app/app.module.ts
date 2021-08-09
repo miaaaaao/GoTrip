@@ -25,6 +25,7 @@ import { InvitationComponent } from './new-trip-form/invitation/invitation.compo
 import { DatetimepickerComponent } from './new-trip-form/datetimepicker/datetimepicker.component';
 import { InvitationPageComponent } from './pages/invitation-page/invitation-page.component';
 import { acceptInvitation } from './services/acceptInvitation.service';
+import { rejectInvitation } from './services/rejectInvitation.service';
 
 //This is the route array
 const appRoutes: Routes = [
@@ -65,7 +66,8 @@ const appRoutes: Routes = [
     getTrip, 
     createNewTrip, 
     currentUser,
-    acceptInvitation
+    acceptInvitation,
+    rejectInvitation
   ],
   bootstrap: [AppComponent]
 })

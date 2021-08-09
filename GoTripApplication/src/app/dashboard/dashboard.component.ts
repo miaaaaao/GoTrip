@@ -20,4 +20,10 @@ export class DashboardComponent implements OnInit {
     this.oldTrips = this.getTrip.oldTrips;
   }
 
+  update(){
+    console.log('UPDATNG ACTIVATED')
+    this.currentTrips = this.getTrip.currentTrips;
+    this.oldTrips = this.getTrip.oldTrips;
+  }
+
 }
