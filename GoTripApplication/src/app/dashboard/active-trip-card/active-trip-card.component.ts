@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { acceptInvitation } from '../../services/acceptInvitation.service';
 import { rejectInvitation } from '../../services/rejectInvitation.service';
@@ -13,7 +14,7 @@ export class ActiveTripCardComponent implements OnInit {
   @Input('tripPlan') tripPlan:any;
   @Output() updateDashboad = new EventEmitter;
 
-  constructor(private acceptInvitation: acceptInvitation, private rejectInvitation: rejectInvitation) { }
+  constructor(private acceptInvitation: acceptInvitation, private rejectInvitation: rejectInvitation, private router: Router) { }
 
   ngOnInit(): void {
    
@@ -36,6 +37,7 @@ export class ActiveTripCardComponent implements OnInit {
   }
 
   showTripDetails(){
+    this.router.navigate(['/details', this.tripPlan.id ])
     console.log('This trip details' +this.tripPlan.id)
   }
 

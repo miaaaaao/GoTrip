@@ -36,7 +36,7 @@ const appRoutes: Routes = [
   { path: 'signup', component: SignUpPageComponent },
   { path: 'reset', component: ResetPageComponent },
   { path: 'invitation', component: InvitationPageComponent },
-  { path: 'details', component: TripDetailsComponent }
+  { path: 'details/:id', component: TripDetailsComponent }
 ];
 
 @NgModule({
