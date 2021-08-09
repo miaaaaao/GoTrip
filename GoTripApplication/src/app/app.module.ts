@@ -26,6 +26,7 @@ import { DatetimepickerComponent } from './new-trip-form/datetimepicker/datetime
 import { InvitationPageComponent } from './pages/invitation-page/invitation-page.component';
 import { acceptInvitation } from './services/acceptInvitation.service';
 import { rejectInvitation } from './services/rejectInvitation.service';
+import { TripDetailsComponent } from './trip-details/trip-details.component';
 
 //This is the route array
 const appRoutes: Routes = [
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
   { path: 'signup', component: SignUpPageComponent },
   { path: 'reset', component: ResetPageComponent },
   { path: 'invitation', component: InvitationPageComponent },
+  { path: 'details', component: TripDetailsComponent }
 ];
 
 @NgModule({
@@ -53,6 +55,7 @@ const appRoutes: Routes = [
     InvitationComponent,
     DatetimepickerComponent,
     InvitationPageComponent,
+    TripDetailsComponent,
 
   ],
   imports: [

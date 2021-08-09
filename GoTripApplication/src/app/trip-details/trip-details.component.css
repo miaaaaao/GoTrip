@@ -1,0 +1,10 @@
+.mainContainer {
+    background-color: #F8F9FD;
+    min-height: 100vh;
+}
+
+.linkContainer{
+    background: white;
+    border: 1px solid #EBECF0;
+    border-radius: 6px;
+}

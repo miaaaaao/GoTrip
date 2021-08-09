@@ -19,7 +19,7 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   goBack(){
-    if(this.origin == 'newTripForm') this.createNewTrip.cleanInvitationList(); // Clean the email list
+    if(this.origin == 'newTripForm' || this.origin == 'tripDetails') this.createNewTrip.cleanInvitationList(); // Clean the email list
     this.router.navigate(['../dashboard'])
   }
 
