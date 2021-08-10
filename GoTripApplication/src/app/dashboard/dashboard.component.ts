@@ -11,13 +11,16 @@ export class DashboardComponent implements OnInit {
   userName: string = this.currentUser.name;
   currentTrips: {}[] = [];
   oldTrips: {}[] =[];
+  isLoading: boolean = true;
 
   constructor(private getTrip: getTrip, private currentUser: currentUser) { }
 
-  ngOnInit(): void {
-    this.getTrip.fetchParseData();
+  async ngOnInit(): Promise<any> {
+    this.isLoading = true;
+    await this.getTrip.fetchParseData();
     this.currentTrips = this.getTrip.currentTrips;
     this.oldTrips = this.getTrip.oldTrips;
+    this.isLoading = false;
   }
 
   update(){
