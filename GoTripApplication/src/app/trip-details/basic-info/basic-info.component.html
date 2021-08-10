@@ -1,0 +1,18 @@
+<div class="col-12 mb-5">
+    <h1 class="mb-0">Summer Trip</h1>
+    <span class="city">Siegen</span>
+    <br>
+    <!--Show if the user is the trip owner-->
+    <div *ngIf="isTripOwner">
+        <button type="button" class="btn btn-primary my-3">Edit</button>
+        <br>
+        <span class="btn-link">Mark as Finished</span>
+    </div>
+    <!--Show if the user is not the trip owner-->
+    <div *ngIf="!isTripOwner">
+        <button type="button" class="btn btn-outline-primary my-3 me-4">Decline</button>
+        <button type="button" class="btn btn-primary my-3">Accept</button>
+    </div>
+    
+
+</div>
