@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {germany} from './cities/germany';
-import {createNewTrip} from '../newTripForm.service';
+import { germany } from './cities/germany';
+import { createNewTrip } from '../services/newTripForm.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { currentUser } from '../services/getCurrentUserData.service';
 
 @Component({
   selector: 'app-new-trip-form',
@@ -16,6 +18,7 @@ export class NewTripFormComponent implements OnInit {
   invitedFriends: {}[] = [];
 
   tripForm = {
+    ownerName: this.currentUser.name, 
     title: null,
     destination: null,
     budget: {
@@ -31,7 +34,7 @@ export class NewTripFormComponent implements OnInit {
     invitedFriends: [{}],
   }
 
-  constructor(private createNewTrip: createNewTrip, private router: Router) {
+  constructor(private createNewTrip: createNewTrip, private router: Router, private currentUser: currentUser ) {
     //get list of germany cities and save each item as a object inside an array
     for(let i =0; i<germany.length; i++){
       this.cities.push({
@@ -63,7 +66,9 @@ export class NewTripFormComponent implements OnInit {
     }
   }
   //Function that run after user fills the form and clicks on create button
-  async createPlan(el: NgForm){
+  async createPlan(el: NgForm, buttonId: any){
+    if (buttonId !== "createTripPlan") return ;
+    console.log(buttonId)
     //fill tripForm object
     this.tripForm.title = el.value.Title;
     this.tripForm.destination = el.value.city.name;
@@ -75,9 +80,14 @@ export class NewTripFormComponent implements OnInit {
     await this.createNewTrip.saveTripOnParse(this.tripForm)
     //Go back to dashboard
     this.cancel();
+    //Clean friends list
+    this.createNewTrip.cleanInvitationList()
   }
 
   cancel(){
+    //Clean frinds list
+    this.createNewTrip.cleanInvitationList()
+    // Go back to dashboard
     this.router.navigate(['../dashboard'])
   }
 

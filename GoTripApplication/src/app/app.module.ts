@@ -11,9 +11,9 @@ import { NewTripFormComponent } from './new-trip-form/new-trip-form.component';
 import { CreateNewTripPlanButtonComponent } from './dashboard/create-new-trip-plan-button/create-new-trip-plan-button.component';
 import { OldTripCardComponent } from './dashboard/old-trip-card/old-trip-card.component';
 
-import { getTrip } from './getTrip.service';
-import { createNewTrip } from './newTripForm.service';
-import { currentUser } from './getCurrentUserData.service';
+import { getTrip } from './services/getTrip.service';
+import { createNewTrip } from './services/newTripForm.service';
+import { currentUser } from './services/getCurrentUserData.service';
 
 import { Router, RouterModule, Routes } from '@angular/router';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
@@ -24,6 +24,12 @@ import { BackgroundImageComponent } from './pages/background-image/background-im
 import { InvitationComponent } from './new-trip-form/invitation/invitation.component';
 import { DatetimepickerComponent } from './new-trip-form/datetimepicker/datetimepicker.component';
 import { InvitationPageComponent } from './pages/invitation-page/invitation-page.component';
+import { acceptInvitation } from './services/acceptInvitation.service';
+import { rejectInvitation } from './services/rejectInvitation.service';
+import { TripDetailsComponent } from './trip-details/trip-details.component';
+import { AllSightsComponent } from './trip-details/all-sights/all-sights.component';
+import { MapComponent } from './trip-details/map/map.component';
+import { NotesComponent } from './trip-details/notes/notes.component';
 
 //This is the route array
 const appRoutes: Routes = [
@@ -33,6 +39,12 @@ const appRoutes: Routes = [
   { path: 'signup', component: SignUpPageComponent },
   { path: 'reset', component: ResetPageComponent },
   { path: 'invitation', component: InvitationPageComponent },
+  { path: 'details/:id', component: TripDetailsComponent, children: [
+    {path: 'sights', component: AllSightsComponent},
+    {path: 'map', component: MapComponent},
+    {path: 'notes', component: NotesComponent},
+
+  ] }
 ];
 
 @NgModule({
@@ -51,6 +63,10 @@ const appRoutes: Routes = [
     InvitationComponent,
     DatetimepickerComponent,
     InvitationPageComponent,
+    TripDetailsComponent,
+    AllSightsComponent,
+    MapComponent,
+    NotesComponent,
 
   ],
   imports: [
@@ -63,7 +79,9 @@ const appRoutes: Routes = [
   providers: [
     getTrip, 
     createNewTrip, 
-    currentUser
+    currentUser,
+    acceptInvitation,
+    rejectInvitation
   ],
   bootstrap: [AppComponent]
 })

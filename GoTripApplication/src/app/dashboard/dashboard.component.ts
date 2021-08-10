@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { getTrip } from '../getTrip.service';
-import { currentUser } from '../getCurrentUserData.service';
+import { getTrip } from '../services/getTrip.service';
+import { currentUser } from '../services/getCurrentUserData.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,6 +16,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTrip.fetchParseData();
+    this.currentTrips = this.getTrip.currentTrips;
+    this.oldTrips = this.getTrip.oldTrips;
+  }
+
+  update(){
+    console.log('UPDATNG ACTIVATED')
     this.currentTrips = this.getTrip.currentTrips;
     this.oldTrips = this.getTrip.oldTrips;
   }

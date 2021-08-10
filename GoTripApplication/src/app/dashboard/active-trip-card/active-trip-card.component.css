@@ -14,7 +14,7 @@
     cursor: pointer;
 }
 
-.cardLableInvitation, .cardLableOwner {
+.cardLableInvitation, .cardLableOwner, .cardLableInvitationAccepted {
     background: #E9E8FC;
     border-radius: 5px;
     color: #605DEC;

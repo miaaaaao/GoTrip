@@ -1,6 +1,6 @@
 // 
 //This is a service to get data from Parse serve to be shown on the dashboard 
-//
+// v9PoMROgUK
 import { Injectable } from '@angular/core';
 import * as Parse from 'parse';
 
@@ -20,6 +20,7 @@ class TripModel {
         this.date = date;
         this.owner = owner;
         this.acceptedInvitation = acceptedInvitation;
+        this.id = id;
     }
 }
 
@@ -50,15 +51,17 @@ export class getTrip {
         planOwner.equalTo("owner", user);
 
         const planInvited = new Parse.Query('TripsPlan');
-        planInvited.equalTo("listUsersPending", user);
+        planInvited.equalTo("listUsersPending2", user);
 
         const planInvitationConfirmed = new Parse.Query('TripsPlan');
-        planInvitationConfirmed.equalTo("listUsersConfirmed", user);
+        planInvitationConfirmed.equalTo("listUsersConfirmed2", user);
 
         const mainQuery = Parse.Query.or(planOwner, planInvited, planInvitationConfirmed);
 
         const results = await mainQuery.find();
         
+        
+       
         // Do something with the returned Parse.Object values
         for (let i = 0; i < results.length; i++) {
             const object = results[i];
@@ -78,8 +81,10 @@ export class getTrip {
                 owner = ownerResult?.get('username');
             }
             //Check if invitaion was accepted
-            let acceptedInvitation = object.get('listUsersConfirmed');
-            acceptedInvitation = acceptedInvitation !== undefined ? true : false;
+            let acceptedInvitation = false;
+            await object.relation('listUsersConfirmed2').query().each(function(relatedObject) {
+                if(relatedObject.id == user.id) acceptedInvitation = true;
+             })
 
             let trip = new TripModel(object.id, object.get('title'), object.get('city'), data, owner, acceptedInvitation);
             if(status){

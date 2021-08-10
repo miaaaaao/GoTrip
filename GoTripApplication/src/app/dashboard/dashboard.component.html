@@ -15,7 +15,7 @@
                 <div class="row row-cols-4" style="min-height: 166px;">
                     <div *ngFor="let trip of currentTrips" class="col-3" >
                         <!-- Trip card component -->
-                        <app-active-trip-card [tripPlan]="trip"></app-active-trip-card>
+                        <app-active-trip-card [tripPlan]="trip" (updateDashboad)="update()"></app-active-trip-card>
                     </div>
                     <!-- Create trip planner -->
                     <div class="col-3">
