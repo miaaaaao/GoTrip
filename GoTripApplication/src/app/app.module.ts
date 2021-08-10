@@ -27,6 +27,9 @@ import { InvitationPageComponent } from './pages/invitation-page/invitation-page
 import { acceptInvitation } from './services/acceptInvitation.service';
 import { rejectInvitation } from './services/rejectInvitation.service';
 import { TripDetailsComponent } from './trip-details/trip-details.component';
+import { AllSightsComponent } from './trip-details/all-sights/all-sights.component';
+import { MapComponent } from './trip-details/map/map.component';
+import { NotesComponent } from './trip-details/notes/notes.component';
 
 //This is the route array
 const appRoutes: Routes = [
@@ -36,7 +39,12 @@ const appRoutes: Routes = [
   { path: 'signup', component: SignUpPageComponent },
   { path: 'reset', component: ResetPageComponent },
   { path: 'invitation', component: InvitationPageComponent },
-  { path: 'details/:id', component: TripDetailsComponent }
+  { path: 'details/:id', component: TripDetailsComponent, children: [
+    {path: 'sights', component: AllSightsComponent},
+    {path: 'map', component: MapComponent},
+    {path: 'notes', component: NotesComponent},
+
+  ] }
 ];
 
 @NgModule({
@@ -56,6 +64,9 @@ const appRoutes: Routes = [
     DatetimepickerComponent,
     InvitationPageComponent,
     TripDetailsComponent,
+    AllSightsComponent,
+    MapComponent,
+    NotesComponent,
 
   ],
   imports: [

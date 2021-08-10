@@ -37,7 +37,7 @@ export class ActiveTripCardComponent implements OnInit {
   }
 
   showTripDetails(){
-    this.router.navigate(['/details', this.tripPlan.id ])
+    this.router.navigate(['/details', this.tripPlan.id,'sights' ])
     console.log('This trip details' +this.tripPlan.id)
   }
 

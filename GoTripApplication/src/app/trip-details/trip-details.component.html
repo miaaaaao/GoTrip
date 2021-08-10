@@ -21,13 +21,14 @@
             <div class="col-8">
                 <div class="row linkContainer mb-2 mx-1">
                     <nav class="nav">
-                        <a class="nav-link active" aria-current="page" href="#">All Sights</a>
-                        <a class="nav-link" href="#">Map</a>
-                        <a class="nav-link" href="#">Notes</a>
+                        <a class="nav-link" routerLinkActive="activeLink" [routerLink]="['/details/',tripId,'sights']">All Sights</a>
+                        <a class="nav-link" routerLinkActive="activeLink" [routerLink]="['/details/',tripId,'map']">Map</a>
+                        <a class="nav-link" routerLinkActive="activeLink" [routerLink]="['/details/',tripId,'notes']">Notes</a>
                       </nav>
                 </div>
                 <div class="row mx-1" style="border:1px solid green; min-height:100px">
-                    <span>Show list of sights</span>
+                    <!--This will change based on the link selected on the internal navigation-->
+                    <router-outlet></router-outlet>
                 </div>
             </div>
         </div>
