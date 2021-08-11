@@ -19,7 +19,7 @@ export class getTripDetails {
     currentTrip = {
         status:{
             isTheOwner: false,
-            hasAcceptedInvitation: false,
+            hasAcceptedInvitation: true,
         }, 
         title: '',
         destination: '',

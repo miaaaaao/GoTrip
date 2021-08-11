@@ -13,7 +13,7 @@ export class TripDetailsComponent implements OnInit {
   title: string='';
   city: string='';
   isTheOwner = false;
-  hasAcceptedInvitation = false;
+  hasAcceptedInvitation = true;
 
   constructor(private router: Router, private activeRoute: ActivatedRoute, private getTripDetails: getTripDetails) { 
     console.log('antigo' +this.tripId)

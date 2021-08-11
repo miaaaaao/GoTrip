@@ -1,4 +1,5 @@
 <div class="container-fluid mainContainer tp-0">
+    <app-notification-bar *ngIf="!hasAcceptedInvitation"></app-notification-bar>
     <div class="container">
         <app-breadcrumb [origin]="'tripDetails'"></app-breadcrumb>
         <div class="row">
