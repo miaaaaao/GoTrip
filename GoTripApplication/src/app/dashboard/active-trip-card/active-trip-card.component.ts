@@ -20,25 +20,27 @@ export class ActiveTripCardComponent implements OnInit {
    
   }
 
+  /*
+  * Call a function on the service folder to reject invitation
+  */
   async declineInvitation(){
-    //Go to listUsersPending2 and remove this user
-    console.log('I dont want to go' + this.tripPlan.id)
     await this.rejectInvitation.reject(this.tripPlan.id)
-    //emmit event
-    this.updateDashboad.emit()
+    this.updateDashboad.emit() // event emited to refresh the dashboard
   }
-
+  /*
+  * Call a function on the service folder to accept invitation
+  */
   async acceptInvitationButton(){
-    //Go to listUsersPending2 and remove the user and add to listUsersConfirmed2
-    console.log('Sure I wan tot go' + this.tripPlan.id)
     await this.acceptInvitation.accept(this.tripPlan.id)
-    //emmit event
-    this.updateDashboad.emit()
+    this.updateDashboad.emit() // event emited to refresh the dashboard
   }
 
+  /*
+  * This function open the details page
+  */
   showTripDetails(){
     this.router.navigate(['/details', this.tripPlan.id,'sights' ])
-    console.log('This trip details' +this.tripPlan.id)
+    
   }
 
 }

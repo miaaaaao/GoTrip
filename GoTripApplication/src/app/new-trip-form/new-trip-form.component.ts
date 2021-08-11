@@ -12,11 +12,15 @@ import { currentUser } from '../services/getCurrentUserData.service';
   styleUrls: ['./new-trip-form.component.css']
 })
 export class NewTripFormComponent implements OnInit {
-  @ViewChild('formValue') sigupForm:any;
-  cities:{id:Number, name:String}[] = [];
+  @ViewChild('formValue') sigupForm:any; // Get values from the inputs
+  cities:{id:Number, name:String}[] = []; // Store the german cities from the cities folder
   invitedFriend: String = '';
   invitedFriends: {}[] = [];
 
+  /*
+  * This object will be sent to the service that will be responsable to
+  * save it on Parse
+  */
   tripForm = {
     ownerName: this.currentUser.name, 
     title: null,
@@ -35,7 +39,10 @@ export class NewTripFormComponent implements OnInit {
   }
 
   constructor(private createNewTrip: createNewTrip, private router: Router, private currentUser: currentUser ) {
-    //get list of germany cities and save each item as a object inside an array
+    /*
+    * get list of germany cities from cities folder and save each item as a
+    * object with id and name inside an array
+    */
     for(let i =0; i<germany.length; i++){
       this.cities.push({
         id: i+1,
@@ -48,11 +55,15 @@ export class NewTripFormComponent implements OnInit {
     this.invitedFriends = this.createNewTrip.invitedFriends;
     
   }
-  //Add current written email to the array: invitedFriends to save all friends email
+  /*
+  *Add current written email to the array: invitedFriends to save all friends email
+  */
   invite(){
     this.createNewTrip.invite(this.invitedFriend);
   }
-  //Get data from the data picker and save on the tripform object
+  /*
+  * Get data from the data picker and save on the tripform object
+  */
   fillDates(el:any){
     let dateId = el.id;
     if(dateId === 'one'){
@@ -65,7 +76,9 @@ export class NewTripFormComponent implements OnInit {
       console.log('No ID found for this data entry')
     }
   }
-  //Function that run after user fills the form and clicks on create button
+  /*
+  * Function that run after user fills the form and clicks on create button
+  */
   async createPlan(el: NgForm, buttonId: any){
     if (buttonId !== "createTripPlan") return ;
     console.log(buttonId)
@@ -84,11 +97,12 @@ export class NewTripFormComponent implements OnInit {
     this.createNewTrip.cleanInvitationList()
   }
 
+  /*
+  * calcel the form and go back to the dashboar
+  */
   cancel(){
-    //Clean frinds list
-    this.createNewTrip.cleanInvitationList()
-    // Go back to dashboard
-    this.router.navigate(['../dashboard'])
+    this.createNewTrip.cleanInvitationList() //Clean frinds list
+    this.router.navigate(['../dashboard']) // Go back to dashboard
   }
 
   
