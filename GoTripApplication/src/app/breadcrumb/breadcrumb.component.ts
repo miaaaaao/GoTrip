@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { createNewTrip } from '../services/newTripForm.service';
@@ -17,7 +16,10 @@ export class BreadcrumbComponent implements OnInit {
   ngOnInit(): void {
     
   }
-
+  /*
+  * Function to sen dthe user to teh previous page. It uses the origin variable to
+  * decide to whenre they shoudl go back.
+  */
   goBack(){
     if(this.origin == 'newTripForm' || this.origin == 'tripDetails') this.createNewTrip.cleanInvitationList(); // Clean the email list
     this.router.navigate(['../dashboard'])

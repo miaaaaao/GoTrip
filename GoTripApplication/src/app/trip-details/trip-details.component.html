@@ -1,11 +1,23 @@
+<!--
+    This is the page that will show details about the selected trip.
+
+-->
+
 <div class="container-fluid mainContainer tp-0">
+    <app-notification-bar *ngIf="!hasAcceptedInvitation"></app-notification-bar>
     <div class="container">
         <app-breadcrumb [origin]="'tripDetails'"></app-breadcrumb>
         <div class="row">
             <!--Left column-->
-            <div class="col-4" style="border:1px solid red; min-height:300px">
-                <div class="row" style="border:1px solid green; min-height:100px">
-                    <span>Component with trip title, city and contolers</span>
+            <div class="col-3">
+                <div class="row">
+                    <app-basic-info 
+                    [title]="title" 
+                    [city]="city"
+                    [isTheOwner]="isTheOwner"
+                    [hasAcceptedInvitation]="hasAcceptedInvitation"
+                    [tripId]="tripId"
+                    ></app-basic-info>
                 </div>
                 <div class="row" style="border:1px solid green; min-height:100px">
                     <span>Component with budget card</span>
@@ -18,7 +30,7 @@
                 </div>
             </div>
             <!--Right column-->
-            <div class="col-8">
+            <div class="col-9">
                 <div class="row linkContainer mb-2 mx-1">
                     <nav class="nav">
                         <a class="nav-link" routerLinkActive="activeLink" [routerLink]="['/details/',tripId,'sights']">All Sights</a>

@@ -1,3 +1,8 @@
+<!--
+    This is the page shows the trips cards. 
+
+-->
+
 <div class="container-fluid mainContainer">
     <div class="container">
         <div class="row">
@@ -7,11 +12,11 @@
             </div>
         </div>
         <!--Current trips-->
-        <div class="row containerWhite">
+        <div class="row containerWhite" style="min-height: 300px;">
             <div class="col-12 mb-3">
                 <span class="textSecundary fs-5">Current Trip <span *ngIf="currentTrips.length > 0">({{currentTrips.length}})</span></span>
             </div>
-            <div class="col-12" style="min-height: 170px;">
+            <div class="col-12" style="min-height: 170px;" *ngIf="!isLoading">
                 <div class="row row-cols-4" style="min-height: 166px;">
                     <div *ngFor="let trip of currentTrips" class="col-3" >
                         <!-- Trip card component -->
@@ -23,6 +28,12 @@
                     </div>
                 </div>
             </div> 
+            <!--Show Spinner while getting data-->
+            <div *ngIf="isLoading" class="d-flex justify-content-center">
+                <div class="spinner-grow text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
         </div>
         <!--Past trips-->
         <div class="row containerWhite">
