@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+
+
 @Component({
   selector: 'app-all-sights',
   templateUrl: './all-sights.component.html',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllSightsComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+
+  }
 
   ngOnInit(): void {
+
   }
+
+  
 
 }

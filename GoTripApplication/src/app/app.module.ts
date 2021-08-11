@@ -11,6 +11,7 @@ import { currentUser } from './services/getCurrentUserData.service';
 import { getTripDetails } from '../app/services/getTripDetails.service';
 import { acceptInvitation } from './services/acceptInvitation.service';
 import { rejectInvitation } from './services/rejectInvitation.service';
+import { finishTrip } from './services/finishTrip.service';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -86,7 +87,8 @@ const appRoutes: Routes = [
     currentUser,
     acceptInvitation,
     rejectInvitation,
-    getTripDetails
+    getTripDetails,
+    finishTrip
   ],
   bootstrap: [AppComponent]
 })
