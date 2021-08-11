@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-basic-info',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./basic-info.component.css']
 })
 export class BasicInfoComponent implements OnInit {
+  @Input() title: string = '';
+  @Input() city: string = '';
+  @Input() isTheOwner: boolean = false;
+  @Input() hasAcceptedInvitation: boolean = false;
   isTripOwner: boolean = false;
-  constructor() { }
+  constructor() {
+   
+    
+   }
 
   ngOnInit(): void {
+
   }
 
 }

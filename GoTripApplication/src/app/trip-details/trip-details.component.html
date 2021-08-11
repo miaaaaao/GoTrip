@@ -5,7 +5,12 @@
             <!--Left column-->
             <div class="col-3">
                 <div class="row">
-                    <app-basic-info></app-basic-info>
+                    <app-basic-info 
+                    [title]="title" 
+                    [city]="city"
+                    [isTheOwner]="isTheOwner"
+                    [hasAcceptedInvitation]="hasAcceptedInvitation"
+                    ></app-basic-info>
                 </div>
                 <div class="row" style="border:1px solid green; min-height:100px">
                     <span>Component with budget card</span>
