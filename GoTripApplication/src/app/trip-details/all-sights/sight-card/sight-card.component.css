@@ -30,6 +30,6 @@
 
 .card:hover{
     cursor: pointer;
-    border: 1px solid #b5b4e7;
+    box-shadow: 0 0 0 1px #b5b4e7;
     transition: all 0.2s;
 }
