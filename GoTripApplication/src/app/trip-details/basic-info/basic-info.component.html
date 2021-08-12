@@ -4,7 +4,6 @@
     are shown depend on the user. If it is an invited user it will not be shown edit and
     mark as finished button. If the user have not accepted the invitation it will show buttons
     to accept and reject the invitation.
-
 -->
 
 <div class="col-12 mb-5">
@@ -13,13 +12,13 @@
     <br>
     <!--Show if the user is the trip owner-->
     <div *ngIf="isTheOwner">
-        <button type="button" class="btn btn-primary my-3">Edit</button>
+        <button type="button" class="btn btn-primary my-3" (click)="editTrip()">Edit</button>
         <br>
         <span class="btn-link" (click)="setTripAsFinished()">Mark as Finished</span>
     </div>
     <!--Show if the user is not the trip owner-->
     <div *ngIf="!isTheOwner && !hasAcceptedInvitation">
-        <button type="button" class="btn btn-outline-primary my-3 me-4">Decline</button>
-        <button type="button" class="btn btn-primary my-3">Accept</button>
+        <button type="button" class="btn btn-outline-primary my-3 me-4" (click)="decline()">Decline</button>
+        <button type="button" class="btn btn-primary my-3" (click)="accept()">Accept</button>
     </div>
 </div>

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { finishTrip } from '../../services/finishTrip.service';
+import { rejectInvitation } from '../../services/rejectInvitation.service';
 
 @Component({
   selector: 'app-basic-info',
@@ -15,7 +16,7 @@ export class BasicInfoComponent implements OnInit {
   @Input() hasAcceptedInvitation: boolean = false;
   @Input() tripId = '';
 
-  constructor(private finishTrip: finishTrip, private router: Router) {
+  constructor(private finishTrip: finishTrip, private router: Router, private rejectInvitation:rejectInvitation ) {
    
    }
 
@@ -27,6 +28,20 @@ export class BasicInfoComponent implements OnInit {
     if(this.tripId == '') return // Stops the function if there is no ID saved
     await this.finishTrip.markAsFinished(this.tripId) // Run the Parse function to change finished from true to false
     this.router.navigate(['../../dashboard']) // Go back to dasboard after change to finished
+  }
+
+  editTrip(){
+
+  }
+
+  decline(){
+    this.rejectInvitation.reject(this.tripId).then(el=>{
+      this.router.navigate(['../../dashboard']) // GO back to dashboard
+    })
+  }
+
+  accept(){
+
   }
 
 }
