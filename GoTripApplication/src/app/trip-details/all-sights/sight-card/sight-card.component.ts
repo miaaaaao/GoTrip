@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-sight-card',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sight-card.component.css']
 })
 export class SightCardComponent implements OnInit {
-
+  @Input() isTheOwner: boolean = false;
   constructor() { }
 
   ngOnInit(): void {

@@ -10,7 +10,7 @@
             <span class="like-counter">0</span>
           </div>
           <!--Add button is only visible to trip Owners-->
-          <div class="col-6 d-flex justify-content-end">
+          <div class="col-6 d-flex justify-content-end" *ngIf="isTheOwner">
             <a class="btn btn-primary" (click)="add($event)">Add</a> 
           </div>
       </div>

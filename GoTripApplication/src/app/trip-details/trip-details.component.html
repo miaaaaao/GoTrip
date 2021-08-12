@@ -39,7 +39,7 @@
                         <a class="nav-link" routerLinkActive="activeLink" [routerLink]="['/details/',tripId,'notes']">Notes</a>
                       </nav>
                 </div>
-                <div class="row mx-1" style="border:1px solid green; min-height:100px">
+                <div class="row mx-1" style="border:1px solid green; min-height:100px" *ngIf="hasReceivedData">
                     <!--This will change based on the link selected on the internal navigation-->
                     <router-outlet></router-outlet>
                 </div>

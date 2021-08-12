@@ -5,17 +5,13 @@
 -->
 <div class="col-12 containerWhite" style="min-height: 170px;">
     <div class="row">
-        <span class="heading mb-3">Expore Siegen</span>
+        <span class="heading mb-3">Expore {{city}}</span>
     </div>
     <div class="row row-cols-3" style="min-height: 166px">
         <!--This should get ngFor-->
         <div class="col-4 px-1 mb-2" >
             <!-- Sights card component -->
-            <app-sight-card></app-sight-card>  
+            <app-sight-card [isTheOwner]="isTheOwner"></app-sight-card>  
         </div>
-        
-       
-        
-       
     </div>
 </div>
