@@ -38,6 +38,7 @@ import { NotesComponent } from './trip-details/notes/notes.component';
 import { BasicInfoComponent } from './trip-details/basic-info/basic-info.component';
 import { NotificationBarComponent } from './trip-details/notification-bar/notification-bar.component';
 import { SightCardComponent } from './trip-details/all-sights/sight-card/sight-card.component';
+import { ShortnerPipe } from './pipe/shortner.pipe';
 
 //This is the route array
 const appRoutes: Routes = [
@@ -78,6 +79,7 @@ const appRoutes: Routes = [
     BasicInfoComponent,
     NotificationBarComponent,
     SightCardComponent,
+    ShortnerPipe,
 
   ],
   imports: [

@@ -19,7 +19,7 @@ export class AllSightsComponent implements OnInit {
   lat: number = 0 ;
   lon: number = 0;
   offset: number = 0; // offset from first object in the list
-  limit: number = 3;
+  limit: number = 3; // limit the number of results form the API
   count: number = 0; // total objects count
   radius: number = 9000; // Area where the api will search for sights
   lang: string = 'en';
