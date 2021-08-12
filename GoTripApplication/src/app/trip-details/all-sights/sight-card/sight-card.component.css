@@ -11,3 +11,25 @@
 .card-text {
     color: #7C8DB0
 }
+
+.like {
+    color: #c3cad3;
+}
+
+.like:hover {
+    cursor: pointer;
+    color: #EB5757;
+    transition: all 0.2s;
+}
+
+.like-counter{
+    color: #605DEC;
+    padding-left: 8px;
+    transition: all 0.2s;
+}
+
+.card:hover{
+    cursor: pointer;
+    border: 1px solid #b5b4e7;
+    transition: all 0.2s;
+}

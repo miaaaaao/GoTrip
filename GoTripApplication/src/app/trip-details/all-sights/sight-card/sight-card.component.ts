@@ -11,5 +11,27 @@ export class SightCardComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  /*
+  * Vote will open a new page with extra infromation about the sight
+  */
+  openSightDetail(){
+    console.log('Open datailpage')
+    
+  }
+  /*
+  * Vote will store the user in the Parse
+  */
+  vote(el:any){
+    console.log('vote to visite')
+    console.log(el)
+    el.stopPropagation()
+  }
+  /*
+  * Vote will store the sight information in the Parse
+  */
+  add(el:any){
+    console.log('Add to map')
+    el.stopPropagation()
+  }
 
 }

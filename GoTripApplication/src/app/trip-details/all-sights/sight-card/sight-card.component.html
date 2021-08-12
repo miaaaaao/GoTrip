@@ -1,8 +1,18 @@
-<div class="card" style="width: 18rem;">
+
+<div class="card" style="width: 15rem;" (click)="openSightDetail()">
     <img src="http://localhost:4200/bg.jpg" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Add</a>
+      <p class="card-text">Some quick example text to build on the card title and make </p>
+      <div class="row">
+          <div class="col-6 d-flex align-items-center">
+            <i class="fa fa-heart fa-2x like" (click)="vote($event)"></i>
+            <span class="like-counter">0</span>
+          </div>
+          <!--Add button is only visible to trip Owners-->
+          <div class="col-6 d-flex justify-content-end">
+            <a class="btn btn-primary" (click)="add($event)">Add</a> 
+          </div>
+      </div>
     </div>
   </div>

@@ -81,7 +81,6 @@ export class NewTripFormComponent implements OnInit {
   */
   async createPlan(el: NgForm, buttonId: any){
     if (buttonId !== "createTripPlan") return ;
-    console.log(buttonId)
     //fill tripForm object
     this.tripForm.title = el.value.Title;
     this.tripForm.destination = el.value.city.name;
