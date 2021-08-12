@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { finishTrip } from '../../services/finishTrip.service';
 import { rejectInvitation } from '../../services/rejectInvitation.service';
+import { acceptInvitation } from '../../services/acceptInvitation.service';
 
 @Component({
   selector: 'app-basic-info',
@@ -15,8 +16,9 @@ export class BasicInfoComponent implements OnInit {
   @Input() isTheOwner: boolean = false;
   @Input() hasAcceptedInvitation: boolean = false;
   @Input() tripId = '';
+  @Output() updateDetailsData = new EventEmitter;
 
-  constructor(private finishTrip: finishTrip, private router: Router, private rejectInvitation:rejectInvitation ) {
+  constructor(private finishTrip: finishTrip, private router: Router, private rejectInvitation:rejectInvitation, private acceptInvitation: acceptInvitation ) {
    
    }
 
@@ -41,7 +43,10 @@ export class BasicInfoComponent implements OnInit {
   }
 
   accept(){
-
+    this.acceptInvitation.accept(this.tripId)
+    .then(el=>{
+      this.updateDetailsData.emit() // Ask the details to update the page
+    })
   }
 
 }

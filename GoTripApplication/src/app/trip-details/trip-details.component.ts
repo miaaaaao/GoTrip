@@ -20,7 +20,7 @@ export class TripDetailsComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  getInfoAboutThisTrip(){
     /*
     * Get information from Parse server to fill the information about the trip
     */
@@ -32,6 +32,10 @@ export class TripDetailsComponent implements OnInit {
         this.hasAcceptedInvitation = this.getTripDetails.currentTrip.status.hasAcceptedInvitation
       });
     }
+  }
+
+  ngOnInit(): void {
+    this.getInfoAboutThisTrip()
   }
 
   ngOnDestroy(){
