@@ -23,16 +23,18 @@ export class ActiveTripCardComponent implements OnInit {
   /*
   * Call a function on the service folder to reject invitation
   */
-  async declineInvitation(){
+  async declineInvitation(el:any){
     await this.rejectInvitation.reject(this.tripPlan.id)
     this.updateDashboad.emit() // event emited to refresh the dashboard
+    el.stopPropagation() // Make the button not activate the trip details function
   }
   /*
   * Call a function on the service folder to accept invitation
   */
-  async acceptInvitationButton(){
+  async acceptInvitationButton(el:any){
     await this.acceptInvitation.accept(this.tripPlan.id)
     this.updateDashboad.emit() // event emited to refresh the dashboard
+    el.stopPropagation() // Make the button not activate the trip details function
   }
 
   /*
