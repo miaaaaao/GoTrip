@@ -80,9 +80,26 @@ export class AllSightsComponent implements OnInit {
 
     this.http.get<{dist:number, highlighted_name: string, kinds: string, name: string, point: {lon: number, lat: number}, rate: number, wikidate: string, xid: string}[]>(url)
     .subscribe(resp=>{
-      for(let i = 0; i < resp.length; i++){
-         this.getSightInfo(resp[i].xid);
+      /*
+      * This is to handle the limits. OpenTripMap free account allows 10 request per second.
+      * The bellow code will make the system wait 1 second if return an array with more then 5 sights
+      */
+      if(resp.length <= 5){
+        for(let i = 0; i < resp.length; i++){
+          this.getSightInfo(resp[i].xid);
+       }
+      } else {
+        for(let i = 0; i <= 4 ; i++){
+          this.getSightInfo(resp[i].xid);
+       }
+       // Add a delay of 2 second
+       setTimeout(()=>{
+        for(let i = 5; i <= resp.length; i++){
+          this.getSightInfo(resp[i].xid);
+       }
+      }, 2000); 
       }
+
       console.log(resp)
       
     })

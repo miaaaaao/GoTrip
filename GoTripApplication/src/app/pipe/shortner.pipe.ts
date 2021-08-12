@@ -8,7 +8,6 @@ export class ShortnerPipe implements PipeTransform {
     if(value.length > limit){
       return value.substr(0, limit) + '...';
     }
-    console.log('===> ' +value)
     return value;
   }
 
