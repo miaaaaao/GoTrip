@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SightCardComponent implements OnInit {
   @Input() isTheOwner: boolean = false;
+  @Input() sight: {name?:string, xid?: string, urlImage?:string, description?:string, geoPoints?:{lon: number, lat: number} } = {};
   constructor() { }
 
   ngOnInit(): void {

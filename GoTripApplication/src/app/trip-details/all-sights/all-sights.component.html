@@ -9,9 +9,9 @@
     </div>
     <div class="row row-cols-3" style="min-height: 166px">
         <!--This should get ngFor-->
-        <div class="col-4 px-1 mb-2" >
+        <div class="col-4 px-1 mb-2" *ngFor="let sight of listOfSights">
             <!-- Sights card component -->
-            <app-sight-card [isTheOwner]="isTheOwner"></app-sight-card>  
+            <app-sight-card [isTheOwner]="isTheOwner" [sight]="sight"></app-sight-card>  
         </div>
     </div>
 </div>
