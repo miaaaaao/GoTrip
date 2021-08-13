@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sight-card',
@@ -8,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SightCardComponent implements OnInit {
   @Input() isTheOwner: boolean = false;
   @Input() sight: {name?:string, xid?: string, urlImage?:string, description?:string, geoPoints?:{lon: number, lat: number} } = {};
-  constructor() { }
+  constructor(private route: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
@@ -16,7 +17,8 @@ export class SightCardComponent implements OnInit {
   * Vote will open a new page with extra infromation about the sight
   */
   openSightDetail(){
-    console.log('Open datailpage')
+    console.log('Open datailpage');
+    this.route.navigate(['../place'], {relativeTo: this.activeRoute})
     
   }
   /*

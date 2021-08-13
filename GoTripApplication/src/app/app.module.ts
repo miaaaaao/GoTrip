@@ -39,6 +39,7 @@ import { BasicInfoComponent } from './trip-details/basic-info/basic-info.compone
 import { NotificationBarComponent } from './trip-details/notification-bar/notification-bar.component';
 import { SightCardComponent } from './trip-details/all-sights/sight-card/sight-card.component';
 import { ShortnerPipe } from './pipe/shortner.pipe';
+import { SightDetailComponent } from './trip-details/sight-detail/sight-detail.component';
 
 //This is the route array
 const appRoutes: Routes = [
@@ -52,6 +53,7 @@ const appRoutes: Routes = [
     {path: 'sights', component: AllSightsComponent},
     {path: 'map', component: MapComponent},
     {path: 'notes', component: NotesComponent},
+    {path: 'place', component: SightDetailComponent},
 
   ] }
 ];
@@ -80,6 +82,7 @@ const appRoutes: Routes = [
     NotificationBarComponent,
     SightCardComponent,
     ShortnerPipe,
+    SightDetailComponent,
 
   ],
   imports: [
