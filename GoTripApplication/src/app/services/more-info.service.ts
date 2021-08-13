@@ -16,6 +16,8 @@ export class MoreInfoService {
         lon: 0,
         lat: 0
     },
+    hasAcceptedInvitation: false,
+    isTheOwner: false
   }
 
     /*
@@ -29,6 +31,8 @@ export class MoreInfoService {
         this.knowInfoAboutThisSight.description = selectedSignht.description,
         this.knowInfoAboutThisSight.geoPoints.lon = selectedSignht.geoPoints.lon,
         this.knowInfoAboutThisSight.geoPoints.lat = selectedSignht.geoPoints.lat
+        this.knowInfoAboutThisSight.hasAcceptedInvitation = selectedSignht.hasAcceptedInvitation
+        this.knowInfoAboutThisSight.isTheOwner = selectedSignht.isTheOwner
     }
 
     /*
@@ -40,6 +44,8 @@ export class MoreInfoService {
         this.knowInfoAboutThisSight.urlImage = '',
         this.knowInfoAboutThisSight.description = '',
         this.knowInfoAboutThisSight.geoPoints.lon = 0,
-        this.knowInfoAboutThisSight.geoPoints.lat = 0
+        this.knowInfoAboutThisSight.geoPoints.lat = 0,
+        this.knowInfoAboutThisSight.hasAcceptedInvitation = false,
+        this.knowInfoAboutThisSight.isTheOwner = false
     }
 }

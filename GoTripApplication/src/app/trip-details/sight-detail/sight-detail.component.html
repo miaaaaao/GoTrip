@@ -13,7 +13,7 @@
             </p>
         </div>
         <div class="col-3">
-            <button (click)="voteSight()" type="button" class="btn btn-primary my-3">Vote to Visit</button>
+            <button (click)="voteSight()" type="button" class="btn btn-primary my-3" [attr.disabled]="!sight.hasAcceptedInvitation ? '' : null">Vote to Visit</button>
         </div>
     </div>
 </div>

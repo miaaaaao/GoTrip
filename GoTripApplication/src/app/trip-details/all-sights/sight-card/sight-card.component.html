@@ -5,7 +5,7 @@
       <h5 class="card-title">{{sight.name | shortner:12}}</h5>
       <p class="card-text">{{sight.description | shortner:60}} </p>
       <div class="row">
-          <div class="col-6 d-flex align-items-center">
+          <div class="col-6 d-flex align-items-center" [attr.disabled]="!hasAcceptedInvitation ? '' : null">
             <i class="fa fa-heart fa-2x like" (click)="vote($event)"></i>
             <span class="like-counter">0</span>
           </div>

@@ -11,7 +11,7 @@
         <!--This should get ngFor-->
         <div class="col-4 px-1 mb-2" *ngFor="let sight of listOfSights">
             <!-- Sights card component -->
-            <app-sight-card [isTheOwner]="isTheOwner" [sight]="sight"></app-sight-card>  
+            <app-sight-card [isTheOwner]="isTheOwner" [sight]="sight" [hasAcceptedInvitation]="hasAcceptedInvitation"></app-sight-card>  
         </div>
     </div>
 </div>

@@ -10,17 +10,20 @@ import { MoreInfoService } from '../../../services/more-info.service';
 })
 export class SightCardComponent implements OnInit {
   @Input() isTheOwner: boolean = false;
+  @Input() hasAcceptedInvitation: boolean = false;
   @Input() sight: {name?:string, xid?: string, urlImage?:string, description?:string, geoPoints?:{lon: number, lat: number} } = {};
   
   constructor(private route: Router, private activeRoute: ActivatedRoute, private moreInfoService: MoreInfoService) { }
 
   ngOnInit(): void {
+    console.log('OWNER==> '  +this.isTheOwner);
+    console.log('hasaccepet===> ' +this.hasAcceptedInvitation)
   }
   /*
   * the card will open a new page with extra infromation about the sight
   */
   openSightDetail(){
-    this.moreInfoService.moreInfoAboutSight(this.sight) // save data on a service
+    this.moreInfoService.moreInfoAboutSight({...this.sight, hasAcceptedInvitation: this.hasAcceptedInvitation, isTheOwner: this.isTheOwner}) // save data on a service
     this.route.navigate(['../place/', this.sight.xid], {relativeTo: this.activeRoute}) //open new page
     
   }

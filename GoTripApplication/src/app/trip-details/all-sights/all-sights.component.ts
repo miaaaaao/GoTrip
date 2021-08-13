@@ -13,6 +13,7 @@ export class AllSightsComponent implements OnInit {
   city: string = '';
   isTheOwner: boolean = false;
   listOfSights: {}[] = [];
+  hasAcceptedInvitation: boolean = false;
 
   openTrip_API:any = this.env.OPENTRIP_API;
   urlBase:string = "https://api.opentripmap.com/0.1/en/places/";
@@ -40,6 +41,7 @@ export class AllSightsComponent implements OnInit {
   getInitialdata(){
     this.city = this.getTripDetails.currentTrip.destination;
     this.isTheOwner = this.getTripDetails.currentTrip.status.isTheOwner;
+    this.hasAcceptedInvitation = this.getTripDetails.currentTrip.status.hasAcceptedInvitation
   }
 
   /*
