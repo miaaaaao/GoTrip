@@ -17,12 +17,12 @@ export class InvitationPageComponent implements OnInit {
   ngOnInit(): void {
     this.tripOwner = this.route.snapshot.queryParams.tripOwner || 'John';
     let fragment = this.route.snapshot.fragment;
-    if(fragment){
+    if (fragment) {
       // get data from url #title#city#month
       let parts = fragment.split('#');
       this.tripTitle = parts[0];
       this.tripCity = parts[1];
       this.tripMonth = parts[2];
-    } 
+    }
   }
 }
