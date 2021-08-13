@@ -8,6 +8,13 @@
         <span class="heading">Expore {{city}}</span>
         <span class="subheading">Found <span class="highlight">({{count}})</span> nice places to visit</span>
     </div>
+    <!--Show Spinner while getting data-->
+    <div *ngIf="isLoading" class="row d-flex justify-content-center align-items-center" style="min-height:200px">
+        <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!--End of spinner-->
     <div class="row row-cols-3" style="min-height: 166px">
         <!--This should get ngFor-->
         <div class="col-4 px-1 mb-2" *ngFor="let sight of listOfSights">

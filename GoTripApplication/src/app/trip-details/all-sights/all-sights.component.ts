@@ -14,6 +14,7 @@ export class AllSightsComponent implements OnInit {
   isTheOwner: boolean = false;
   listOfSights: {}[] = [];
   hasAcceptedInvitation: boolean = false;
+  isLoading: boolean = false;
 
   openTrip_API:any = this.env.OPENTRIP_API;
   urlBase:string = "https://api.opentripmap.com/0.1/en/places/";
@@ -98,7 +99,7 @@ export class AllSightsComponent implements OnInit {
   * This functiin search for sights in the city based on lat and lon
   */
   getSightList(){
-    
+    this.isLoading = true;
     //`radius=1000&limit=${pageLength}&offset=${offset}&lon=${lon}&lat=${lat}&rate=2&format=count`
     let method: string = 'autosuggest';
 
@@ -126,7 +127,8 @@ export class AllSightsComponent implements OnInit {
        }
       }, 2000); 
       }
-      this.calculateTotalItensShown()
+      this.calculateTotalItensShown();
+      this.isLoading = false;
       console.log(resp)
       
     })
