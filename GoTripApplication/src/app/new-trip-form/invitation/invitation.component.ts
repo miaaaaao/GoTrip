@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {createNewTrip} from '../../newTripForm.service';
+import {createNewTrip} from '../../services/newTripForm.service';
 
 @Component({
   selector: 'app-invitation',

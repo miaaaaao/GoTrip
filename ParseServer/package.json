@@ -9,6 +9,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@sendgrid/mail": "^7.4.5",
     "express": "4.17.1",
     "kerberos": "1.1.4",
     "parse": "2.19.0",

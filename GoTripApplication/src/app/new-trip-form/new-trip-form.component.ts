@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {germany} from './cities/germany';
-import {createNewTrip} from '../newTripForm.service';
+import { germany } from './cities/germany';
+import { createNewTrip } from '../services/newTripForm.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { currentUser } from '../services/getCurrentUserData.service';
 
 @Component({
   selector: 'app-new-trip-form',
@@ -10,12 +12,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-trip-form.component.css']
 })
 export class NewTripFormComponent implements OnInit {
-  @ViewChild('formValue') sigupForm:any;
-  cities:{id:Number, name:String}[] = [];
+  @ViewChild('formValue') sigupForm:any; // Get values from the inputs
+  cities:{id:Number, name:String}[] = []; // Store the german cities from the cities folder
   invitedFriend: String = '';
   invitedFriends: {}[] = [];
 
+  /*
+  * This object will be sent to the service that will be responsable to
+  * save it on Parse
+  */
   tripForm = {
+    ownerName: this.currentUser.name, 
     title: null,
     destination: null,
     budget: {
@@ -31,8 +38,11 @@ export class NewTripFormComponent implements OnInit {
     invitedFriends: [{}],
   }
 
-  constructor(private createNewTrip: createNewTrip, private router: Router) {
-    //get list of germany cities and save each item as a object inside an array
+  constructor(private createNewTrip: createNewTrip, private router: Router, private currentUser: currentUser ) {
+    /*
+    * get list of germany cities from cities folder and save each item as a
+    * object with id and name inside an array
+    */
     for(let i =0; i<germany.length; i++){
       this.cities.push({
         id: i+1,
@@ -45,11 +55,15 @@ export class NewTripFormComponent implements OnInit {
     this.invitedFriends = this.createNewTrip.invitedFriends;
     
   }
-  //Add current written email to the array: invitedFriends to save all friends email
+  /*
+  *Add current written email to the array: invitedFriends to save all friends email
+  */
   invite(){
     this.createNewTrip.invite(this.invitedFriend);
   }
-  //Get data from the data picker and save on the tripform object
+  /*
+  * Get data from the data picker and save on the tripform object
+  */
   fillDates(el:any){
     let dateId = el.id;
     if(dateId === 'one'){
@@ -62,8 +76,11 @@ export class NewTripFormComponent implements OnInit {
       console.log('No ID found for this data entry')
     }
   }
-  //Function that run after user fills the form and clicks on create button
-  createPlan(el: NgForm){
+  /*
+  * Function that run after user fills the form and clicks on create button
+  */
+  async createPlan(el: NgForm, buttonId: any){
+    if (buttonId !== "createTripPlan") return ;
     //fill tripForm object
     this.tripForm.title = el.value.Title;
     this.tripForm.destination = el.value.city.name;
@@ -72,11 +89,19 @@ export class NewTripFormComponent implements OnInit {
     this.tripForm.budget.three = el.value.budget_3;
     this.tripForm.invitedFriends = this.invitedFriends;
     //call function from newTripForm.service to save data into Parse
-    this.createNewTrip.saveTripOnParse(this.tripForm)
+    await this.createNewTrip.saveTripOnParse(this.tripForm)
     //Go back to dashboard
+    this.cancel();
+    //Clean friends list
+    this.createNewTrip.cleanInvitationList()
   }
+
+  /*
+  * calcel the form and go back to the dashboar
+  */
   cancel(){
-    this.router.navigate(['../dashboard'])
+    this.createNewTrip.cleanInvitationList() //Clean frinds list
+    this.router.navigate(['../dashboard']) // Go back to dashboard
   }
 
   
