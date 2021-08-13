@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { MoreInfoService } from '../../../services/more-info.service';
+
 @Component({
   selector: 'app-sight-card',
   templateUrl: './sight-card.component.html',
@@ -9,16 +11,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SightCardComponent implements OnInit {
   @Input() isTheOwner: boolean = false;
   @Input() sight: {name?:string, xid?: string, urlImage?:string, description?:string, geoPoints?:{lon: number, lat: number} } = {};
-  constructor(private route: Router, private activeRoute: ActivatedRoute) { }
+  
+  constructor(private route: Router, private activeRoute: ActivatedRoute, private moreInfoService: MoreInfoService) { }
 
   ngOnInit(): void {
   }
   /*
-  * Vote will open a new page with extra infromation about the sight
+  * the card will open a new page with extra infromation about the sight
   */
   openSightDetail(){
-    console.log('Open datailpage');
-    this.route.navigate(['../place'], {relativeTo: this.activeRoute})
+    this.moreInfoService.moreInfoAboutSight(this.sight) // save data on a service
+    this.route.navigate(['../place/', this.sight.xid], {relativeTo: this.activeRoute}) //open new page
     
   }
   /*
@@ -30,7 +33,7 @@ export class SightCardComponent implements OnInit {
     el.stopPropagation()
   }
   /*
-  * Vote will store the sight information in the Parse
+  * Add will store the sight information in the Parse
   */
   add(el:any){
     console.log('Add to map')
