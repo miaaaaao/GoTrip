@@ -19,6 +19,10 @@ export class SightDetailComponent implements OnInit, OnDestroy{
     
   }
 
+  voteSight(){
+    console.log('Vite to visit this sight')
+  }
+
   ngOnDestroy(){
     this.moreInfoService.cleanMoreInfoAboutSight()
   }
