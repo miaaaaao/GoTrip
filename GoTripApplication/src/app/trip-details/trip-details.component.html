@@ -17,6 +17,7 @@
                     [isTheOwner]="isTheOwner"
                     [hasAcceptedInvitation]="hasAcceptedInvitation"
                     [tripId]="tripId"
+                    (updateDetailsData)="getInfoAboutThisTrip()"
                     ></app-basic-info>
                 </div>
                 <div class="row" style="border:1px solid green; min-height:100px">
@@ -30,7 +31,7 @@
                 </div>
             </div>
             <!--Right column-->
-            <div class="col-9">
+            <div class="col-9 mb-5">
                 <div class="row linkContainer mb-2 mx-1">
                     <nav class="nav">
                         <a class="nav-link" routerLinkActive="activeLink" [routerLink]="['/details/',tripId,'sights']">All Sights</a>
@@ -38,7 +39,7 @@
                         <a class="nav-link" routerLinkActive="activeLink" [routerLink]="['/details/',tripId,'notes']">Notes</a>
                       </nav>
                 </div>
-                <div class="row mx-1" style="border:1px solid green; min-height:100px">
+                <div class="row mx-1 sightsContainer" style="min-height:100px" *ngIf="hasReceivedData">
                     <!--This will change based on the link selected on the internal navigation-->
                     <router-outlet></router-outlet>
                 </div>

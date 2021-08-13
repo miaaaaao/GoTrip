@@ -4,6 +4,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { DatetimerangepickerModule } from "angular-datetimerangepicker";
 import { Router, RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http'
 
 import { getTrip } from './services/getTrip.service';
 import { createNewTrip } from './services/newTripForm.service';
@@ -12,6 +13,9 @@ import { getTripDetails } from '../app/services/getTripDetails.service';
 import { acceptInvitation } from './services/acceptInvitation.service';
 import { rejectInvitation } from './services/rejectInvitation.service';
 import { finishTrip } from './services/finishTrip.service';
+import { getSights } from './services/getSights.service';
+
+import { env } from './env' 
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -33,6 +37,9 @@ import { MapComponent } from './trip-details/map/map.component';
 import { NotesComponent } from './trip-details/notes/notes.component';
 import { BasicInfoComponent } from './trip-details/basic-info/basic-info.component';
 import { NotificationBarComponent } from './trip-details/notification-bar/notification-bar.component';
+import { SightCardComponent } from './trip-details/all-sights/sight-card/sight-card.component';
+import { ShortnerPipe } from './pipe/shortner.pipe';
+import { SightDetailComponent } from './trip-details/sight-detail/sight-detail.component';
 
 //This is the route array
 const appRoutes: Routes = [
@@ -46,6 +53,7 @@ const appRoutes: Routes = [
     {path: 'sights', component: AllSightsComponent},
     {path: 'map', component: MapComponent},
     {path: 'notes', component: NotesComponent},
+    {path: 'place', component: SightDetailComponent},
 
   ] }
 ];
@@ -72,6 +80,9 @@ const appRoutes: Routes = [
     NotesComponent,
     BasicInfoComponent,
     NotificationBarComponent,
+    SightCardComponent,
+    ShortnerPipe,
+    SightDetailComponent,
 
   ],
   imports: [
@@ -80,6 +91,7 @@ const appRoutes: Routes = [
     NgSelectModule,
     DatetimerangepickerModule,
     FormsModule,
+    HttpClientModule
   ],
   providers: [
     getTrip, 
@@ -88,7 +100,9 @@ const appRoutes: Routes = [
     acceptInvitation,
     rejectInvitation,
     getTripDetails,
-    finishTrip
+    finishTrip,
+    getSights,
+    env
   ],
   bootstrap: [AppComponent]
 })

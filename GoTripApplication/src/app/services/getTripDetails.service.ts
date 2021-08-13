@@ -11,7 +11,7 @@ import { currentUser } from './getCurrentUserData.service';
 
 @Injectable()
 export class getTripDetails {
-
+    receiveddata: boolean = false // this will turn to true when the system finish to fetch data from Parse
     constructor(private currentUser: currentUser){
 
     }
@@ -36,11 +36,19 @@ export class getTripDetails {
         invitedFriends: [{}],
       }
 
+      cleanCurrentTrip(){
+          this.currentTrip.title = '';
+          this.currentTrip.status.isTheOwner = false;
+          this.currentTrip.status.hasAcceptedInvitation = true;
+          this.currentTrip.destination = '';
+      }
+
       async getBasicInfo(id:string){ 
         /* 
         * This function is to get the Title, City and Find out if the user is the 
         * owner and if he/she accepted the invitation
         * */
+        this.receiveddata = false;
         let tripPlan = Parse.Object.extend('TripsPlan')
         let queryTripPlan = new Parse.Query(tripPlan)
         tripPlan.id = id;
@@ -72,6 +80,8 @@ export class getTripDetails {
                 let allTripUserIsInvited = await queryPendingList.find() // Fetch data from parse
                 allTripUserIsInvited.length > 0 ? this.currentTrip.status.hasAcceptedInvitation = false : this.currentTrip.status.hasAcceptedInvitation = true   //If it returns an array it menas the user is in the pending list
             }
+
+            this.receiveddata = true;
 
         }catch(err){
             console.log(err) // Show error in the console

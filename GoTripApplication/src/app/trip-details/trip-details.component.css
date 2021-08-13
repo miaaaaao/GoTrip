@@ -9,6 +9,13 @@
     border-radius: 6px;
 }
 
+.sightsContainer {
+    padding: 20px 0;
+    background: white;
+    border: 1px solid #EBECF0;
+    border-radius: 6px;
+}
+
 .nav-link {
     color: #7C8DB0;
     transition: all .2s;
