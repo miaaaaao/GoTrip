@@ -17,6 +17,7 @@ export class getTripDetails {
     }
 
     currentTrip = {
+        id: '',
         status:{
             isTheOwner: false,
             hasAcceptedInvitation: true,
@@ -54,6 +55,10 @@ export class getTripDetails {
         tripPlan.id = id;
         queryTripPlan.equalTo("objectId", tripPlan.id); // Find the trip plan that has the informed ID
 
+        /*
+        * Save ID
+        */
+        this.currentTrip.id = id;    
         try{
             /*
             * Get information about city and trip title

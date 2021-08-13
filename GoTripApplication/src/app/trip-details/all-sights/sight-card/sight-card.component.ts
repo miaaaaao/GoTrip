@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { MoreInfoService } from '../../../services/more-info.service';
+import { VoteService } from '../../../services/vote.service';
 
 @Component({
   selector: 'app-sight-card',
@@ -13,7 +14,7 @@ export class SightCardComponent implements OnInit {
   @Input() hasAcceptedInvitation: boolean = false;
   @Input() sight: {name?:string, xid?: string, urlImage?:string, description?:string, geoPoints?:{lon: number, lat: number} } = {};
   
-  constructor(private route: Router, private activeRoute: ActivatedRoute, private moreInfoService: MoreInfoService) { }
+  constructor(private route: Router, private activeRoute: ActivatedRoute, private moreInfoService: MoreInfoService, private voteService: VoteService) { }
 
   ngOnInit(): void {
     console.log('OWNER==> '  +this.isTheOwner);
@@ -34,6 +35,7 @@ export class SightCardComponent implements OnInit {
     console.log('vote to visite')
     console.log(el)
     el.stopPropagation()
+    this.voteService.addVote(this.sight)
   }
   /*
   * Add will store the sight information in the Parse
