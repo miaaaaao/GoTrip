@@ -49,9 +49,8 @@ export class AllSightsComponent implements OnInit {
   */
   getGeoLocation(){
     let method: string = 'geoname';
-    let name: string = this.city;
 
-    let url = `${this.urlBase}/${method}?lang=${this.lang}&name=${name}&country=${this.country}&apikey=${this.openTrip_API}`;
+    let url = `${this.urlBase}/${method}?lang=${this.lang}&name=${this.city}&country=${this.country}&apikey=${this.openTrip_API}`;
 
     this.http.get<{name: string, country: string, lat: number, lon:number, population: number, timezone: string, status: string}>(url)
     .subscribe(resp=>{
@@ -59,26 +58,40 @@ export class AllSightsComponent implements OnInit {
       if(resp.status == 'OK'){
         this.lat = resp.lat;
         this.lon = resp.lon;
+        this.getAmount() // get number of elements
         this.getSightList() // Starts the fucntion that will look for sights based on the lat and lon
-
+        console.log(resp.lat + '    '  + resp.lon)
       } else {}
      
      
     })
   
     }
-    
+  /*
+  * Find the amount of sights based on the place
+  */  
+  getAmount(){
+    let method: string = 'radius';
+    let format: string = 'count';
+
+    let url = `${this.urlBase}/${method}?lang=${this.lang}&format=${format}&name=${this.city}&radius=${this.radius}&limit=${this.limit}&offset=${this.offset}&lat=${this.lat}&lon=${this.lon}&rate=${this.rate}&apikey=${this.openTrip_API}`;
+
+    this.http.get<{count: number}>(url)
+    .subscribe(resp=>{
+      this.count = resp.count;
+      console.log('========>' +resp.count)
+    })
+  }
 
   /*
   * This functiin search for sights in the city based on lat and lon
   */
   getSightList(){
+    
     //`radius=1000&limit=${pageLength}&offset=${offset}&lon=${lon}&lat=${lat}&rate=2&format=count`
     let method: string = 'autosuggest';
-    let format: string = 'count';
-    let name: string = this.city;
 
-    let url = `${this.urlBase}/${method}?lang=${this.lang}&name=${name}&radius=${this.radius}&limit=${this.limit}&offset=${this.offset}&format=${format}&lat=${this.lat}&lon=${this.lon}&rate=${this.rate}&apikey=${this.openTrip_API}`;
+    let url = `${this.urlBase}/${method}?lang=${this.lang}&name=${this.city}&radius=${this.radius}&limit=${this.limit}&offset=${this.offset}&lat=${this.lat}&lon=${this.lon}&rate=${this.rate}&format=json&apikey=${this.openTrip_API}`;
 
     this.http.get<{dist:number, highlighted_name: string, kinds: string, name: string, point: {lon: number, lat: number}, rate: number, wikidate: string, xid: string}[]>(url)
     .subscribe(resp=>{
@@ -86,6 +99,7 @@ export class AllSightsComponent implements OnInit {
       * This is to handle the limits. OpenTripMap free account allows 10 request per second.
       * The bellow code will make the system wait 1 second if return an array with more then 5 sights
       */
+     console.log('======>' + resp[0])
       if(resp.length <= 5){
         for(let i = 0; i < resp.length; i++){
           this.getSightInfo(resp[i].xid);
