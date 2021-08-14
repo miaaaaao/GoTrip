@@ -10,8 +10,12 @@
             <span class="like-counter">{{sight.totalVote}}</span>
           </div>
           <!--Add button is only visible to trip Owners-->
-          <div class="col-6 d-flex justify-content-end" *ngIf="isTheOwner">
+          <div class="col-6 d-flex justify-content-end" *ngIf="isTheOwner && !sight.wasAdded">
             <a class="btn btn-primary" (click)="add($event)" [attr.disabled]="!sight.sightServerId ? '' : null">Add</a> 
+          </div>
+          <!--Remove button is only visible to trip Owners if the sight was added before-->
+          <div class="col-6 d-flex justify-content-end" *ngIf="isTheOwner && sight.wasAdded">
+            <a class="btn btn-primary" (click)="remove($event)">Remove</a> 
           </div>
       </div>
     </div>

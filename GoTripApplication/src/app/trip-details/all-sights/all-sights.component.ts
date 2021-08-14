@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { env } from 'src/app/env';
 import { getTripDetails } from '../../services/getTripDetails.service';
 import { VoteService } from '../../services/vote.service';
+import { AddSightService } from '../../services/add-sight.service';
 
 @Component({
   selector: 'app-all-sights',
@@ -17,8 +18,9 @@ export class AllSightsComponent implements OnInit, OnDestroy {
   listOfSights: {}[] = [];
   hasAcceptedInvitation: boolean = false;
   isLoading: boolean = false;
-  sightsVoted: [] = [] //List of XID of sites voted by this user
-  listOfSightVotes: {}[] = [] // List with all sights voted by any user invited for the trip
+  sightsVoted: [] = []; //List of XID of sites voted by this user
+  listOfSightVotes: {}[] = []; // List with all sights voted by any user invited for the trip
+  listOfSightsAdded: {}[]=[];
   private updateUi: any;
 
   openTrip_API:any = this.env.OPENTRIP_API;
@@ -44,7 +46,7 @@ export class AllSightsComponent implements OnInit, OnDestroy {
     }
     
   }
-  constructor(private getTripDetails: getTripDetails, private http: HttpClient, private env:env, private voteService: VoteService) { 
+  constructor(private getTripDetails: getTripDetails, private http: HttpClient, private env:env, private voteService: VoteService, private addSightService:AddSightService) { 
   
   }
 
@@ -53,6 +55,7 @@ export class AllSightsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getInitialdata();
     this.getGeoLocation();
+    
     
     /*
     * This will automaticaly run everytime the user vote or unvote the sights
@@ -74,7 +77,8 @@ export class AllSightsComponent implements OnInit, OnDestroy {
     this.isTheOwner = this.getTripDetails.currentTrip.status.isTheOwner;
     this.hasAcceptedInvitation = this.getTripDetails.currentTrip.status.hasAcceptedInvitation;
     this.voteService.getUserVotes().then(res=> this.sightsVoted = res) // load votes from this user
-    this.voteService.getTotalVotes().then(res=> this.listOfSightVotes = res)
+    this.voteService.getTotalVotes().then(res=> this.listOfSightVotes = res) // lead list of all sights voted by all friends
+    this.addSightService.getSightsAdded().then(res=> this.listOfSightsAdded = res) // load list of all sights added to the final trip
   }
 
   /*
@@ -184,6 +188,15 @@ export class AllSightsComponent implements OnInit, OnDestroy {
       })
 
       /*
+      * Check if the sight was already added to the final trip
+      */
+      let sightAdded: any = null
+      this.listOfSightsAdded.forEach((el:any)=>{
+        if(el.XID === resp.xid) sightAdded = el
+      })
+      
+
+      /*
       * Create new object with information to fill the cards
       */
       let newSight: {} = {
@@ -197,7 +210,8 @@ export class AllSightsComponent implements OnInit, OnDestroy {
           lat: resp.point.lat
         },
         userVoted: voted ? true : false,
-        totalVote: sightWithVotes.totalVotes
+        totalVote: sightWithVotes.totalVotes,
+        wasAdded: sightAdded.wasAddedToTrip ? true : false
       }
       this.listOfSights = [...this.listOfSights, newSight ]
       console.log(newSight)

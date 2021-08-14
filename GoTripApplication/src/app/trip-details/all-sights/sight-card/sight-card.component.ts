@@ -13,7 +13,7 @@ import { AddSightService } from '../../../services/add-sight.service';
 export class SightCardComponent implements OnInit {
   @Input() isTheOwner: boolean = false;
   @Input() hasAcceptedInvitation: boolean = false;
-  @Input() sight: {name?:string, xid?: string, urlImage?:string, description?:string, geoPoints?:{lon: number, lat: number}, userVoted?:boolean, totalVote?:number, sightServerId?:string } = {};
+  @Input() sight: {name?:string, xid?: string, urlImage?:string, description?:string, geoPoints?:{lon: number, lat: number}, userVoted?:boolean, totalVote?:number, sightServerId?:string, wasAdded?: boolean } = {};
   
   constructor(private route: Router, private activeRoute: ActivatedRoute, private moreInfoService: MoreInfoService, private voteService: VoteService, private addSightService: AddSightService) { }
 
@@ -47,6 +47,11 @@ export class SightCardComponent implements OnInit {
   */
   add(el:any){
     this.addSightService.addSight(this.sight)
+    el.stopPropagation()
+  }
+
+  remove(el:any){
+    this.addSightService.removeSight(this.sight)
     el.stopPropagation()
   }
 
