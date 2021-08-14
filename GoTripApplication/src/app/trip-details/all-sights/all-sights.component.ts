@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { env } from 'src/app/env';
 import { getTripDetails } from '../../services/getTripDetails.service';
+import { VoteService } from '../../services/vote.service';
 
 @Component({
   selector: 'app-all-sights',
@@ -15,6 +16,7 @@ export class AllSightsComponent implements OnInit {
   listOfSights: {}[] = [];
   hasAcceptedInvitation: boolean = false;
   isLoading: boolean = false;
+  sightsVoted: [] = [] //List of XID of sites voted by this user
 
   openTrip_API:any = this.env.OPENTRIP_API;
   urlBase:string = "https://api.opentripmap.com/0.1/en/places/";
@@ -39,7 +41,7 @@ export class AllSightsComponent implements OnInit {
     }
     
   }
-  constructor(private getTripDetails: getTripDetails, private http: HttpClient, private env:env) { 
+  constructor(private getTripDetails: getTripDetails, private http: HttpClient, private env:env, private voteService: VoteService) { 
     
 
   }
@@ -47,6 +49,7 @@ export class AllSightsComponent implements OnInit {
   ngOnInit(): void {
     this.getInitialdata()
     this.getGeoLocation()
+    this.voteService.getUserVotes().then(res=> this.sightsVoted = res); // load votes from this user
   }
 
   getInitialdata(){
@@ -54,7 +57,6 @@ export class AllSightsComponent implements OnInit {
     this.isTheOwner = this.getTripDetails.currentTrip.status.isTheOwner;
     this.hasAcceptedInvitation = this.getTripDetails.currentTrip.status.hasAcceptedInvitation
   }
-
 
   /*
   * This function Fetch the lon and lat of the city
@@ -91,7 +93,6 @@ export class AllSightsComponent implements OnInit {
     this.http.get<{count: number}>(url)
     .subscribe(resp=>{
       this.count = resp.count;
-      console.log('========>' +resp.count)
     })
   }
 
@@ -129,7 +130,6 @@ export class AllSightsComponent implements OnInit {
       }
       this.calculateTotalItensShown();
       this.isLoading = false;
-      console.log(resp)
       
     })
  }
@@ -145,6 +145,9 @@ export class AllSightsComponent implements OnInit {
     let url = `${this.urlBase}/${method}/${xid}?lang=${this.lang}&apikey=${this.openTrip_API}`;
     this.http.get(url)
     .subscribe((resp:any)=>{
+      
+      let findxid = this.sightsVoted.find(el=> el == resp.xid)
+
       let newSight: {} = {
         xid: resp.xid,
         name: resp.name,
@@ -153,7 +156,8 @@ export class AllSightsComponent implements OnInit {
         geoPoints: {
           lon: resp.point.lon,
           lat: resp.point.lat
-        }
+        },
+        userVoted: findxid ? true : false
       }
       this.listOfSights = [...this.listOfSights, newSight ]
       console.log(this.listOfSights)

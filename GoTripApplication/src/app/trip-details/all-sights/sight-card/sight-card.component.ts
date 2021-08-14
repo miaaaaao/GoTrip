@@ -12,7 +12,7 @@ import { VoteService } from '../../../services/vote.service';
 export class SightCardComponent implements OnInit {
   @Input() isTheOwner: boolean = false;
   @Input() hasAcceptedInvitation: boolean = false;
-  @Input() sight: {name?:string, xid?: string, urlImage?:string, description?:string, geoPoints?:{lon: number, lat: number} } = {};
+  @Input() sight: {name?:string, xid?: string, urlImage?:string, description?:string, geoPoints?:{lon: number, lat: number}, userVoted?:boolean } = {};
   
   constructor(private route: Router, private activeRoute: ActivatedRoute, private moreInfoService: MoreInfoService, private voteService: VoteService) { }
 
@@ -32,10 +32,9 @@ export class SightCardComponent implements OnInit {
   * Vote will store the user in the Parse
   */
   vote(el:any){
-    console.log('vote to visite')
-    console.log(el)
     el.stopPropagation()
-    this.voteService.addVote(this.sight)
+    this.voteService.addVote(this.sight);
+    this.voteService.getUserVotes();
   }
   /*
   * Add will store the sight information in the Parse
