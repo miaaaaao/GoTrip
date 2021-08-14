@@ -200,6 +200,7 @@ export class AllSightsComponent implements OnInit, OnDestroy {
         totalVote: sightWithVotes.totalVotes
       }
       this.listOfSights = [...this.listOfSights, newSight ]
+      console.log(newSight)
       
     })
   }

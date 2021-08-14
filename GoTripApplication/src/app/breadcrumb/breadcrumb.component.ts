@@ -26,7 +26,7 @@ export class BreadcrumbComponent implements OnInit {
       this.router.navigate(['../dashboard'])
     } else if (this.origin == 'moreInfo'){
       // If came from moreInfo - page with details about the sight
-      this.router.navigate(['../../sights'], {relativeTo: this.route})
+      this.router.navigate(['../sights'], {relativeTo: this.route})
     }
   }
 }

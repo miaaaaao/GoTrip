@@ -11,7 +11,7 @@
           </div>
           <!--Add button is only visible to trip Owners-->
           <div class="col-6 d-flex justify-content-end" *ngIf="isTheOwner">
-            <a class="btn btn-primary" (click)="add($event)">Add</a> 
+            <a class="btn btn-primary" (click)="add($event)" [attr.disabled]="!sight.sightServerId ? '' : null">Add</a> 
           </div>
       </div>
     </div>

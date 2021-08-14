@@ -53,7 +53,7 @@ const appRoutes: Routes = [
     {path: 'sights', component: AllSightsComponent},
     {path: 'map', component: MapComponent},
     {path: 'notes', component: NotesComponent},
-    {path: 'place/:xid', component: SightDetailComponent},
+    {path: 'place', component: SightDetailComponent},
 
   ] }
 ];

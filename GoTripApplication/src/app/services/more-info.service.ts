@@ -9,6 +9,7 @@ export class MoreInfoService {
 
   knowInfoAboutThisSight = {
     xid:'',
+    sightServerId: '',
     name: '',
     urlImage: '',
     description: '',
@@ -17,7 +18,8 @@ export class MoreInfoService {
         lat: 0
     },
     hasAcceptedInvitation: false,
-    isTheOwner: false
+    isTheOwner: false,
+    userVoted: false
   }
 
     /*
@@ -33,6 +35,8 @@ export class MoreInfoService {
         this.knowInfoAboutThisSight.geoPoints.lat = selectedSignht.geoPoints.lat
         this.knowInfoAboutThisSight.hasAcceptedInvitation = selectedSignht.hasAcceptedInvitation
         this.knowInfoAboutThisSight.isTheOwner = selectedSignht.isTheOwner
+        this.knowInfoAboutThisSight.userVoted = selectedSignht.userVoted
+        this.knowInfoAboutThisSight.sightServerId = selectedSignht.sightServerId
     }
 
     /*
@@ -46,6 +50,8 @@ export class MoreInfoService {
         this.knowInfoAboutThisSight.geoPoints.lon = 0,
         this.knowInfoAboutThisSight.geoPoints.lat = 0,
         this.knowInfoAboutThisSight.hasAcceptedInvitation = false,
-        this.knowInfoAboutThisSight.isTheOwner = false
+        this.knowInfoAboutThisSight.isTheOwner = false,
+        this.knowInfoAboutThisSight.userVoted = false,
+        this.knowInfoAboutThisSight.sightServerId = ''
     }
 }
