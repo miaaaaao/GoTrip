@@ -56,7 +56,8 @@ export class VoteService {
   * Fucntion to remove the vote from the current user
   */
    async removeVote(place: any){
-    console.log('removing==>' +place.sightServerId)
+    console.log('removing==>' +place)
+    console.log(place)
     let Sight = Parse.Object.extend('Sight');
     let sight = new Sight();
     sight.id = place.sightServerId;
@@ -68,16 +69,22 @@ export class VoteService {
     sight.decrement('totalVotes'); // Add +1 to the totalVotes
 
     /* If there is only the vote from this user the sight should be completely removed */
-
-    
-    /*
-    * Save the update in Parse
-    */
-    await sight.save().then((res:any)=>{
-      this.updateUISightVoted.next(); // Update the UI
-    }, (err:any)=>{
-      console.log(err)
-    })
+    if(place.totalVote <= 1) {
+      sight.destroy().then((resp:any)=>{
+        this.updateUISightVoted.next(); // Update the UI
+      }, (err:any)=>{
+        console.log(err)
+      })
+    } else {
+         /*
+          * Save the update in Parse
+          */
+          await sight.save().then((res:any)=>{
+            this.updateUISightVoted.next(); // Update the UI
+          }, (err:any)=>{
+            console.log(err)
+          })
+    } 
   }
 
 
