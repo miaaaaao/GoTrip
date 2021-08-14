@@ -47,15 +47,20 @@ export class AllSightsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getInitialdata()
-    this.getGeoLocation()
-    this.voteService.getUserVotes().then(res=> this.sightsVoted = res); // load votes from this user
+    this.sightsVoted = [];
+    console.log(this.sightsVoted);
+    this.getInitialdata();
+    this.getGeoLocation();
+    
+    
   }
 
   getInitialdata(){
     this.city = this.getTripDetails.currentTrip.destination;
     this.isTheOwner = this.getTripDetails.currentTrip.status.isTheOwner;
-    this.hasAcceptedInvitation = this.getTripDetails.currentTrip.status.hasAcceptedInvitation
+    this.hasAcceptedInvitation = this.getTripDetails.currentTrip.status.hasAcceptedInvitation;
+    this.voteService.getUserVotes().then(res=> this.sightsVoted = res) // load votes from this user
+    
   }
 
   /*
@@ -146,10 +151,17 @@ export class AllSightsComponent implements OnInit {
     this.http.get(url)
     .subscribe((resp:any)=>{
       
-      let findxid = this.sightsVoted.find(el=> el == resp.xid)
-
+      let voted:any = null;
+      console.log(this.sightsVoted)
+      this.sightsVoted.forEach((el:any)=>{
+        console.log(el.XID == resp.xid)
+        if(el.XID == resp.xid) voted = el
+      })
+      
+      
       let newSight: {} = {
         xid: resp.xid,
+        sightServerId: voted ? voted.sightId : null,
         name: resp.name,
         urlImage: resp.preview.source,
         description: resp.wikipedia_extracts.text,
@@ -157,7 +169,7 @@ export class AllSightsComponent implements OnInit {
           lon: resp.point.lon,
           lat: resp.point.lat
         },
-        userVoted: findxid ? true : false
+        userVoted: voted ? true : false
       }
       this.listOfSights = [...this.listOfSights, newSight ]
       console.log(this.listOfSights)

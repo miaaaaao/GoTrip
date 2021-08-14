@@ -14,7 +14,7 @@ export class VoteService {
   /*
   * Fucntion to save the sight the user like in Parse
   */
-  addVote(place: any){
+  async addVote(place: any){
     
     let Sight = Parse.Object.extend('Sight');
     let sight = new Sight();
@@ -32,7 +32,7 @@ export class VoteService {
     /*
     * Save the sight in Parse
     */
-    sight.save({
+    await sight.save({
       name: place.name,
       tripsPlanId: tripPlan, // pointer
       photoUrl: place.urlImage , 
@@ -46,12 +46,40 @@ export class VoteService {
     })
   }
 
+   /*
+  * Fucntion to remove the vote from the current user
+  */
+   async removeVote(place: any){
+    console.log('removing==>' +place.sightServerId)
+    let Sight = Parse.Object.extend('Sight');
+    let sight = new Sight();
+    sight.id = place.sightServerId;
+
+    const user = new Parse.User(); // Create a user object with the loged user
+    user.id = this.currentUser.userId;
+    sight.relation('votes').remove(user); // Add the user ID to the relational data
+
+    /* If there is only the vote from this user the sight should be completely removed */
+
+    
+    /*
+    * Save the update in Parse
+    */
+    await sight.save().then((res:any)=>{
+
+    }, (err:any)=>{
+      console.log(err)
+    })
+  }
+
+
   /*
   * Function to get the sigts id the logged user liked
   */
   async getUserVotes(){
     let userVotes:any = [];
-
+    console.log('start here')
+    console.log(userVotes);
     const user = new Parse.User(); // Create a user object with the loged user
     user.id = this.currentUser.userId;
 
@@ -61,18 +89,20 @@ export class VoteService {
     tripPlan.id = this.getTripDetails.currentTrip.id;
 
     let Sight = Parse.Object.extend('Sight');
-    let sightQueryTripId = new Parse.Query(Sight)
-    sightQueryTripId.equalTo('tripsPlanId', tripPlan)
+    
+    let sightVoted = new Parse.Query(Sight);
+    sightVoted.equalTo('votes', user);
+    sightVoted.equalTo('tripsPlanId', tripPlan)
 
-    let sightQueryVotedByUser = new Parse.Query(Sight);
-    sightQueryVotedByUser.equalTo('votes', user)
-
-    let mainQuery = Parse.Query.or(sightQueryTripId, sightQueryVotedByUser) // Find sights the user voted and are from this specific trip plan
-    let result = await mainQuery.find();
+    let result = await sightVoted.find(); // Find the sights thsi user voted and are in this trip
     
     for(let i=0; i < result.length; i++){
-      userVotes.push(result[i].get('XID')) // search the XID of the trips user voted and store in array
+      let XID = result[i].get('XID');
+      let sightId = result[i].id;
+      userVotes.push({XID: XID, sightId: sightId}) // search the XID of the trips user voted and store in array
     }
+    console.log('getting new user votes')
+    console.log(userVotes)
     return userVotes;
   }
 }

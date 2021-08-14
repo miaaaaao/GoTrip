@@ -36,6 +36,11 @@ export class SightCardComponent implements OnInit {
     this.voteService.addVote(this.sight);
     this.voteService.getUserVotes();
   }
+  removeVote(el:any){
+    el.stopPropagation()
+    this.voteService.removeVote(this.sight)
+    console.log('remove vote')
+  }
   /*
   * Add will store the sight information in the Parse
   */
