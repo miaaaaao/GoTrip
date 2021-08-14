@@ -7,7 +7,7 @@
       <div class="row">
           <div class="col-6 d-flex align-items-center" [attr.disabled]="!hasAcceptedInvitation ? '' : null">
             <i class="fa fa-heart fa-2x" [ngClass]="sight.userVoted == true ? 'voted' : 'like'" (click)="sight.userVoted ? removeVote($event) : vote($event)"></i>
-            <span class="like-counter">0</span>
+            <span class="like-counter">{{sight.totalVote}}</span>
           </div>
           <!--Add button is only visible to trip Owners-->
           <div class="col-6 d-flex justify-content-end" *ngIf="isTheOwner">

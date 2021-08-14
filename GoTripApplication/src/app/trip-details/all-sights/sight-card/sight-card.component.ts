@@ -12,7 +12,7 @@ import { VoteService } from '../../../services/vote.service';
 export class SightCardComponent implements OnInit {
   @Input() isTheOwner: boolean = false;
   @Input() hasAcceptedInvitation: boolean = false;
-  @Input() sight: {name?:string, xid?: string, urlImage?:string, description?:string, geoPoints?:{lon: number, lat: number}, userVoted?:boolean } = {};
+  @Input() sight: {name?:string, xid?: string, urlImage?:string, description?:string, geoPoints?:{lon: number, lat: number}, userVoted?:boolean, totalVote?:number } = {};
   
   constructor(private route: Router, private activeRoute: ActivatedRoute, private moreInfoService: MoreInfoService, private voteService: VoteService) { }
 

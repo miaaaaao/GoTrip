@@ -31,6 +31,9 @@ export class VoteService {
     sight.relation('votes').add(user); // Add the user ID to the relational data
 
     const point = new Parse.GeoPoint({latitude: place.geoPoints.lat, longitude: place.geoPoints.lon}) // Create geopoint in Parse format
+
+        
+    sight.increment('totalVotes'); // Add +1 to the totalVotes
     
     /*
     * Save the sight in Parse
@@ -61,6 +64,8 @@ export class VoteService {
     const user = new Parse.User(); // Create a user object with the loged user
     user.id = this.currentUser.userId;
     sight.relation('votes').remove(user); // Add the user ID to the relational data
+
+    sight.decrement('totalVotes'); // Add +1 to the totalVotes
 
     /* If there is only the vote from this user the sight should be completely removed */
 
@@ -107,5 +112,36 @@ export class VoteService {
     console.log('getting new user votes')
     console.log(userVotes)
     return userVotes;
+  }
+
+  /*
+  * Get list of XID and the total number of people who voted on it
+  */
+  async getTotalVotes(){
+
+    let listWithTotalVotes = [];
+
+    let Sight = Parse.Object.extend('Sight');
+    let sightVoted = new Parse.Query(Sight);
+
+    let TripPlan = Parse.Object.extend('TripsPlan');
+    let tripPlan = new TripPlan();
+    tripPlan.id = this.getTripDetails.currentTrip.id;
+
+    sightVoted.equalTo('tripsPlanId', tripPlan) // find all sights that have this tripId
+    let result = await sightVoted.find();
+
+    // Get the list of sights voted and count the number of votes
+
+    for(let i=0; i < result.length; i++){
+      let XID = result[i].get('XID');
+      let totalVotes = result[i].get('totalVotes');
+      totalVotes = totalVotes ? totalVotes : 0; //If it returns undefined it save zero votes
+
+      listWithTotalVotes.push({XID: XID, totalVotes: totalVotes});
+    }
+    return listWithTotalVotes // Return a array witht eh XID and total votes
+
+
   }
 }

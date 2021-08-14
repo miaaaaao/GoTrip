@@ -18,6 +18,7 @@ export class AllSightsComponent implements OnInit, OnDestroy {
   hasAcceptedInvitation: boolean = false;
   isLoading: boolean = false;
   sightsVoted: [] = [] //List of XID of sites voted by this user
+  listOfSightVotes: {}[] = [] // List with all sights voted by any user invited for the trip
   private updateUi: any;
 
   openTrip_API:any = this.env.OPENTRIP_API;
@@ -73,7 +74,7 @@ export class AllSightsComponent implements OnInit, OnDestroy {
     this.isTheOwner = this.getTripDetails.currentTrip.status.isTheOwner;
     this.hasAcceptedInvitation = this.getTripDetails.currentTrip.status.hasAcceptedInvitation;
     this.voteService.getUserVotes().then(res=> this.sightsVoted = res) // load votes from this user
-    
+    this.voteService.getTotalVotes().then(res=> this.listOfSightVotes = res)
   }
 
   /*
@@ -86,13 +87,13 @@ export class AllSightsComponent implements OnInit, OnDestroy {
 
     this.http.get<{name: string, country: string, lat: number, lon:number, population: number, timezone: string, status: string}>(url)
     .subscribe(resp=>{
-      console.log(resp.status)
+      
       if(resp.status == 'OK'){
         this.lat = resp.lat;
         this.lon = resp.lon;
         this.getAmount() // get number of elements
         this.getSightList() // Starts the fucntion that will look for sights based on the lat and lon
-        console.log(resp.lat + '    '  + resp.lon)
+       
       } else {}
      
      
@@ -130,7 +131,7 @@ export class AllSightsComponent implements OnInit, OnDestroy {
       * This is to handle the limits. OpenTripMap free account allows 10 request per second.
       * The bellow code will make the system wait 1 second if return an array with more then 5 sights
       */
-     console.log('======>' + resp[0])
+   
       if(resp.length <= 5){
         for(let i = 0; i < resp.length; i++){
           this.getSightInfo(resp[i].xid);
@@ -164,13 +165,27 @@ export class AllSightsComponent implements OnInit, OnDestroy {
     this.http.get(url)
     .subscribe((resp:any)=>{
       
+      /*
+      * Chech with sight this user voted
+      */
       let voted:any = null;
-      console.log(this.sightsVoted)
+      
       this.sightsVoted.forEach((el:any)=>{
-        console.log(el.XID == resp.xid)
         if(el.XID == resp.xid) voted = el
       })
-      
+
+      /*
+      * Check how many friends voted in this sight
+      */
+
+      let sightWithVotes: any = 0
+      this.listOfSightVotes.forEach((el:any)=>{
+        if(el.XID == resp.xid) sightWithVotes = el
+      })
+
+      /*
+      * Create new object with information to fill the cards
+      */
       let newSight: {} = {
         xid: resp.xid,
         sightServerId: voted ? voted.sightId : null,
@@ -181,10 +196,11 @@ export class AllSightsComponent implements OnInit, OnDestroy {
           lon: resp.point.lon,
           lat: resp.point.lat
         },
-        userVoted: voted ? true : false
+        userVoted: voted ? true : false,
+        totalVote: sightWithVotes.totalVotes
       }
       this.listOfSights = [...this.listOfSights, newSight ]
-      console.log(this.listOfSights)
+      
     })
   }
 
@@ -196,8 +212,6 @@ export class AllSightsComponent implements OnInit, OnDestroy {
     this.listOfSights = [] // Remove itens of previous search from the list
     this.getSightList(); // Get next sights
     this.calculateTotalItensShown() // calculate the total sight shown to update the button
-    console.log(this.offset)
-    console.log(this.total)
   }
 
   ngOnDestroy(){
