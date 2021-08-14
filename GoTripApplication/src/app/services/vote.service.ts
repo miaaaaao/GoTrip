@@ -3,11 +3,14 @@ import * as Parse from 'parse';
 
 import { getTripDetails } from  './getTripDetails.service';
 import { currentUser } from './getCurrentUserData.service';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VoteService {
+
+  updateUISightVoted = new Subject();
 
   constructor(private getTripDetails: getTripDetails, private currentUser: currentUser) { }
 
@@ -40,7 +43,7 @@ export class VoteService {
       description: place.description ,
       geoPoint: point, // geopoint
     }).then((res:any)=>{
-
+      this.updateUISightVoted.next(); // Update the UI
     }, (err:any)=>{
       console.log(err)
     })
@@ -66,7 +69,7 @@ export class VoteService {
     * Save the update in Parse
     */
     await sight.save().then((res:any)=>{
-
+      this.updateUISightVoted.next(); // Update the UI
     }, (err:any)=>{
       console.log(err)
     })

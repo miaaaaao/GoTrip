@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { env } from 'src/app/env';
 import { getTripDetails } from '../../services/getTripDetails.service';
@@ -10,13 +11,14 @@ import { VoteService } from '../../services/vote.service';
   templateUrl: './all-sights.component.html',
   styleUrls: ['./all-sights.component.css']
 })
-export class AllSightsComponent implements OnInit {
+export class AllSightsComponent implements OnInit, OnDestroy {
   city: string = '';
   isTheOwner: boolean = false;
   listOfSights: {}[] = [];
   hasAcceptedInvitation: boolean = false;
   isLoading: boolean = false;
   sightsVoted: [] = [] //List of XID of sites voted by this user
+  private updateUi: any;
 
   openTrip_API:any = this.env.OPENTRIP_API;
   urlBase:string = "https://api.opentripmap.com/0.1/en/places/";
@@ -42,15 +44,26 @@ export class AllSightsComponent implements OnInit {
     
   }
   constructor(private getTripDetails: getTripDetails, private http: HttpClient, private env:env, private voteService: VoteService) { 
-    
-
+  
   }
 
+  
+
   ngOnInit(): void {
-    this.sightsVoted = [];
-    console.log(this.sightsVoted);
     this.getInitialdata();
     this.getGeoLocation();
+    
+    /*
+    * This will automaticaly run everytime the user vote or unvote the sights
+    * This way the interface will be updated. Without this the user would need to
+    * refresh the browser to see the changes reflected in the UI
+    */
+    this.updateUi = this.voteService.updateUISightVoted.subscribe(()=>{
+      this.sightsVoted = [];
+      this.listOfSights = [];
+      this.getInitialdata();
+      this.getSightList();
+    })
     
     
   }
@@ -158,7 +171,6 @@ export class AllSightsComponent implements OnInit {
         if(el.XID == resp.xid) voted = el
       })
       
-      
       let newSight: {} = {
         xid: resp.xid,
         sightServerId: voted ? voted.sightId : null,
@@ -186,6 +198,10 @@ export class AllSightsComponent implements OnInit {
     this.calculateTotalItensShown() // calculate the total sight shown to update the button
     console.log(this.offset)
     console.log(this.total)
+  }
+
+  ngOnDestroy(){
+    this.updateUi.unsubscribe()
   }
 
 }
