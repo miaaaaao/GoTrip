@@ -4,7 +4,9 @@
 */
 
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import * as Parse from 'parse';
+
 import { getTripDetails } from  './getTripDetails.service';
 import { currentUser } from './getCurrentUserData.service';
 
@@ -12,6 +14,8 @@ import { currentUser } from './getCurrentUserData.service';
   providedIn: 'root'
 })
 export class AddSightService {
+
+  updateUISightVoted = new Subject();
 
   constructor(private getTripDetails: getTripDetails, private currentUser: currentUser) { }
 
@@ -28,7 +32,7 @@ export class AddSightService {
     */
     await sight.save().then((res:any)=>{
       console.log('movedo to true')
-     
+      this.updateUISightVoted.next(); // Update the UI
     }, (err:any)=>{
       console.log(err)
     })
@@ -48,7 +52,7 @@ export class AddSightService {
       */
       await sight.save().then((res:any)=>{
         console.log('movedo to false')
-        
+        this.updateUISightVoted.next(); // Update the UI
       }, (err:any)=>{
         console.log(err)
       })

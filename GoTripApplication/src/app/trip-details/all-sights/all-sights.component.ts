@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 
 import { env } from 'src/app/env';
 import { getTripDetails } from '../../services/getTripDetails.service';
@@ -22,6 +21,7 @@ export class AllSightsComponent implements OnInit, OnDestroy {
   listOfSightVotes: {}[] = []; // List with all sights voted by any user invited for the trip
   listOfSightsAdded: {}[]=[];
   private updateUi: any;
+  private updateUiAfterAddSight: any;
 
   openTrip_API:any = this.env.OPENTRIP_API;
   urlBase:string = "https://api.opentripmap.com/0.1/en/places/";
@@ -67,6 +67,14 @@ export class AllSightsComponent implements OnInit, OnDestroy {
       this.listOfSights = [];
       this.getInitialdata();
       this.getSightList();
+    })
+
+    this.updateUiAfterAddSight = this.addSightService.updateUISightVoted.subscribe(()=>{
+      this.sightsVoted = [];
+      this.listOfSights = [];
+      this.getInitialdata();
+      this.getSightList();
+
     })
     
     
@@ -190,7 +198,7 @@ export class AllSightsComponent implements OnInit, OnDestroy {
       /*
       * Check if the sight was already added to the final trip
       */
-      let sightAdded: any = null
+      let sightAdded: any = {}
       this.listOfSightsAdded.forEach((el:any)=>{
         if(el.XID === resp.xid) sightAdded = el
       })
@@ -231,6 +239,7 @@ export class AllSightsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     this.updateUi.unsubscribe()
+    this.updateUiAfterAddSight.unsubscribe()
   }
 
 }
