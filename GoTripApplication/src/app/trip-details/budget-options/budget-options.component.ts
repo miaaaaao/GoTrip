@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-budget-options',
@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./budget-options.component.css']
 })
 export class BudgetOptionsComponent implements OnInit {
+  @Input() currentTrip:any;
 
-  constructor() { }
+  constructor() { 
+    
+  }
 
   ngOnInit(): void {
+   
   }
 
 }

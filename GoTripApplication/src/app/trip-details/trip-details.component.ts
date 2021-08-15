@@ -15,6 +15,7 @@ export class TripDetailsComponent implements OnInit {
   isTheOwner = false;
   hasAcceptedInvitation = true;
   hasReceivedData: boolean = false; // This is used to avoid load components with empty data
+  currentTripFullData: any = null; // object with all information about the trip
 
   constructor(private router: Router, private activeRoute: ActivatedRoute, private getTripDetails: getTripDetails) { 
     this.activeRoute.params.subscribe(el=> this.tripId = el['id']) // Get id from the URL
@@ -33,12 +34,15 @@ export class TripDetailsComponent implements OnInit {
         this.isTheOwner = this.getTripDetails.currentTrip.status.isTheOwner;
         this.hasAcceptedInvitation = this.getTripDetails.currentTrip.status.hasAcceptedInvitation;
         this.hasReceivedData = this.getTripDetails.receiveddata;
+        this.currentTripFullData = this.getTripDetails.currentTrip;
+        console.log('THIS IS THE FULL TRIP')
+    console.log(this.currentTripFullData)
       });
     }
   }
 
   ngOnInit(): void {
-    // this.getInfoAboutThisTrip() // ===>> add this later
+    this.getInfoAboutThisTrip() // ===>> add this later
   }
 
   ngOnDestroy(){

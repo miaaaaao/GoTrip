@@ -25,9 +25,9 @@ export class getTripDetails {
         title: '',
         destination: '',
         budget: {
-          one: null,
-          two: null,
-          three: null
+          one: 0,
+          two: 0,
+          three: 0
         },
         date: {
           one: {},
@@ -42,6 +42,9 @@ export class getTripDetails {
           this.currentTrip.status.isTheOwner = false;
           this.currentTrip.status.hasAcceptedInvitation = true;
           this.currentTrip.destination = '';
+          this.currentTrip.budget.one = 0,
+          this.currentTrip.budget.two = 0,
+          this.currentTrip.budget.three = 0
       }
 
       async getBasicInfo(id:string){ 
@@ -85,8 +88,24 @@ export class getTripDetails {
                 let allTripUserIsInvited = await queryPendingList.find() // Fetch data from parse
                 allTripUserIsInvited.length > 0 ? this.currentTrip.status.hasAcceptedInvitation = false : this.currentTrip.status.hasAcceptedInvitation = true   //If it returns an array it menas the user is in the pending list
             }
+            /*
+            * Get dates
+            */
+            let budget = Parse.Object.extend('Budget')
+            let queryBudget = new Parse.Query(budget);
+
+            let thisTrip = new tripPlan();
+            thisTrip.id = id;
+
+            queryBudget.equalTo('tripsPlanId', thisTrip);
+
+            let budgets = await queryBudget.find();
+            this.currentTrip.budget.one = budgets[0].get("budgetOne");
+            this.currentTrip.budget.two = budgets[0].get("budgetTwo");
+            this.currentTrip.budget.three = budgets[0].get("budgetThree");
 
             this.receiveddata = true;
+            
 
         }catch(err){
             console.log(err) // Show error in the console
