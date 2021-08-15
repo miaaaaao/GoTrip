@@ -42,6 +42,8 @@ import { ShortnerPipe } from './pipe/shortner.pipe';
 import { SightDetailComponent } from './trip-details/sight-detail/sight-detail.component';
 import { BudgetOptionsComponent } from './trip-details/budget-options/budget-options.component';
 import { DateOptionsComponent } from './trip-details/date-options/date-options.component';
+import { FriendsCardComponent } from './trip-details/friends-card/friends-card.component';
+
 
 //This is the route array
 const appRoutes: Routes = [
@@ -87,6 +89,8 @@ const appRoutes: Routes = [
     SightDetailComponent,
     BudgetOptionsComponent,
     DateOptionsComponent,
+    FriendsCardComponent,
+  
 
   ],
   imports: [
