@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { VoteBudgetService } from '../../services/vote-budget.service';
+
 @Component({
   selector: 'app-budget-options',
   templateUrl: './budget-options.component.html',
@@ -8,7 +10,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class BudgetOptionsComponent implements OnInit {
   @Input() currentTrip:any;
 
-  constructor() { 
+  constructor(private voteBudgetService: VoteBudgetService) { 
     
   }
 
@@ -16,8 +18,9 @@ export class BudgetOptionsComponent implements OnInit {
    
   }
 
-  saveBudgetPreferences(option:any){
+  saveBudgetPreferences(option:string){
     console.log('saving budget ' + option)
+    this.voteBudgetService.voteBudget(option)
   }
 
 }

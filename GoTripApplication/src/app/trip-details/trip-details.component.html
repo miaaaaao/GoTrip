@@ -20,12 +20,15 @@
                     (updateDetailsData)="getInfoAboutThisTrip()"
                     ></app-basic-info>
                 </div>
+                <!--Card to show budget-->
                 <div class="row budgetContainer mb-3 mx-0">
                     <app-budget-options [currentTrip]="currentTripFullData"></app-budget-options>
                 </div>
+                <!--Card to show dates-->
                 <div class="row budgetContainer mb-3 mx-0">
-                    <app-date-options [currentTrip]="currentTripFullData"></app-date-options>
+                    <app-date-options [currentTrip]="currentTripFullData ? currentTripFullData : 0"></app-date-options>
                 </div>
+                <!--Card to show friends-->
                 <div class="row" style="border:1px solid green; min-height:100px">
                     <span>Component with friends cards</span>
                 </div>
