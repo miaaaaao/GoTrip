@@ -11,7 +11,7 @@
         <div class="col">
             <span class="lightGrey">${{currentTrip ? currentTrip.budget.one : 0}}</span>
         </div>
-        <div class="form-check form-check-inline col d-flex justify-content-end mx-0">
+        <div class="form-check form-check-inline col d-flex justify-content-end mx-0" (click)="saveBudgetPreferences(1)">
             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
             <label class="form-check-label" for="inlineRadio1">1</label>
         </div>

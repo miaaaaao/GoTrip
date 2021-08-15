@@ -53,8 +53,8 @@ export class AllSightsComponent implements OnInit, OnDestroy {
   
 
   ngOnInit(): void {
-    this.getInitialdata();
-    this.getGeoLocation();
+   // this.getInitialdata(); =========> REMOVE COMENT 
+   // this.getGeoLocation(); =========> REMOVE COMENT
     
     
     /*

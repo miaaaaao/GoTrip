@@ -16,4 +16,8 @@ export class BudgetOptionsComponent implements OnInit {
    
   }
 
+  saveBudgetPreferences(option:any){
+    console.log('saving budget ' + option)
+  }
+
 }

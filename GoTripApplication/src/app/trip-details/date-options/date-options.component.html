@@ -9,7 +9,7 @@
     </div>
     <div class="row mb-3">
         <div class="col">
-            <span class="lightGrey">10/06 - 12/06</span>
+            <span class="lightGrey">{{currentTrip.date.one.start | date:'shortDate'}} - {{currentTrip.date.one.end | date:'shortDate'}}</span>
         </div>
         <div class="form-check form-check-inline col-4 d-flex justify-content-end mx-0">
             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
@@ -18,7 +18,7 @@
     </div>
     <div class="row mb-3">
         <div class="col">
-            <span class="lightGrey">10/06 - 12/06</span>
+            <span class="lightGrey">{{currentTrip.date.two.start | date:'shortDate'}} - {{currentTrip.date.two.start | date:'shortDate'}}</span>
         </div>
         <div class="form-check form-check-inline col-4 d-flex justify-content-end mx-0">
             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
@@ -27,7 +27,7 @@
     </div>
     <div class="row mb-4">
         <div class="col">
-            <span class="lightGrey">10/06 - 12/06</span>
+            <span class="lightGrey">{{currentTrip.date.three.start | date:'shortDate'}} - {{currentTrip.date.three.start | date:'shortDate'}}</span>
         </div>
         <div class="form-check form-check-inline col-4 d-flex justify-content-end mx-0">
             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
