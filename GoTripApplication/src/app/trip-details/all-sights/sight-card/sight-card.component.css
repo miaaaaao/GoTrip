@@ -25,6 +25,10 @@
     transition: all 0.2s;
 }
 
+.voted {
+    color: #EB5757;
+}
+
 .like-counter{
     color: #605DEC;
     padding-left: 8px;
