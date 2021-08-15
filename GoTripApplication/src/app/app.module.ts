@@ -40,6 +40,8 @@ import { NotificationBarComponent } from './trip-details/notification-bar/notifi
 import { SightCardComponent } from './trip-details/all-sights/sight-card/sight-card.component';
 import { ShortnerPipe } from './pipe/shortner.pipe';
 import { SightDetailComponent } from './trip-details/sight-detail/sight-detail.component';
+import { BudgetOptionsComponent } from './trip-details/budget-options/budget-options.component';
+import { DateOptionsComponent } from './trip-details/date-options/date-options.component';
 
 //This is the route array
 const appRoutes: Routes = [
@@ -83,6 +85,8 @@ const appRoutes: Routes = [
     SightCardComponent,
     ShortnerPipe,
     SightDetailComponent,
+    BudgetOptionsComponent,
+    DateOptionsComponent,
 
   ],
   imports: [

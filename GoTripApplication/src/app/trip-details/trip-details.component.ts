@@ -38,7 +38,7 @@ export class TripDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getInfoAboutThisTrip()
+    // this.getInfoAboutThisTrip() // ===>> add this later
   }
 
   ngOnDestroy(){
