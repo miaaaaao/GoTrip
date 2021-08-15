@@ -10,6 +10,8 @@ import { Subject } from 'rxjs';
 })
 export class VoteBudgetService {
 
+  updateUIBudgetChanged = new Subject();
+
   constructor(private getTripDetails: getTripDetails, private currentUser: currentUser) { }
   
   async voteBudget(option:string){
@@ -67,6 +69,9 @@ export class VoteBudgetService {
       budget.increment(`totalVotes${option}`); // Add +1 to the totalVotes
   
       await budget.save() // save into Parse
+
+      //Update interface
+      this.updateUIBudgetChanged.next();
     }
 
     if(lastSavedVote){
@@ -78,7 +83,6 @@ export class VoteBudgetService {
 
       //Save new vote
       await saveNewVote();
-      
 
     } else {
       // Save this user first vote

@@ -17,6 +17,7 @@ export class TripDetailsComponent implements OnInit {
   hasAcceptedInvitation = true;
   hasReceivedData: boolean = false; // This is used to avoid load components with empty data
   currentTripFullData: any = null; // object with all information about the trip
+  private updateUIBudget: any; // update UI after some change is made in the budget
 
   constructor(private router: Router, private activeRoute: ActivatedRoute, private getTripDetails: getTripDetails, private voteBudgetService:VoteBudgetService) { 
     this.activeRoute.params.subscribe(el=> this.tripId = el['id']) // Get id from the URL
@@ -55,6 +56,10 @@ export class TripDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getInfoAboutThisTrip() // ===>> add this later
+
+    this.updateUIBudget = this.voteBudgetService.updateUIBudgetChanged.subscribe(el=>{
+      this.getInfoAboutThisTrip()
+    })
   }
 
   ngOnDestroy(){
@@ -66,6 +71,7 @@ export class TripDetailsComponent implements OnInit {
     this.city = '';
 
     this.getTripDetails.cleanCurrentTrip() // Remove stored data on the service
+    this.updateUIBudget.unsubscribe(); 
   }
 
   
