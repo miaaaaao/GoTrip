@@ -86,11 +86,8 @@ export class VoteBudgetService {
       
     }
 
-     
-
-    //Update UI
-
   }
+
 
   /*
   * Find what budget option the user voted
@@ -141,6 +138,40 @@ export class VoteBudgetService {
     });
 
     return lastSavedVote;
+
+  }
+
+  async findTotalVotes(){
+    let totalBudgetVotes = {
+      dateOne: 0,
+      dateTwo: 0,
+      dateThree: 0
+    }
+   
+    // Save user vote
+    let Budget = Parse.Object.extend('Budget');
+    let budget = new Budget(); // Create budget object
+    let queryBudget = new Parse.Query(Budget)
+
+    let TripPlan = Parse.Object.extend('TripsPlan');
+    let tripPlan = new TripPlan();
+    tripPlan.id = this.getTripDetails.currentTrip.id; // set up the trip id to the id of current trip
+
+    //Find budget ID
+    queryBudget.equalTo("tripsPlanId", tripPlan )
+
+    let budgetList = await queryBudget.find()
+    
+    if(!budgetList[0]){
+      console.log('No budget row found');
+      return
+    }
+
+    totalBudgetVotes.dateOne = await budgetList[0].get('totalVotesOne') | 0 ;
+    totalBudgetVotes.dateTwo = await budgetList[0].get('totalVotesTwo') | 0;
+    totalBudgetVotes.dateThree = await budgetList[0].get('totalVotesThree') | 0;
+
+    return totalBudgetVotes;
 
   }
 }

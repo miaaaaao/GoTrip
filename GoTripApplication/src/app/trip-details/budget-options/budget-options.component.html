@@ -13,7 +13,7 @@
         </div>
         <div class="form-check form-check-inline col d-flex justify-content-end mx-0" (click)="saveBudgetPreferences('One')">
             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" [checked]="currentTrip.budget.userVotedOn == 'One' ? true : false">
-            <label class="form-check-label" for="inlineRadio1">1</label>
+            <label class="form-check-label" for="inlineRadio1">{{currentTrip.budget.totalVote.one}}</label>
         </div>
     </div>
     <div class="row mb-3">
@@ -22,7 +22,7 @@
         </div>
         <div class="form-check form-check-inline col d-flex justify-content-end mx-0" (click)="saveBudgetPreferences('Two')">
             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" [checked]="currentTrip.budget.userVotedOn == 'Two' ? true : false">
-            <label class="form-check-label" for="inlineRadio1">1</label>
+            <label class="form-check-label" for="inlineRadio1">{{currentTrip.budget.totalVote.two}}</label>
         </div>
     </div>
     <div class="row mb-4">
@@ -31,7 +31,7 @@
         </div>
         <div class="form-check form-check-inline col d-flex justify-content-end mx-0" (click)="saveBudgetPreferences('Three')">
             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" [checked]="currentTrip.budget.userVotedOn == 'Three' ? true : false">
-            <label class="form-check-label" for="inlineRadio1">1</label>
+            <label class="form-check-label" for="inlineRadio1">{{currentTrip.budget.totalVote.three}}</label>
         </div>
     </div>
     <div class="row">

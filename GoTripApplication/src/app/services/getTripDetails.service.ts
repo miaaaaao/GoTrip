@@ -30,6 +30,11 @@ export class getTripDetails {
           two: 0,
           three: 0,
           userVotedOn: 0,
+          totalVote: {
+            one: 0,
+            two: 0,
+            three: 0
+          }
         },
         date: {
           one: {

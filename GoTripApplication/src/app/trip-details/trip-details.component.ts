@@ -36,9 +36,16 @@ export class TripDetailsComponent implements OnInit {
         this.hasAcceptedInvitation = this.getTripDetails.currentTrip.status.hasAcceptedInvitation;
         this.hasReceivedData = this.getTripDetails.receiveddata;
         this.currentTripFullData = this.getTripDetails.currentTrip;
-        //Save the curretn user's vote
+        //Save the curretn budget user's vote
         this.voteBudgetService.findUserBudgetVote().then(res=>{
           this.currentTripFullData.budget.userVotedOn = res
+        })
+        //Get all budget votes
+        this.voteBudgetService.findTotalVotes().then(res=>{
+          this.currentTripFullData.budget.totalVote.one = res?.dateOne;
+          this.currentTripFullData.budget.totalVote.two = res?.dateTwo;
+          this.currentTripFullData.budget.totalVote.three = res?.dateThree;
+          console.log(res)
         })
         console.log('THIS IS THE FULL TRIP')
     console.log(this.currentTripFullData)
