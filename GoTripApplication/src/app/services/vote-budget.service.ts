@@ -13,7 +13,7 @@ export class VoteBudgetService {
   constructor(private getTripDetails: getTripDetails, private currentUser: currentUser) { }
   
   async voteBudget(option:string){
-    console.log(option)
+   
     let lastSavedVote;
 
     // Define user based on the current user
@@ -78,10 +78,6 @@ export class VoteBudgetService {
 
       //Save new vote
       await saveNewVote();
-
-
-      console.log('Saving repeatin user ===>')
-      console.log('He voted on ' + lastSavedVote)
       
 
     } else {
@@ -96,9 +92,55 @@ export class VoteBudgetService {
 
   }
 
-  async findUserVote(){
+  /*
+  * Find what budget option the user voted
+  */
+  async findUserBudgetVote(){
+    let lastSavedVote;
 
+    // Define user based on the current user
+    const user = new Parse.User(); // Create a user object with the loged user
+    user.id = this.currentUser.userId;
+   
+    // Save user vote
+    let Budget = Parse.Object.extend('Budget');
+    let budget = new Budget(); // Create budget object
+    let queryBudget = new Parse.Query(Budget)
 
+    let TripPlan = Parse.Object.extend('TripsPlan');
+    let tripPlan = new TripPlan();
+    tripPlan.id = this.getTripDetails.currentTrip.id; // set up the trip id to the id of current trip
+
+    //Find budget ID
+    queryBudget.equalTo("tripsPlanId", tripPlan )
+
+    let budgetList = await queryBudget.find()
+    
+    if(!budgetList[0]){
+      console.log('No budget row found');
+      return
+    }
+
+    // Check if user have voted before in one of the three options
+    await budgetList[0].relation(`usersVotedOne`).query().each(voters=>{
+      if(voters.id == user.id) {
+        lastSavedVote = 'One'
+      }
+    });
+
+    await budgetList[0].relation(`usersVotedTwo`).query().each(voters=>{
+      if(voters.id == user.id) {
+        lastSavedVote = 'Two'
+      }
+    });
+
+    await budgetList[0].relation(`usersVotedThree`).query().each(voters=>{
+      if(voters.id == user.id) {
+        lastSavedVote = 'Three'
+      }
+    });
+
+    return lastSavedVote;
 
   }
 }

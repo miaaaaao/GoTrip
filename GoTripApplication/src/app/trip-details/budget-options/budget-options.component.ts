@@ -15,7 +15,13 @@ export class BudgetOptionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
+    if(!this.currentTrip){
+      this.currentTrip = {
+        budget:{
+          userVotedOn: 0
+        }
+      }
+    }
   }
 
   saveBudgetPreferences(option:string){

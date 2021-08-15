@@ -9,6 +9,7 @@ import * as Parse from 'parse';
 
 import { currentUser } from './getCurrentUserData.service';
 
+
 @Injectable()
 export class getTripDetails {
     receiveddata: boolean = false // this will turn to true when the system finish to fetch data from Parse
@@ -27,7 +28,8 @@ export class getTripDetails {
         budget: {
           one: 0,
           two: 0,
-          three: 0
+          three: 0,
+          userVotedOn: 0,
         },
         date: {
           one: {
@@ -113,6 +115,10 @@ export class getTripDetails {
             this.currentTrip.budget.two = budgets[0].get("budgetTwo");
             this.currentTrip.budget.three = budgets[0].get("budgetThree");
 
+            /*
+            * Get budget the user voted
+            */
+           
             
             /*
             * Get dates

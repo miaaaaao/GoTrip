@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { getTripDetails } from '../services/getTripDetails.service';
+import { VoteBudgetService } from '../services/vote-budget.service';
 
 @Component({
   selector: 'app-trip-details',
@@ -17,7 +18,7 @@ export class TripDetailsComponent implements OnInit {
   hasReceivedData: boolean = false; // This is used to avoid load components with empty data
   currentTripFullData: any = null; // object with all information about the trip
 
-  constructor(private router: Router, private activeRoute: ActivatedRoute, private getTripDetails: getTripDetails) { 
+  constructor(private router: Router, private activeRoute: ActivatedRoute, private getTripDetails: getTripDetails, private voteBudgetService:VoteBudgetService) { 
     this.activeRoute.params.subscribe(el=> this.tripId = el['id']) // Get id from the URL
 
   }
@@ -35,6 +36,10 @@ export class TripDetailsComponent implements OnInit {
         this.hasAcceptedInvitation = this.getTripDetails.currentTrip.status.hasAcceptedInvitation;
         this.hasReceivedData = this.getTripDetails.receiveddata;
         this.currentTripFullData = this.getTripDetails.currentTrip;
+        //Save the curretn user's vote
+        this.voteBudgetService.findUserBudgetVote().then(res=>{
+          this.currentTripFullData.budget.userVotedOn = res
+        })
         console.log('THIS IS THE FULL TRIP')
     console.log(this.currentTripFullData)
       });
