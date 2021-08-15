@@ -17,6 +17,9 @@ export class BudgetOptionsComponent implements OnInit {
   ngOnInit(): void {
     if(!this.currentTrip){
       this.currentTrip = {
+        status:{
+          hasAcceptedInvitation: false
+        },
         budget:{
           userVotedOn: 0,
           totalVote: {

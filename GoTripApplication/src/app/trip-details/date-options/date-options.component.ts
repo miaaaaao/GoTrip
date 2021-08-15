@@ -13,6 +13,9 @@ export class DateOptionsComponent implements OnInit {
   ngOnInit(): void {
     if(!this.currentTrip){
       this.currentTrip = {
+        status:{
+          hasAcceptedInvitation: false
+        },
         date:{
           one: {start: 0, end: 0},
           two: {start: 0, end: 0},
