@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { getTripDetails } from '../services/getTripDetails.service';
 import { VoteBudgetService } from '../services/vote-budget.service';
+import { VoteDateService } from '../services/vote-date.service';
 
 @Component({
   selector: 'app-trip-details',
@@ -18,8 +19,9 @@ export class TripDetailsComponent implements OnInit {
   hasReceivedData: boolean = false; // This is used to avoid load components with empty data
   currentTripFullData: any = null; // object with all information about the trip
   private updateUIBudget: any; // update UI after some change is made in the budget
+  private updateUIDate: any; // update UI after user choose date
 
-  constructor(private router: Router, private activeRoute: ActivatedRoute, private getTripDetails: getTripDetails, private voteBudgetService:VoteBudgetService) { 
+  constructor(private router: Router, private activeRoute: ActivatedRoute, private getTripDetails: getTripDetails, private voteBudgetService:VoteBudgetService, private voteDateService: VoteDateService) { 
     this.activeRoute.params.subscribe(el=> this.tripId = el['id']) // Get id from the URL
 
   }
@@ -48,6 +50,18 @@ export class TripDetailsComponent implements OnInit {
           this.currentTripFullData.budget.totalVote.three = res?.dateThree;
           console.log(res)
         })
+        //Save the current date user voted
+        this.voteDateService.findUserDateVote().then(res=>{
+          this.currentTripFullData.date.userVotedOn = res
+        })
+        //Get all date votes
+        this.voteDateService.findTotalVotes().then(res=>{
+          this.currentTripFullData.date.totalVote.one = res?.dateOne;
+          this.currentTripFullData.date.totalVote.two = res?.dateTwo;
+          this.currentTripFullData.date.totalVote.three = res?.dateThree;
+          console.log('THIS ARE THE DATES')
+          console.log(res)
+        })
         console.log('THIS IS THE FULL TRIP')
     console.log(this.currentTripFullData)
       });
@@ -58,6 +72,9 @@ export class TripDetailsComponent implements OnInit {
     this.getInfoAboutThisTrip() // ===>> add this later
 
     this.updateUIBudget = this.voteBudgetService.updateUIBudgetChanged.subscribe(el=>{
+      this.getInfoAboutThisTrip()
+    })
+    this.updateUIDate = this.voteDateService.updateUIDateChanged.subscribe(el=>{
       this.getInfoAboutThisTrip()
     })
   }
@@ -72,6 +89,7 @@ export class TripDetailsComponent implements OnInit {
 
     this.getTripDetails.cleanCurrentTrip() // Remove stored data on the service
     this.updateUIBudget.unsubscribe(); 
+    this.updateUIDate.unsubscribe();
   }
 
   

@@ -33,7 +33,7 @@ export class BudgetOptionsComponent implements OnInit {
   }
 
   saveBudgetPreferences(option:string){
-    console.log('saving budget ' + option)
+    
     this.voteBudgetService.voteBudget(option)
   }
 
