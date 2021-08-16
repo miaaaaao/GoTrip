@@ -43,6 +43,9 @@ import { SightDetailComponent } from './trip-details/sight-detail/sight-detail.c
 import { BudgetOptionsComponent } from './trip-details/budget-options/budget-options.component';
 import { DateOptionsComponent } from './trip-details/date-options/date-options.component';
 import { FriendsCardComponent } from './trip-details/friends-card/friends-card.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 //This is the route array
@@ -53,15 +56,15 @@ const appRoutes: Routes = [
   { path: 'signup', component: SignUpPageComponent },
   { path: 'forgot-password', component: ForgotPasswordPageComponent },
   { path: 'invitation', component: InvitationPageComponent },
-  {
-    path: 'details/:id', component: TripDetailsComponent, children: [
-      { path: 'sights', component: AllSightsComponent },
-      { path: 'map', component: MapComponent },
-      { path: 'notes', component: NotesComponent },
-      { path: 'place', component: SightDetailComponent },
 
-    ]
-  }
+  { path: 'details/:id', component: TripDetailsComponent, children: [
+    {path: 'sights', component: AllSightsComponent},
+    {path: 'map', component: MapComponent},
+    {path: 'notes', component: NotesComponent},
+    {path: 'place', component: SightDetailComponent},
+  ] },
+  { path: 'profile', component: ProfileComponent },
+
 ];
 
 @NgModule({
@@ -92,6 +95,9 @@ const appRoutes: Routes = [
     BudgetOptionsComponent,
     DateOptionsComponent,
     FriendsCardComponent,
+    HeaderComponent,
+    FooterComponent,
+    ProfileComponent,
   
 
   ],

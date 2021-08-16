@@ -21,12 +21,17 @@ export class BreadcrumbComponent implements OnInit {
   * decide to whenre they shoudl go back.
   */
   goBack(){
+    console.log(this.origin)
     if(this.origin == 'newTripForm' || this.origin == 'tripDetails'){
       this.createNewTrip.cleanInvitationList(); // Clean the email list
       this.router.navigate(['../dashboard'])
     } else if (this.origin == 'moreInfo'){
       // If came from moreInfo - page with details about the sight
       this.router.navigate(['../sights'], {relativeTo: this.route})
-    }
+    } else if (this.origin == 'profile'){
+       // If came from profile page - go t the dashboard
+       console.log('going to dashoar')
+       this.router.navigate(['/dashboard'])
+    } 
   }
 }
