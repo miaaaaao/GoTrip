@@ -1,0 +1,16 @@
+.form-check-label{
+    color:#605DEC;
+    background: #F3F7FB;
+    min-width: 24px;
+    min-height: 18px;
+    border-radius: 2px;
+    text-align: center;
+}
+
+.lightGrey{
+    color: #66707C
+}
+
+i {
+    color: #A1B0CC;
+}
