@@ -9,6 +9,7 @@ import * as Parse from 'parse';
 
 import { currentUser } from './getCurrentUserData.service';
 
+
 @Injectable()
 export class getTripDetails {
     receiveddata: boolean = false // this will turn to true when the system finish to fetch data from Parse
@@ -25,14 +26,29 @@ export class getTripDetails {
         title: '',
         destination: '',
         budget: {
-          one: null,
-          two: null,
-          three: null
+          one: 0,
+          two: 0,
+          three: 0,
+          userVotedOn: 0,
+          totalVote: {
+            one: 0,
+            two: 0,
+            three: 0
+          }
         },
         date: {
-          one: {},
-          two: {},
-          three: {}
+          one: {
+            start: 0,
+            end: 0,
+          },
+          two: {
+            start: 0,
+            end: 0
+          },
+          three: {
+            start: 0,
+            end: 0
+          }
         },
         invitedFriends: [{}],
       }
@@ -42,6 +58,9 @@ export class getTripDetails {
           this.currentTrip.status.isTheOwner = false;
           this.currentTrip.status.hasAcceptedInvitation = true;
           this.currentTrip.destination = '';
+          this.currentTrip.budget.one = 0,
+          this.currentTrip.budget.two = 0,
+          this.currentTrip.budget.three = 0
       }
 
       async getBasicInfo(id:string){ 
@@ -85,7 +104,43 @@ export class getTripDetails {
                 let allTripUserIsInvited = await queryPendingList.find() // Fetch data from parse
                 allTripUserIsInvited.length > 0 ? this.currentTrip.status.hasAcceptedInvitation = false : this.currentTrip.status.hasAcceptedInvitation = true   //If it returns an array it menas the user is in the pending list
             }
+            /*
+            * Get budget
+            */
+            let budget = Parse.Object.extend('Budget')
+            let queryBudget = new Parse.Query(budget);
 
+            let thisTrip = new tripPlan();
+            thisTrip.id = id;
+
+            queryBudget.equalTo('tripsPlanId', thisTrip);
+
+            let budgets = await queryBudget.find();
+            this.currentTrip.budget.one = budgets[0].get("budgetOne");
+            this.currentTrip.budget.two = budgets[0].get("budgetTwo");
+            this.currentTrip.budget.three = budgets[0].get("budgetThree");
+
+            /*
+            * Get budget the user voted
+            */
+           
+            
+            /*
+            * Get dates
+            */
+            let Dates = Parse.Object.extend('Date')
+            let queryDates = new Parse.Query(Dates);
+
+            queryDates.equalTo('tripsPlanId', thisTrip);
+
+            let dates = await queryDates.find();
+            this.currentTrip.date.one.start = dates[0].get("dateOneStart");
+            this.currentTrip.date.one.end = dates[0].get("dateOneEnd");
+            this.currentTrip.date.two.start = dates[0].get("dateTwoStart");
+            this.currentTrip.date.two.end = dates[0].get("dateTwoEnd");
+            this.currentTrip.date.three.start = dates[0].get("dateThreeStart");
+            this.currentTrip.date.three.end = dates[0].get("dateThreeEnd");
+            
             this.receiveddata = true;
 
         }catch(err){
