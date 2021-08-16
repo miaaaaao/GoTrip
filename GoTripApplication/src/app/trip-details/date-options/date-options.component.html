@@ -1,0 +1,63 @@
+<div class="col-12">
+    <div class="row mb-3">
+        <div class="col-1">
+            <i class="fa fa-calendar fa-1x primaryColour" aria-hidden="true"></i>
+        </div>
+        <div class="col">
+            <h5>Dates</h5>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <span class="lightGrey">{{currentTrip.date.one.start | date:'shortDate'}} - {{currentTrip.date.one.end | date:'shortDate'}}</span>
+        </div>
+        <div class="form-check form-check-inline col-4 d-flex justify-content-end mx-0">
+            <input 
+            class="form-check-input" 
+            type="radio" 
+            name="dateOption" 
+            id="inlineRadio1" 
+            value="option1"
+            [attr.disabled]="!currentTrip.status.hasAcceptedInvitation ? '' : null"
+            >
+            <label class="form-check-label" for="inlineRadio1">0</label>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <span class="lightGrey">{{currentTrip.date.two.start | date:'shortDate'}} - {{currentTrip.date.two.start | date:'shortDate'}}</span>
+        </div>
+        <div class="form-check form-check-inline col-4 d-flex justify-content-end mx-0">
+            <input 
+            class="form-check-input" 
+            type="radio" 
+            name="dateOption" 
+            id="inlineRadio2" 
+            value="option2"
+            [attr.disabled]="!currentTrip.status.hasAcceptedInvitation ? '' : null"
+            >
+            <label class="form-check-label" for="inlineRadio1">0</label>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col">
+            <span class="lightGrey">{{currentTrip.date.three.start | date:'shortDate'}} - {{currentTrip.date.three.start | date:'shortDate'}}</span>
+        </div>
+        <div class="form-check form-check-inline col-4 d-flex justify-content-end mx-0">
+            <input 
+            class="form-check-input" 
+            type="radio" 
+            name="dateOption" 
+            id="inlineRadio3" 
+            value="option3"
+            [attr.disabled]="!currentTrip.status.hasAcceptedInvitation ? '' : null"
+            >
+            <label class="form-check-label" for="inlineRadio1">0</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col d-flex justify-content-end">
+            <span class="lightGrey">3/5 Votes</span>
+        </div>
+    </div>
+</div>

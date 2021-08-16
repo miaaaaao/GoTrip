@@ -1,0 +1,69 @@
+<div class="col-12">
+    <div class="row mb-3">
+        <div class="col-1">
+            <i class="fa fa-money fa-1x primaryColour" aria-hidden="true"></i>
+        </div>
+        <div class="col">
+            <h5>Budget</h5>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <span class="lightGrey">${{currentTrip ? currentTrip.budget.one : 0}}</span>
+        </div>
+        <div class="form-check form-check-inline col d-flex justify-content-end mx-0" >
+            <input 
+            class="form-check-input" 
+            type="radio" 
+            name="inlineRadioOptions" 
+            id="inlineRadio1" 
+            value="option1" 
+            (click)="saveBudgetPreferences('One')"
+            [checked]="currentTrip.budget.userVotedOn == 'One' ? true : false"
+            [attr.disabled]="!currentTrip.status.hasAcceptedInvitation ? '' : null"
+            >
+            <label class="form-check-label" for="inlineRadio1">{{currentTrip.budget.totalVote.one}}</label>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <span class="lightGrey">${{currentTrip ? currentTrip.budget.two : 0}}</span>
+        </div>
+        <div class="form-check form-check-inline col d-flex justify-content-end mx-0" >
+            <input 
+            class="form-check-input" 
+            type="radio" 
+            name="inlineRadioOptions" 
+            id="inlineRadio2" 
+            value="option2" 
+            (click)="saveBudgetPreferences('Two')"
+            [checked]="currentTrip.budget.userVotedOn == 'Two' ? true : false"
+            [attr.disabled]="!currentTrip.status.hasAcceptedInvitation ? '' : null"
+            >
+            <label class="form-check-label" for="inlineRadio1">{{currentTrip.budget.totalVote.two}}</label>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col">
+            <span class="lightGrey">${{currentTrip ? currentTrip.budget.three : 0}}</span>
+        </div>
+        <div class="form-check form-check-inline col d-flex justify-content-end mx-0" >
+            <input 
+            class="form-check-input" 
+            type="radio" 
+            name="inlineRadioOptions" 
+            id="inlineRadio3" 
+            value="option3" 
+            (click)="saveBudgetPreferences('Three')"
+            [checked]="currentTrip.budget.userVotedOn == 'Three' ? true : false"
+            [attr.disabled]="!currentTrip.status.hasAcceptedInvitation ? '' : null"
+            >
+            <label class="form-check-label" for="inlineRadio1">{{currentTrip.budget.totalVote.three}}</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col d-flex justify-content-end">
+            <span class="lightGrey">3/5 Votes</span>
+        </div>
+    </div>
+</div>
