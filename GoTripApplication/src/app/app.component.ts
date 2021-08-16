@@ -13,11 +13,11 @@ export class AppComponent implements OnInit {
   constructor(){
     Parse.initialize(environment.serverId, environment.serverMasterKey);
     (Parse as any).serverURL = environment.serverUrl;
-   
+
   };
 
   ngOnInit(){
 
-  
+
   }
 }

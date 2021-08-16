@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+
+    <!-- logo & name -->
+    <a class="ms-2 navbar-brand" href="#">
+      <img src="assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        GoTrip
+    </a>
+
+    <!-- button -->
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <a href="{{link}}" class="btn btn-outline-primary my-2 my-sm-0" type="button">{{buttonText}}</a>
+      </ul>
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- user profile dropdown -->
+    <div class="dropdown  {{visibility}}">
+      <a class="nav-link dropdown-toggle" role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="assets/default.png" width="40" height="40" class="rounded-circle">
+
+      </a>
+      <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><a class="dropdown-item" href="#">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
