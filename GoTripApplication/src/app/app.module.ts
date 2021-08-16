@@ -15,7 +15,7 @@ import { rejectInvitation } from './services/rejectInvitation.service';
 import { finishTrip } from './services/finishTrip.service';
 import { getSights } from './services/getSights.service';
 
-import { env } from './env' 
+import { env } from './env'
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -26,7 +26,7 @@ import { OldTripCardComponent } from './dashboard/old-trip-card/old-trip-card.co
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
-import { ResetPageComponent } from './pages/reset-page/reset-page.component';
+import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
 import { BackgroundImageComponent } from './pages/background-image/background-image.component';
 import { InvitationComponent } from './new-trip-form/invitation/invitation.component';
 import { DatetimepickerComponent } from './new-trip-form/datetimepicker/datetimepicker.component';
@@ -54,8 +54,9 @@ const appRoutes: Routes = [
   { path: 'create', component: NewTripFormComponent },
   { path: '', component: LoginPageComponent },
   { path: 'signup', component: SignUpPageComponent },
-  { path: 'reset', component: ResetPageComponent },
+  { path: 'forgot-password', component: ForgotPasswordPageComponent },
   { path: 'invitation', component: InvitationPageComponent },
+
   { path: 'details/:id', component: TripDetailsComponent, children: [
     {path: 'sights', component: AllSightsComponent},
     {path: 'map', component: MapComponent},
@@ -63,6 +64,7 @@ const appRoutes: Routes = [
     {path: 'place', component: SightDetailComponent},
   ] },
   { path: 'profile', component: ProfileComponent },
+
 ];
 
 @NgModule({
@@ -76,7 +78,7 @@ const appRoutes: Routes = [
     BreadcrumbComponent,
     LoginPageComponent,
     SignUpPageComponent,
-    ResetPageComponent,
+    ForgotPasswordPageComponent,
     BackgroundImageComponent,
     InvitationComponent,
     DatetimepickerComponent,
@@ -108,8 +110,8 @@ const appRoutes: Routes = [
     HttpClientModule
   ],
   providers: [
-    getTrip, 
-    createNewTrip, 
+    getTrip,
+    createNewTrip,
     currentUser,
     acceptInvitation,
     rejectInvitation,
