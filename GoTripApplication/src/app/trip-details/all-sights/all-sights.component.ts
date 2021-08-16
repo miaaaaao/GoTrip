@@ -53,8 +53,8 @@ export class AllSightsComponent implements OnInit, OnDestroy {
   
 
   ngOnInit(): void {
-   this.getInitialdata(); //=========> ADD COMENT  to AVOID REQUETS TOO MUCH DATA 
-   this.getGeoLocation(); // =========> ADD COMENT to AVOID REQUETS TOO MUCH DATA 
+   //this.getInitialdata(); //=========> ADD COMENT  to AVOID REQUETS TOO MUCH DATA 
+  // this.getGeoLocation(); // =========> ADD COMENT to AVOID REQUETS TOO MUCH DATA 
     
     
     /*
