@@ -68,6 +68,7 @@ export class TripDetailsComponent implements OnInit {
         })
         // Get info about friends
         this.getFriendsService.getFrieds().then((res:any)=>{
+          this.currentTripFullData.invitedFriends = [];
           this.currentTripFullData.invitedFriends = [...this.currentTripFullData.invitedFriends, ...res];
          
         })
