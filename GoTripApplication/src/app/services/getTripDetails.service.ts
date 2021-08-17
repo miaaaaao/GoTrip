@@ -66,7 +66,8 @@ export class getTripDetails {
           this.currentTrip.destination = '';
           this.currentTrip.budget.one = 0,
           this.currentTrip.budget.two = 0,
-          this.currentTrip.budget.three = 0
+          this.currentTrip.budget.three = 0,
+          this.currentTrip.invitedFriends = []
       }
 
       async getBasicInfo(id:string){ 
@@ -125,12 +126,6 @@ export class getTripDetails {
             this.currentTrip.budget.one = budgets[0].get("budgetOne");
             this.currentTrip.budget.two = budgets[0].get("budgetTwo");
             this.currentTrip.budget.three = budgets[0].get("budgetThree");
-
-            /*
-            * Get friends
-            */
-          
-
             
             /*
             * Get dates

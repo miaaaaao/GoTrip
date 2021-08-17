@@ -29,7 +29,7 @@ export class GetFriendsService {
     let tripList = await queryTrip.find();
 
     if(!tripList[0]){
-      console.log('No trip row found');
+     
       return
     }
 
@@ -40,7 +40,7 @@ export class GetFriendsService {
         photo: friend.get('photo') ? friend.get('photo').url() : null ,
         status: 'pending',
       })
-      console.log(listFriends)
+     
     });
 
     // Get list of confirmed friends
@@ -50,16 +50,19 @@ export class GetFriendsService {
         photo: friend.get('photo') ? friend.get('photo').url() : null ,
         status: 'confirmed',
       })
-      console.log(listFriends)
+    
     });
-
-    //Find frinds with pending invitation
-
-    //Find frinds with accepted invitation
 
     //Find friends who does not have account
 
 
     return listFriends
+  }
+
+  /*
+  * Get the number of friends, pending or confirmed, that were invited.
+  */
+  getNumberFriends(){
+
   }
 }

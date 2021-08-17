@@ -27,6 +27,7 @@ export class TripDetailsComponent implements OnInit {
 
   constructor(private router: Router, private activeRoute: ActivatedRoute, private getTripDetails: getTripDetails, private voteBudgetService:VoteBudgetService, private voteDateService: VoteDateService, private getFriendsService: GetFriendsService) { 
     this.activeRoute.params.subscribe(el=> this.tripId = el['id']) // Get id from the URL
+  
 
   }
 
@@ -52,7 +53,7 @@ export class TripDetailsComponent implements OnInit {
           this.currentTripFullData.budget.totalVote.one = res?.dateOne;
           this.currentTripFullData.budget.totalVote.two = res?.dateTwo;
           this.currentTripFullData.budget.totalVote.three = res?.dateThree;
-          console.log(res)
+          
         })
         //Save the current date user voted
         this.voteDateService.findUserDateVote().then(res=>{
@@ -63,20 +64,16 @@ export class TripDetailsComponent implements OnInit {
           this.currentTripFullData.date.totalVote.one = res?.dateOne;
           this.currentTripFullData.date.totalVote.two = res?.dateTwo;
           this.currentTripFullData.date.totalVote.three = res?.dateThree;
-          console.log('THIS ARE THE DATES')
-          console.log(res)
+        
         })
         // Get info about friends
         this.getFriendsService.getFrieds().then((res:any)=>{
-          console.log('MOM ====>>>>>')
-          console.log(res)
-          console.log(this.currentTripFullData.invitedFriends)
           this.currentTripFullData.invitedFriends = [...this.currentTripFullData.invitedFriends, ...res];
-          console.log(this.currentTripFullData.invitedFriends)
+         
         })
 
 
-        console.log('THIS IS THE FULL TRIP')
+        
     console.log(this.currentTripFullData)
       });
     }
@@ -102,7 +99,7 @@ export class TripDetailsComponent implements OnInit {
     this.tripId = '';
     this.title = '';    
     this.city = '';
-
+    this.currentTripFullData = null;
     this.getTripDetails.cleanCurrentTrip() // Remove stored data on the service
     this.updateUIBudget.unsubscribe(); 
     this.updateUIDate.unsubscribe();

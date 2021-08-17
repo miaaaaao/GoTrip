@@ -12,7 +12,7 @@ export class DateOptionsComponent implements OnInit {
   constructor(private voteDateService: VoteDateService) { }
 
   ngOnInit(): void {
-    console.log(this.currentTrip)
+   
     if(!this.currentTrip){
       this.currentTrip = {
         status:{

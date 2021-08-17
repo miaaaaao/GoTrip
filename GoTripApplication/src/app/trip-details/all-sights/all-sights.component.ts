@@ -222,7 +222,7 @@ export class AllSightsComponent implements OnInit, OnDestroy {
         wasAdded: sightAdded.wasAddedToTrip ? true : false
       }
       this.listOfSights = [...this.listOfSights, newSight ]
-      console.log(newSight)
+      
       
     })
   }

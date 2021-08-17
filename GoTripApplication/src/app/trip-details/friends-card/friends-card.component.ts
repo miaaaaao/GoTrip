@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 
 import { GetFriendsService } from '../../services/get-friends.service';
 
@@ -7,12 +7,11 @@ import { GetFriendsService } from '../../services/get-friends.service';
   templateUrl: './friends-card.component.html',
   styleUrls: ['./friends-card.component.css']
 })
-export class FriendsCardComponent implements OnInit {
+export class FriendsCardComponent implements OnInit, OnDestroy {
   @Input() currentTrip:any;
 
   constructor(private getFriendsService: GetFriendsService) { 
-    console.log("<<===>>")
-    console.log(this.currentTrip)
+    
   }
 
   ngOnInit(): void {
@@ -24,10 +23,15 @@ export class FriendsCardComponent implements OnInit {
     } else {
       
     }
-    console.log('hey, check this')
-    console.log(this.currentTrip)
+   
     
     
+  }
+
+  ngOnDestroy(){
+    this.currentTrip = {
+      invitedFriends: [] 
+    }
   }
 
 }
