@@ -56,7 +56,7 @@ export class getTripDetails {
             three: 0
           }
         },
-        invitedFriends: [{}],
+        invitedFriends: [],
       }
 
       cleanCurrentTrip(){
@@ -127,9 +127,10 @@ export class getTripDetails {
             this.currentTrip.budget.three = budgets[0].get("budgetThree");
 
             /*
-            * Get budget the user voted
+            * Get friends
             */
-           
+          
+
             
             /*
             * Get dates

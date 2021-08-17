@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 import { getTripDetails } from '../services/getTripDetails.service';
 import { VoteBudgetService } from '../services/vote-budget.service';
 import { VoteDateService } from '../services/vote-date.service';
+import { GetFriendsService } from '../services/get-friends.service';
 
 @Component({
   selector: 'app-trip-details',
@@ -21,7 +23,9 @@ export class TripDetailsComponent implements OnInit {
   private updateUIBudget: any; // update UI after some change is made in the budget
   private updateUIDate: any; // update UI after user choose date
 
-  constructor(private router: Router, private activeRoute: ActivatedRoute, private getTripDetails: getTripDetails, private voteBudgetService:VoteBudgetService, private voteDateService: VoteDateService) { 
+
+
+  constructor(private router: Router, private activeRoute: ActivatedRoute, private getTripDetails: getTripDetails, private voteBudgetService:VoteBudgetService, private voteDateService: VoteDateService, private getFriendsService: GetFriendsService) { 
     this.activeRoute.params.subscribe(el=> this.tripId = el['id']) // Get id from the URL
 
   }
@@ -62,6 +66,16 @@ export class TripDetailsComponent implements OnInit {
           console.log('THIS ARE THE DATES')
           console.log(res)
         })
+        // Get info about friends
+        this.getFriendsService.getFrieds().then((res:any)=>{
+          console.log('MOM ====>>>>>')
+          console.log(res)
+          console.log(this.currentTripFullData.invitedFriends)
+          this.currentTripFullData.invitedFriends = [...this.currentTripFullData.invitedFriends, ...res];
+          console.log(this.currentTripFullData.invitedFriends)
+        })
+
+
         console.log('THIS IS THE FULL TRIP')
     console.log(this.currentTripFullData)
       });
@@ -77,6 +91,8 @@ export class TripDetailsComponent implements OnInit {
     this.updateUIDate = this.voteDateService.updateUIDateChanged.subscribe(el=>{
       this.getInfoAboutThisTrip()
     })
+
+    
   }
 
   ngOnDestroy(){
