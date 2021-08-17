@@ -24,7 +24,8 @@
     </div>
     <div class="row">
         <div class="col d-flex justify-content-center">
-            <button type="button" class="btn btn-primary my-3" (click)="nextPage()" >Next ({{total}} of {{count}})</button>
+            <button type="button" class="btn btn-primary my-3 mx-3 previous" (click)="previousPage()" [attr.disabled]="total <= 9 ? '' : null">Previous</button>
+            <button type="button" class="btn btn-primary my-3 " (click)="nextPage()" >Next ({{total}} of {{count}})</button>
         </div>
     </div>
 </div>

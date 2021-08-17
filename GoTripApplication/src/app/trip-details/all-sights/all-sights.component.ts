@@ -28,14 +28,14 @@ export class AllSightsComponent implements OnInit, OnDestroy {
   lat: number = 0 ;
   lon: number = 0;
   offset: number = 0; // offset from first object in the list
-  limit: number = 3; // limit the number of results form the API
+  limit: number = 9; // limit the number of results form the API
   radius: number = 9000; // Area where the api will search for sights
   lang: string = 'en';
   country: string = 'DE';
   rate: number = 3; // How many starts it got.
 
   count: number = 0; // total objects count
-  pageLength: number = 3 // number of cards per page
+  pageLength: number = 9 // number of cards per page
   total: number = 0;
 
   calculateTotalItensShown(){
@@ -232,6 +232,16 @@ export class AllSightsComponent implements OnInit, OnDestroy {
   */
   nextPage(){
     this.offset = this.offset + this.pageLength; // calculate the next
+    this.listOfSights = [] // Remove itens of previous search from the list
+    this.getSightList(); // Get next sights
+    this.calculateTotalItensShown() // calculate the total sight shown to update the button
+  }
+
+  /*
+  * Get previous page data
+  */
+  previousPage(){
+    this.offset = this.offset - this.pageLength; // calculate the next
     this.listOfSights = [] // Remove itens of previous search from the list
     this.getSightList(); // Get next sights
     this.calculateTotalItensShown() // calculate the total sight shown to update the button
