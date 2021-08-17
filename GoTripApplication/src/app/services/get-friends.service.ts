@@ -23,7 +23,7 @@ export class GetFriendsService {
     let id = this.getTripDetails.currentTrip.id; // set up the trip id to the id of current trip
     let queryTrip = new Parse.Query(TripPlan);
 
-    //Find date ID
+    //Find trip ID
     queryTrip.equalTo("objectId", id )
 
     let tripList = await queryTrip.find();
@@ -33,12 +33,22 @@ export class GetFriendsService {
       return
     }
 
-    // Check if user have voted before in one of the three options
+    // Get list of pedding friends
     await tripList[0].relation(`listUsersPending2`).query().each(friend=>{
       listFriends.push({
         name: friend.get('username') ,
         photo: friend.get('photo') ? friend.get('photo').url() : null ,
         status: 'pending',
+      })
+      console.log(listFriends)
+    });
+
+    // Get list of confirmed friends
+    await tripList[0].relation(`listUsersConfirmed2`).query().each(friend=>{
+      listFriends.push({
+        name: friend.get('username') ,
+        photo: friend.get('photo') ? friend.get('photo').url() : null ,
+        status: 'confirmed',
       })
       console.log(listFriends)
     });
