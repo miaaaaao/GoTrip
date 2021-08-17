@@ -48,6 +48,12 @@ export class getTripDetails {
           three: {
             start: 0,
             end: 0
+          },
+          userVotedOn: 0,
+          totalVote: {
+            one: 0,
+            two: 0,
+            three: 0
           }
         },
         invitedFriends: [{}],
