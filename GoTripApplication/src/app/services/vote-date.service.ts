@@ -15,7 +15,7 @@ export class VoteDateService {
   constructor(private getTripDetails: getTripDetails, private currentUser: currentUser) { }
 
   async voteDate(option:string){
-    console.log('saving date service')
+  
     let lastSavedVote;
 
      // Define user based on the current user
@@ -41,7 +41,7 @@ export class VoteDateService {
       return
     }
     date.id = datetList[0].id;
-    console.log(date.id)
+
 
     // Check if user have voted before in one of the three options
     await datetList[0].relation(`usersVotedOne`).query().each(voters=>{
@@ -174,8 +174,7 @@ export class VoteDateService {
     totalDateVotes.dateOne = await dateList[0].get('totalVotesOne') | 0 ;
     totalDateVotes.dateTwo = await dateList[0].get('totalVotesTwo') | 0;
     totalDateVotes.dateThree = await dateList[0].get('totalVotesThree') | 0;
-    console.log("this is the date service")
-    console.log(totalDateVotes)
+
     return totalDateVotes;
 
   }

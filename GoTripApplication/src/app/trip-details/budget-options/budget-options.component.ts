@@ -20,6 +20,7 @@ export class BudgetOptionsComponent implements OnInit {
         status:{
           hasAcceptedInvitation: false
         },
+        invitedFriends: [],
         budget:{
           userVotedOn: 0,
           totalVote: {

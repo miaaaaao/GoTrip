@@ -14,14 +14,14 @@ export class BreadcrumbComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private createNewTrip: createNewTrip ) { }
 
   ngOnInit(): void {
-    console.log(this.origin)
+  
   }
   /*
   * Function to sen dthe user to teh previous page. It uses the origin variable to
   * decide to whenre they shoudl go back.
   */
   goBack(){
-    console.log(this.origin)
+   
     if(this.origin == 'newTripForm' || this.origin == 'tripDetails'){
       this.createNewTrip.cleanInvitationList(); // Clean the email list
       this.router.navigate(['../dashboard'])
@@ -30,7 +30,7 @@ export class BreadcrumbComponent implements OnInit {
       this.router.navigate(['../sights'], {relativeTo: this.route})
     } else if (this.origin == 'profile'){
        // If came from profile page - go t the dashboard
-       console.log('going to dashoar')
+     
        this.router.navigate(['/dashboard'])
     } 
   }

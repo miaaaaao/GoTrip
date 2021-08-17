@@ -12,12 +12,13 @@ export class DateOptionsComponent implements OnInit {
   constructor(private voteDateService: VoteDateService) { }
 
   ngOnInit(): void {
-    console.log(this.currentTrip)
+   
     if(!this.currentTrip){
       this.currentTrip = {
         status:{
           hasAcceptedInvitation: false
         },
+        invitedFriends: [],
         date:{
           one: {start: 0, end: 0},
           two: {start: 0, end: 0},

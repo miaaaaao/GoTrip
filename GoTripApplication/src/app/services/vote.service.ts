@@ -56,8 +56,7 @@ export class VoteService {
   * Fucntion to remove the vote from the current user
   */
    async removeVote(place: any){
-    console.log('removing==>' +place)
-    console.log(place)
+    
     let Sight = Parse.Object.extend('Sight');
     let sight = new Sight();
     sight.id = place.sightServerId;
@@ -93,8 +92,7 @@ export class VoteService {
   */
   async getUserVotes(){
     let userVotes:any = [];
-    console.log('start here')
-    console.log(userVotes);
+   
     const user = new Parse.User(); // Create a user object with the loged user
     user.id = this.currentUser.userId;
 
@@ -116,8 +114,7 @@ export class VoteService {
       let sightId = result[i].id;
       userVotes.push({XID: XID, sightId: sightId}) // search the XID of the trips user voted and store in array
     }
-    console.log('getting new user votes')
-    console.log(userVotes)
+  
     return userVotes;
   }
 
