@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { finishTrip } from '../../services/finishTrip.service';
 import { rejectInvitation } from '../../services/rejectInvitation.service';
 import { acceptInvitation } from '../../services/acceptInvitation.service';
+import { DeleteTripService } from '../../services/delete-trip.service';
 
 @Component({
   selector: 'app-basic-info',
@@ -18,7 +19,7 @@ export class BasicInfoComponent implements OnInit {
   @Input() tripId = '';
   @Output() updateDetailsData = new EventEmitter;
 
-  constructor(private finishTrip: finishTrip, private router: Router, private rejectInvitation:rejectInvitation, private acceptInvitation: acceptInvitation ) {
+  constructor(private finishTrip: finishTrip, private router: Router, private rejectInvitation:rejectInvitation, private acceptInvitation: acceptInvitation, private deleteTripService:DeleteTripService ) {
    
    }
 
@@ -33,7 +34,9 @@ export class BasicInfoComponent implements OnInit {
   }
 
   deleteTrip(){
-
+    this.deleteTripService.deleteTrip(this.tripId).then(res=>{
+      this.router.navigate(['../../dashboard']) // Go back to dashboard
+    })
   }
 
   decline(){
