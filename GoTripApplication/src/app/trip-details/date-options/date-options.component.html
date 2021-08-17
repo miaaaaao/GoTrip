@@ -18,9 +18,11 @@
             name="dateOption" 
             id="inlineRadio1" 
             value="option1"
+            (click)="saveDatePreferences('One')"
+            [checked]="currentTrip.date.userVotedOn == 'One' ? true : false"
             [attr.disabled]="!currentTrip.status.hasAcceptedInvitation ? '' : null"
             >
-            <label class="form-check-label" for="inlineRadio1">0</label>
+            <label class="form-check-label" for="inlineRadio1">{{currentTrip.date.totalVote.one}}</label>
         </div>
     </div>
     <div class="row mb-3">
@@ -34,9 +36,11 @@
             name="dateOption" 
             id="inlineRadio2" 
             value="option2"
+            (click)="saveDatePreferences('Two')"
+            [checked]="currentTrip.date.userVotedOn == 'Two' ? true : false"
             [attr.disabled]="!currentTrip.status.hasAcceptedInvitation ? '' : null"
             >
-            <label class="form-check-label" for="inlineRadio1">0</label>
+            <label class="form-check-label" for="inlineRadio1">{{currentTrip.date.totalVote.two}}</label>
         </div>
     </div>
     <div class="row mb-4">
@@ -50,14 +54,16 @@
             name="dateOption" 
             id="inlineRadio3" 
             value="option3"
+            (click)="saveDatePreferences('Three')"
+            [checked]="currentTrip.date.userVotedOn == 'Three' ? true : false"
             [attr.disabled]="!currentTrip.status.hasAcceptedInvitation ? '' : null"
             >
-            <label class="form-check-label" for="inlineRadio1">0</label>
+            <label class="form-check-label" for="inlineRadio1">{{currentTrip.date.totalVote.three}}</label>
         </div>
     </div>
     <div class="row">
         <div class="col d-flex justify-content-end">
-            <span class="lightGrey">3/5 Votes</span>
+            <span class="lightGrey">{{currentTrip.date.totalVote.one + currentTrip.date.totalVote.two + currentTrip.date.totalVote.three }}/5 Votes</span>
         </div>
     </div>
 </div>
