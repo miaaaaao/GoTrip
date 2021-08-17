@@ -18,6 +18,7 @@ export class DateOptionsComponent implements OnInit {
         status:{
           hasAcceptedInvitation: false
         },
+        invitedFriends: [],
         date:{
           one: {start: 0, end: 0},
           two: {start: 0, end: 0},

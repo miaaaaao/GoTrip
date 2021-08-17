@@ -146,16 +146,16 @@ export class AllSightsComponent implements OnInit, OnDestroy {
    
       if(resp.length <= 5){
         for(let i = 0; i < resp.length; i++){
-          this.getSightInfo(resp[i].xid);
+          if(resp[i].xid) this.getSightInfo(resp[i].xid);
        }
       } else {
         for(let i = 0; i <= 4 ; i++){
-          this.getSightInfo(resp[i].xid);
+          if(resp[i].xid) this.getSightInfo(resp[i].xid);
        }
        // Add a delay of 2 second
        setTimeout(()=>{
-        for(let i = 5; i <= resp.length; i++){
-          this.getSightInfo(resp[i].xid);
+        for(let i = 5; i < resp.length; i++){
+          if(resp[i].xid) this.getSightInfo(resp[i].xid);
        }
       }, 2000); 
       }
