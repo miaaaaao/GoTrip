@@ -23,3 +23,9 @@
     color: white;
     background: #605DEC;
 }
+
+.deleted{
+    color: white;
+    background-color: #EB5757;
+    border: 1px solid #EB5757
+}

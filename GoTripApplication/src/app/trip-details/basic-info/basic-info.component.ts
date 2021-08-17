@@ -32,7 +32,7 @@ export class BasicInfoComponent implements OnInit {
     this.router.navigate(['../../dashboard']) // Go back to dasboard after change to finished
   }
 
-  editTrip(){
+  deleteTrip(){
 
   }
 
