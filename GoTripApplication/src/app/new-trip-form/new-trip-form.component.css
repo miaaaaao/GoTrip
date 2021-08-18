@@ -1,0 +1,57 @@
+
+.backgroundDefault{
+    background-color: #F8F9FD;
+    min-height: 100VH;
+}
+
+.mainContainer {
+    background: #FFFFFF;
+    border: 1px solid #EBECF0;
+    box-sizing: border-box;
+    border-radius: 6px;
+}
+
+h4 {
+    color: #474F76
+}
+
+.light-Grey {
+    color: #A1B0CC;
+}
+
+
+.textDescription {
+    font-size: 14px;
+}
+
+.btn-primary {
+    background-color: #605DEC;
+}
+
+.btn-secundary {
+    border: 2px solid #605DEC;
+    color: #605DEC;
+}
+
+hr {
+    border: 1px;
+}
+
+abbr {
+    color: rgb(230, 39, 39);
+}
+
+.counterLimit{
+    font-size: 14px;
+    color: #A1B0CC;
+    text-align: right;
+}
+
+.inputErrorMessage {
+    color: rgb(230, 39, 39);
+    font-size: 14px;
+}
+
+input.ng-invalid.ng-touched.ng-dirty , select.ng-invalid {
+	border: 1px solid red;
+}

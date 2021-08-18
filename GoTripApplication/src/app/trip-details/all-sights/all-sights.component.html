@@ -1,0 +1,31 @@
+<!--
+    This is the page shows the sights options available based on the selected city.
+    The user can also like the ones the wanto to visit.
+
+-->
+<div class="col-12" style="min-height: 170px;">
+    <div class="row mb-4">
+        <span class="heading">Explore {{city}}</span>
+        <span class="subheading">Found <span class="highlight">({{count}})</span> nice places to visit</span>
+    </div>
+    <!--Show Spinner while getting data-->
+    <div *ngIf="isLoading" class="row d-flex justify-content-center align-items-center" style="min-height:200px">
+        <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!--End of spinner-->
+    <div class="row row-cols-3 px-4" style="min-height: 166px">
+        <!--This should get ngFor-->
+        <div class="col-4 px-1 mb-2" *ngFor="let sight of listOfSights">
+            <!-- Sights card component -->
+            <app-sight-card [isTheOwner]="isTheOwner" [sight]="sight" [hasAcceptedInvitation]="hasAcceptedInvitation"></app-sight-card>  
+        </div>
+    </div>
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <button type="button" class="btn btn-primary my-3 mx-3 previous" (click)="previousPage()" [attr.disabled]="total <= 9 ? '' : null">Previous</button>
+            <button type="button" class="btn btn-primary my-3 " (click)="nextPage()" >Next ({{total}} of {{count}})</button>
+        </div>
+    </div>
+</div>

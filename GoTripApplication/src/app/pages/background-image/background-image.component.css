@@ -1,0 +1,33 @@
+.background-img-login {
+    background:url('../../images/bg.jpg');
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.background-img-signup {
+    background:url('../../images/bg-signup.jpg');
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.background-img-invitation {
+    background:url('../../images/bg-invitation.jpg');
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+
+}
+
+.background-img-forgot-password {
+    background:url('../../images/bg-forgot-password.jpg');
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+
+}

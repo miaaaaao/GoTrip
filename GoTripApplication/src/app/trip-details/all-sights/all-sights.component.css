@@ -1,0 +1,35 @@
+.containerWhite{
+        background: #FFFFFF;
+        border: 1px solid #EBECF0;
+        box-sizing: border-box;
+        border-radius: 6px;
+        padding: 30px;
+        
+}
+
+.heading {
+    color: #72768C;
+    font-size: 1.5em;
+    font-weight: lighter;
+}
+
+.subheading {
+    color: #72768C;
+}
+
+.highlight{
+    color: #605DEC;
+    font-weight: bold;
+}
+
+.btn-primary{
+    background-color: #605DEC;
+    color: white;
+    border: 1px solid #605DEC;
+}
+
+.previous {
+    background-color: white !important;
+    border: 1px solid #605DEC;
+    color: #605DEC !important;
+}

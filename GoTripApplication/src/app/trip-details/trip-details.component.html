@@ -1,0 +1,52 @@
+<!--
+    This is the page that will show details about the selected trip.
+
+-->
+
+<div class="container-fluid mainContainer tp-0">
+    <app-notification-bar *ngIf="!hasAcceptedInvitation"></app-notification-bar>
+    <div class="container">
+        <app-breadcrumb [origin]="'tripDetails'"></app-breadcrumb>
+        <div class="row">
+            <!--Left column-->
+            <div class="col-3">
+                <div class="row">
+                    <app-basic-info 
+                    [title]="title" 
+                    [city]="city"
+                    [isTheOwner]="isTheOwner"
+                    [hasAcceptedInvitation]="hasAcceptedInvitation"
+                    [tripId]="tripId"
+                    (updateDetailsData)="getInfoAboutThisTrip()"
+                    ></app-basic-info>
+                </div>
+                <!--Card to show budget-->
+                <div class="row budgetContainer mb-3 mx-0">
+                    <app-budget-options [currentTrip]="currentTripFullData"></app-budget-options>
+                </div>
+                <!--Card to show dates-->
+                <div class="row budgetContainer mb-3 mx-0">
+                    <app-date-options [currentTrip]="currentTripFullData ? currentTripFullData : 0"></app-date-options>
+                </div>
+                <!--Card to show friends-->
+                <div class="row budgetContainer mx-0 mb-3">
+                    <app-friends-card [currentTrip]="currentTripFullData ? currentTripFullData : 0"></app-friends-card>
+                </div>
+            </div>
+            <!--Right column-->
+            <div class="col-9 mb-5">
+                <div class="row linkContainer mb-2 mx-1">
+                    <nav class="nav">
+                        <a class="nav-link" routerLinkActive="activeLink" [routerLink]="['/details/',tripId,'sights']">All Sights</a>
+                        <a class="nav-link" routerLinkActive="activeLink" [routerLink]="['/details/',tripId,'map']">Map</a>
+                        <a class="nav-link" routerLinkActive="activeLink" [routerLink]="['/details/',tripId,'notes']">Notes</a>
+                      </nav>
+                </div>
+                <div class="row mx-1 sightsContainer" style="min-height:100px" *ngIf="hasReceivedData">
+                    <!--This will change based on the link selected on the internal navigation-->
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

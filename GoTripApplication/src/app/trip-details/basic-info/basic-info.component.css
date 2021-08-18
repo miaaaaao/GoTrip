@@ -1,0 +1,31 @@
+.btn-primary{
+    background: #605DEC;
+    border: 1px solid #605DEC;
+}
+
+.city {
+    color: #605DEC;
+    font-size: 1.3rem;
+}
+
+.btn-link{
+    color: #66707C;
+    cursor: pointer;
+}
+
+.btn-outline-primary{
+    border: 1px solid #605DEC;
+    color: #605DEC
+}
+
+.btn-outline-primary:hover{
+    border: 1px solid #605DEC;
+    color: white;
+    background: #605DEC;
+}
+
+.deleted{
+    color: #EB5757;
+    background-color: #FDEFEF;
+    border: 1px solid #FDEFEF
+}

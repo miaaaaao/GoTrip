@@ -1,0 +1,64 @@
+.tripcardContainer {
+    background: #605DEC;
+    border-radius: 10px;
+    min-height: 166px;
+    max-height: 166px;
+    max-width: 280px;
+    transition: all 0.4s;
+}
+
+.tripcardContainer:hover {
+    -webkit-box-shadow: 0px 0px 14px 5px rgba(0,0,0,0.3); 
+    box-shadow: 0px 0px 14px 5px rgba(0,0,0,0.3);
+    transition: all 0.4s;
+    cursor: pointer;
+}
+
+.cardLableInvitation, .cardLableOwner, .cardLableInvitationAccepted {
+    background: #E9E8FC;
+    border-radius: 5px;
+    color: #605DEC;
+    border: 1px solid #605DEC;
+    padding: 4px 8px;
+    font-size: 15px;
+}
+
+.cardLableInvitation:hover {
+    background: #605DEC;
+    color: #E9E8FC;
+    border:1px solid #E9E8FC;
+    transition: all 0.4s;
+    cursor: pointer;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    color: #E9E8FC;
+}
+
+.city {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: #E9E8FC;
+}
+
+.ownership {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #E9E8FC;
+}
+
+.date {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: right;
+    color: #E9E8FC;
+}

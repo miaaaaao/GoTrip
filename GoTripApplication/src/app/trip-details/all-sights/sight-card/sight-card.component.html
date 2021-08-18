@@ -1,0 +1,22 @@
+
+<div class="card" style="width: 15rem;" (click)="openSightDetail()">
+    <img  [ngStyle]="{'background-image': 'url(\''+ sight.urlImage + '\')', 'background-size': 'cover', 'background-position': 'center'}" class="card-img-top" alt="..." height=180 >
+    <div class="card-body">
+      <h5 class="card-title">{{sight.name | shortner:12}}</h5>
+      <p class="card-text">{{sight.description | shortner:60}} </p>
+      <div class="row">
+          <div class="col-6 d-flex align-items-center" [attr.disabled]="!hasAcceptedInvitation ? '' : null">
+            <i class="fa fa-heart fa-2x" [ngClass]="sight.userVoted == true ? 'voted' : 'like'" (click)="sight.userVoted ? removeVote($event) : vote($event)"></i>
+            <span class="like-counter">{{sight.totalVote}}</span>
+          </div>
+          <!--Add button is only visible to trip Owners-->
+          <div class="col-6 d-flex justify-content-end" *ngIf="isTheOwner && !sight.wasAdded">
+            <a class="btn btn-primary" (click)="add($event)" [attr.disabled]="!sight.sightServerId ? '' : null">Add</a> 
+          </div>
+          <!--Remove button is only visible to trip Owners if the sight was added before-->
+          <div class="col-6 d-flex justify-content-end" *ngIf="isTheOwner && sight.wasAdded">
+            <a class="btn btn-primary" (click)="remove($event)">Remove</a> 
+          </div>
+      </div>
+    </div>
+  </div>

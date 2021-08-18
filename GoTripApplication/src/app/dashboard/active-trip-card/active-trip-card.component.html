@@ -1,0 +1,42 @@
+<div class="container tripcardContainer" (click)="showTripDetails()">
+    <!--This only shows to users who are invited-->
+    <div *ngIf="tripPlan.owner !== 'You' && tripPlan.acceptedInvitation == false" class="row row-cols-auto justify-content-end my-2" style="min-height: 65px">
+        <div class="col mt-3 flex-grow-0" >
+            <span class="cardLableInvitation" (click)="declineInvitation($event)">DECLINE</span>
+        </div>
+        <div class="col mt-3 flex-grow-0">
+            <span class="cardLableInvitation" (click)="acceptInvitationButton($event)">ACCEPT</span>
+        </div>
+    </div>
+    <!--This is shown if user acceped invitation-->
+    <div *ngIf="tripPlan.acceptedInvitation == true" class="row row-cols-auto justify-content-end my-2" style="min-height: 65px">
+        <div class="col mt-3 flex-grow-0">
+            <span class="cardLableInvitationAccepted">ACCEPTED</span>
+        </div>
+    </div>
+    <!--This only shows to users who is the trip's owner-->
+    <div *ngIf="tripPlan.owner == 'You'" class="row row-cols-auto justify-content-end my-2" style="min-height: 65px;">
+        <div class="col mt-3 flex-grow-0">
+            <span class="cardLableOwner">OWNER</span>
+        </div>
+    </div>
+
+    <div class="row my-2">
+        <div class="col-8">
+            <span class="title">{{tripPlan.title}}</span>
+        </div>
+        <div class="col-4 d-flex justify-content-center">
+            <span class="date">{{tripPlan.date}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <span class="city">{{tripPlan.city}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <span class="ownership">Created by {{tripPlan.owner}}</span>
+        </div>
+    </div>
+</div>
