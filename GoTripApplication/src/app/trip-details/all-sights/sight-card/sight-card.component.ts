@@ -18,8 +18,7 @@ export class SightCardComponent implements OnInit {
   constructor(private route: Router, private activeRoute: ActivatedRoute, private moreInfoService: MoreInfoService, private voteService: VoteService, private addSightService: AddSightService) { }
 
   ngOnInit(): void {
-    console.log('OWNER==> '  +this.isTheOwner);
-    console.log('hasaccepet===> ' +this.hasAcceptedInvitation)
+    
   }
   /*
   * the card will open a new page with extra infromation about the sight
@@ -40,7 +39,7 @@ export class SightCardComponent implements OnInit {
   removeVote(el:any){
     el.stopPropagation()
     this.voteService.removeVote(this.sight)
-    console.log('remove vote')
+  
   }
   /*
   * Add will go to the sight class and turn the item addedToTrip into true

@@ -23,7 +23,6 @@ export class SightDetailComponent implements OnInit, OnDestroy{
     * This will run after the user click on the vote/remove vote button
     */
     this.updateUi = this.voteService.updateUISightVoted.subscribe(()=>{
-      console.log('updating...')
       this.router.navigate(['../place'],{relativeTo:this.activeRoute})
     })
     

@@ -30,7 +30,7 @@
                 </div>
                 <!--Card to show friends-->
                 <div class="row budgetContainer mx-0 mb-3">
-                    <app-friends-card></app-friends-card>
+                    <app-friends-card [currentTrip]="currentTripFullData ? currentTripFullData : 0"></app-friends-card>
                 </div>
             </div>
             <!--Right column-->

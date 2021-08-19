@@ -12,7 +12,7 @@
     <br>
     <!--Show if the user is the trip owner-->
     <div *ngIf="isTheOwner">
-        <button type="button" class="btn btn-primary my-3" (click)="editTrip()">Edit</button>
+        <button type="button" class="btn btn-primary my-3 deleted" (click)="deleteTrip()">DELETE</button>
         <br>
         <span class="btn-link" (click)="setTripAsFinished()">Mark as Finished</span>
     </div>
