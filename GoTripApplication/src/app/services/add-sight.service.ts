@@ -31,10 +31,10 @@ export class AddSightService {
     * Save the update in Parse
     */
     await sight.save().then((res:any)=>{
-      console.log('movedo to true')
+    
       this.updateUISightVoted.next(); // Update the UI
     }, (err:any)=>{
-      console.log(err)
+     
     })
   
     }
@@ -51,10 +51,10 @@ export class AddSightService {
       * Save the update in Parse
       */
       await sight.save().then((res:any)=>{
-        console.log('movedo to false')
+       
         this.updateUISightVoted.next(); // Update the UI
       }, (err:any)=>{
-        console.log(err)
+     
       })
     
       }

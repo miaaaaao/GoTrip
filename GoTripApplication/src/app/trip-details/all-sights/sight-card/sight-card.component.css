@@ -2,6 +2,11 @@
     max-height: 10rem;
 }
 
+.card {
+    min-height: 346px !important; 
+    max-width: 346px  !important;
+}
+
 .btn-primary {
     background-color: #E9E8FC; 
     border: 1px solid #E9E8FC;

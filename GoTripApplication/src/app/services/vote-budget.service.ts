@@ -118,7 +118,7 @@ export class VoteBudgetService {
     let budgetList = await queryBudget.find()
     
     if(!budgetList[0]){
-      console.log('No budget row found');
+      
       return
     }
 

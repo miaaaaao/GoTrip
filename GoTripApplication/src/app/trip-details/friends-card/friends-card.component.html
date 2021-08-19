@@ -5,26 +5,25 @@
         </div>
     </div>
     <!--NgFor for each friend invited-->
-    <div class="row align-middle mb-2">
-        <div class="col-3">
-            <img src="assets/avatar.jpg" style="width: 30px; height: 30px; border-radius: 15px;"/>
+    <div class="row align-middle mb-2" *ngFor="let friend of currentTrip.invitedFriends" >
+        <div class="row" *ngIf="friend">
+            <div class="col-3">
+                <img [src]="friend.photo ? friend.photo : 'assets/default.jpg' " style="width: 30px; height: 30px; border-radius: 15px;"/>
+            </div>
+            <div class="col-4 lightGray px-0" >
+                <span class="align-middle">{{friend.name | shortner:8}}</span>
+            </div>
+            <div class="col confirmed px-1" *ngIf="friend.status == 'confirmed'">
+                <span class="align-middle">CONFIRMED</span>
+            </div>
+            <div class="col pending px-1" *ngIf="friend.status == 'pending'">
+                <span class="align-middle">PENDING</span>
+            </div>
         </div>
-        <div class="col-4 lightGray px-0" >
-            <span class="align-middle">Anna J.</span>
-        </div>
-        <div class="col confirmed px-1">
-            <span class="align-middle">CONFIRMED</span>
-        </div>
-    </div>
-    <div class="row align-middle mb-2">
-        <div class="col-3">
-            <img src="assets/avatar.jpg" style="width: 30px; height: 30px; border-radius: 15px;"/>
-        </div>
-        <div class="col-5 lightGray px-0" >
-            <span class="align-middle">Bethina S.</span>
-        </div>
-        <div class="col pending px-1">
-            <span class="align-middle">PENDING</span>
+        <div class="row" *ngIf="!friend">
+            <div class="col-3">
+                <span>Invite some friends</span>
+            </div>
         </div>
     </div>
 </div>

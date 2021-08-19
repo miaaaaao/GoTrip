@@ -73,7 +73,7 @@ export class NewTripFormComponent implements OnInit {
     }else if (dateId === 'three'){
       this.tripForm.date.three = {start: new Date(el.date.start), end: new Date(el.date.end)}
     } else {
-      console.log('No ID found for this data entry')
+      
     }
   }
   /*
