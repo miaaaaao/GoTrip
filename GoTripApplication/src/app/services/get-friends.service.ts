@@ -17,6 +17,10 @@ export class GetFriendsService {
   async getFrieds(){
     let listFriends:{}[] = [];
 
+    let user = new Parse.User();
+    user.id = this.currentUser.userId;
+    
+
 
     let TripPlan = Parse.Object.extend('TripsPlan');
     let tripPlan = new TripPlan();
@@ -53,7 +57,14 @@ export class GetFriendsService {
     
     });
 
-    //Find friends who does not have account
+    //Add the trip owner
+    let userNameOwner = await user.get('username');
+    let photoOwner = await user.get('photo');
+    listFriends.push({
+      name: userNameOwner,
+      photo: photoOwner,
+      status: 'confirmed'
+    })
 
 
     return listFriends
