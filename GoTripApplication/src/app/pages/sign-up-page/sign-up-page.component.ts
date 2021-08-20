@@ -15,10 +15,12 @@ export class SignUpPageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  onKey(event: any) { // without type info
+
+
+    onKey(event: any) { // without type info
   //  this.email = event.target.value
   }
-  async onClickMe() {
+ async onClickMe() {
     const user = new Parse.User();
     user.set("username", this.username);
     user.set("password", this.password);

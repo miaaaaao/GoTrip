@@ -5,65 +5,69 @@
       <app-background-image origin="signup"></app-background-image>
     </div>
     <div class="col-4 px-4">
+
+
+
       <form class="px-4">
         <h5 class="form-title"><strong>Create an Account</strong></h5>
         <div class="form-group">
           <label for="InputName">Name</label>
-          <input  type="name" class="form-control form-control-sm" id="InputName" placeholder="Enter your name">
+          <input type="name" ng-model="this.username" class="form-control form-control-sm" id="InputName" placeholder="Enter your name">
         </div>
         <div class="form-group">
-          <label  for="InputEmail1">Email address</label>
-          <input type="email" class="form-control form-control-sm" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter your email address">
+          <label for="InputEmail">Email address</label>
+          <input type="email" ng-model="this.email" class="form-control form-control-sm" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter your email address">
         </div>
         <div class="form-group">
-          <label for="InputPassword1">Create password</label>
-          <input  type="password" class="form-control form-control-sm" id="InputPassword1" placeholder="Enter your password">
+          <label for="InputPassword">Create password</label>
+          <input type="password" ng-model="this.password" class="form-control form-control-sm" id="InputPassword" placeholder="Enter your password">
         </div>
         <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="Check1">
-          <label class="form-check-label" for="Check1"><small>I agree to the terms and conditions</small></label>
+          <input type="checkbox" class="form-check-input" id="Check">
+          <label class="form-check-label" for="Check"><small>I agree to the terms and conditions</small></label>
         </div>
 
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary btn-sm modal-color" data-toggle="modal" id="myBtn" data-target="#termsModal">
-        Read Terms and Conditions
+          Read Terms and Conditions
         </button>
 
         <!-- Modal -->
         <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="termsModal">Terms and conditions</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="termsModal">Terms and conditions</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>The modal works! In here we should put the Terms and Conditions of the use of the app. </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary log-in" data-dismiss="modal">Close</button>
+
+              </div>
             </div>
           </div>
         </div>
-        </div>
-        <div>
-          <button (click)="onClickMe()" type="submit" class="btn btn-primary btn-block log-in">Create Account</button>
+        <div class="text-center">
+          <button (click)="onClickMe()" type="submit" class="btn btn-primary btn-block log-in"> Create Account</button>
         </div>
 
         <div class="text-center">
-          <a href=" "><small>I already have an account</small></a>
+            <a href=" "><small>I already have an account</small></a>
         </div>
       </form>
-    </div>
-</div>
 
-<script>
-  $(document).ready(function(){
-    $("#myBtn").click(function(){
-      $("#termsModal").modal();
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      $("#myBtn").click(function() {
+        $("#termsModal").modal();
+      });
     });
-  });
-</script>
+  </script>
