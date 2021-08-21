@@ -5,6 +5,7 @@
 .card {
     min-height: 346px !important; 
     max-width: 346px  !important;
+    margin: 0 auto;
 }
 
 .btn-primary {
