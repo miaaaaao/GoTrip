@@ -15,9 +15,9 @@
         </div>
     </div>
     <!--End of spinner-->
-    <div class="row row-cols-3 px-4" style="min-height: 166px">
+    <div class="row row-cols-sm-1 row-cols-lg-3 px-4 " style="min-height: 166px">
         <!--This should get ngFor-->
-        <div class="col-4 px-1 mb-2" *ngFor="let sight of listOfSights">
+        <div class="col-sm-12 col-md-6 col-lg-4 px-1 mb-2" *ngFor="let sight of listOfSights">
             <!-- Sights card component -->
             <app-sight-card [isTheOwner]="isTheOwner" [sight]="sight" [hasAcceptedInvitation]="hasAcceptedInvitation"></app-sight-card>  
         </div>

@@ -9,7 +9,7 @@
         <app-breadcrumb [origin]="'tripDetails'"></app-breadcrumb>
         <div class="row">
             <!--Left column-->
-            <div class="col-3">
+            <div class="col-sm-12 col-md-3">
                 <div class="row">
                     <app-basic-info 
                     [title]="title" 
@@ -34,7 +34,7 @@
                 </div>
             </div>
             <!--Right column-->
-            <div class="col-9 mb-5">
+            <div class="col-sm-12 col-md-9 mb-5">
                 <div class="row linkContainer mb-2 mx-1">
                     <nav class="nav">
                         <a class="nav-link" routerLinkActive="activeLink" [routerLink]="['/details/',tripId,'sights']">All Sights</a>
