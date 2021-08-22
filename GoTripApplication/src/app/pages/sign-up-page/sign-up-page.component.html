@@ -12,15 +12,15 @@
         <h5 class="form-title"><strong>Create an Account</strong></h5>
         <div class="form-group">
           <label for="InputName">Name</label>
-          <input type="name" ng-model="this.username" class="form-control form-control-sm" id="InputName" placeholder="Enter your name">
+          <input (keyup)="onKey($event)" type="name" ng-model="this.username" class="form-control form-control-sm" id="InputName" placeholder="Enter your name">
         </div>
         <div class="form-group">
           <label for="InputEmail">Email address</label>
-          <input type="email" ng-model="this.email" class="form-control form-control-sm" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter your email address">
+          <input (keyup)="onKey($event)" type="email" ng-model="this.email" class="form-control form-control-sm" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter your email address">
         </div>
         <div class="form-group">
           <label for="InputPassword">Create password</label>
-          <input type="password" ng-model="this.password" class="form-control form-control-sm" id="InputPassword" placeholder="Enter your password">
+          <input (keyup)="onKey($event)" type="password" ng-model="this.password" class="form-control form-control-sm" id="InputPassword" placeholder="Enter your password">
         </div>
         <div class="form-group form-check">
           <input type="checkbox" class="form-check-input" id="Check">

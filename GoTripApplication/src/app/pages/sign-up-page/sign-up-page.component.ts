@@ -17,8 +17,21 @@ export class SignUpPageComponent implements OnInit {
   }
 
 
-    onKey(event: any) { // without type info
-  //  this.email = event.target.value
+    onKey(event: any) {
+
+      switch (event.target.id) {
+        case "InputName":
+          this.username = event.target.value;
+          break;
+        case "InputEmail":
+          this.email = event.target.value;
+          break;
+        case "InputPassword":
+          this.password = event.target.value;
+          break;
+      }
+      console.log(event);
+
   }
  async onClickMe() {
     const user = new Parse.User();
@@ -26,8 +39,9 @@ export class SignUpPageComponent implements OnInit {
     user.set("password", this.password);
     user.set("email", this.email);
 
-    console.log('test');
+    console.log(this);
 
+    console.log("New User signed up");
 
        try {
           await user.signUp();
@@ -37,12 +51,5 @@ export class SignUpPageComponent implements OnInit {
           alert("Error: " + error.code + " " + error.message);
         }
 
-
   }
-
-
-
-
-
-
 }
