@@ -6,29 +6,29 @@
         <div class="row">
             <div class="col-6 profile-container py-4 mx-4">
                 <h4>Profile</h4>
-            
+
                 <!-- user profile picture -->
                 <img src="assets/default.jpg" class="img-thumbnail" alt="profilepic">
                 <br>
                 <span class="mt-2 linkBtn">Update photo</span>
-               
-                <form class="mt-4">
+
+                <form class="mt-4" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
                 <!-- user info -->
-                    <label for="basic-url" class="form-label">Name</label>
+                    <label for="name" class="form-label">Name</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Enter name" aria-label="Enter name" aria-describedby="basic-addon1">
+                        <input id="name" formControlName="name" type="text" class="form-control" placeholder="Enter name" aria-label="Enter name" aria-describedby="basic-addon1">
                     </div>
-                    <label for="basic-url" class="form-label">Email</label>
+                    <label for="email" class="form-label">Email</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Enter email" aria-label="Enter email" aria-describedby="basic-addon1">
+                        <input id="email" formControlName="email"  type="text" class="form-control" placeholder="Enter email" aria-label="Enter email" aria-describedby="basic-addon1">
                     </div>
-                    <label for="basic-url" class="form-label">New Password</label>
+                    <label for="newPass" class="form-label">New Password</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Enter new password" aria-label="Enter new password" aria-describedby="basic-addon1">
+                        <input id="newPass" formControlName="newPass" type="text" class="form-control" placeholder="Enter new password" aria-label="Enter new password" aria-describedby="basic-addon1">
                     </div>
                     <button class="btn btn-primary" type="submit">Save</button>
                 </form>
             </div>
         </div>
-    </div> 
+    </div>
 </div>

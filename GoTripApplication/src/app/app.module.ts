@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DatetimerangepickerModule } from "angular-datetimerangepicker";
 import { Router, RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'
@@ -98,17 +98,18 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     ProfileComponent,
-  
+
 
   ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes),
-    NgSelectModule,
-    DatetimerangepickerModule,
-    FormsModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(appRoutes),
+        NgSelectModule,
+        DatetimerangepickerModule,
+        FormsModule,
+        HttpClientModule,
+        ReactiveFormsModule
+    ],
   providers: [
     getTrip,
     createNewTrip,
