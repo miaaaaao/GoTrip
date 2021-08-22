@@ -7,6 +7,15 @@
     max-width: 90px;
 }
 
+.organizer{
+    background-color: #c0d65c;
+    color: #296629;
+    border-radius: 50px;
+    font-size: 14px;
+    max-height: 25px;
+    max-width: 90px;
+}
+
 .pending{
     background-color: #FAB48D;
     color: #8E5230;

@@ -58,12 +58,20 @@ export class GetFriendsService {
     });
 
     //Add the trip owner
-    let userNameOwner = await user.get('username');
-    let photoOwner = await user.get('photo');
+    let tripOwner = await tripList[0].get('owner'); //Getting owner ID
+    let queryOwner =  new Parse.Query(Parse.User);
+    queryOwner.equalTo('objectId', tripOwner.id)
+
+    let ownerData = await queryOwner.find(); // Search data about the user on Parse
+    
+    let userNameOwner = await ownerData[0].get('username');
+    let photoOwner = await ownerData[0].get('photo');
+
+    //Saing the owner's data on the friends array
     listFriends.push({
       name: userNameOwner,
       photo: photoOwner,
-      status: 'confirmed'
+      status: 'organizer'
     })
 
 
