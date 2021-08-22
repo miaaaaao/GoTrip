@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as Parse from 'parse';
 
 @Component({
@@ -11,7 +12,7 @@ export class SignUpPageComponent implements OnInit {
   password: string = ''
   username: string = ''
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -45,7 +46,7 @@ export class SignUpPageComponent implements OnInit {
 
        try {
           await user.signUp();
-          // Hooray! Let them use the app now.
+          this.router.navigate(['dashboard']);
         } catch (error) {
           // Show the error message somewhere and let the user try again.
           alert("Error: " + error.code + " " + error.message);
