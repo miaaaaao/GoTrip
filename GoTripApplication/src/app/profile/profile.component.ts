@@ -26,7 +26,6 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    Parse.User.logIn("Miao", "1234");
     const user = Parse.User.current();
     if (user) {
       this.username = user.getUsername();
