@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import * as Parse from "parse";
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -13,11 +14,25 @@ export class ProfileComponent implements OnInit {
     email: '',
     newPass: ''
   });
+  username: string | undefined;
+  useremail: string | undefined;
+  photoUrl: string;
+
   constructor(
     private formBuilder: FormBuilder,
-  ) {}
+  ) {
+    this.username = '';
+    this.photoUrl = '';
+  }
 
   ngOnInit(): void {
+    const user = Parse.User.current();
+    if (user) {
+      this.username = user.getUsername();
+      this.useremail = user.getEmail();
+      const photo = user.get('photo');
+      this.photoUrl = photo.url();
+    }
   }
 
   onSubmit(): void {
