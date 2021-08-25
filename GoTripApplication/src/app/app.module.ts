@@ -4,7 +4,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DatetimerangepickerModule } from "angular-datetimerangepicker";
 import { Router, RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
+
 
 import { getTrip } from './services/getTrip.service';
 import { createNewTrip } from './services/newTripForm.service';
@@ -108,7 +110,8 @@ const appRoutes: Routes = [
         DatetimerangepickerModule,
         FormsModule,
         HttpClientModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        PasswordStrengthMeterModule
     ],
   providers: [
     getTrip,

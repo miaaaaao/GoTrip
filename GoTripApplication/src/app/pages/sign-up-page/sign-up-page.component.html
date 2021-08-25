@@ -31,6 +31,9 @@
           <label for="InputPassword">Create password</label>
           <input (keyup)="onKey($event)" type="password" ng-model="this.password" class="form-control form-control-sm" id="InputPassword" placeholder="Enter your password">
         </div>
+        <password-strength-meter [password]="password"></password-strength-meter>
+
+
 
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary btn-sm modal-color termsAndCond" data-toggle="modal" id="myBtn" data-target="#termsModal">
