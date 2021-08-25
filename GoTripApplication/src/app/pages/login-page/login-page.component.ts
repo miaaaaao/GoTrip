@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as Parse from 'parse';
+import { currentUser } from '../../services/getCurrentUserData.service'
 
 @Component({
   selector: 'app-login-page',
@@ -12,7 +13,7 @@ export class LoginPageComponent implements OnInit {
   password: string = ''
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private currentUser: currentUser) { }
 
   ngOnInit(): void {
   }
@@ -32,8 +33,25 @@ export class LoginPageComponent implements OnInit {
 }
 
   async onClickMe(){
-    const user = await Parse.User.logIn(this.email, this.password)
-    .then(() => {
+    await Parse.User.logIn(this.email, this.password)
+    .then((loggedUser) => {
+      let user = loggedUser.id;
+  this.currentUser.userId = user;
+
+  const queryUser = new Parse.Query(Parse.User);
+
+  const User = new Parse.User()
+  User.id = user;
+  queryUser.equalTo('objectId', User.id);
+
+
+  queryUser.find().then(async resp=>{
+    let username =  await resp[0].get('username');
+    console.log('====> This is the username')
+    this.currentUser.name = username;
+    console.log(this.currentUser.name);
+  })
+
   this.router.navigate(['dashboard']);
 }).catch((error: any) => {
   // Show the error message somewhere
