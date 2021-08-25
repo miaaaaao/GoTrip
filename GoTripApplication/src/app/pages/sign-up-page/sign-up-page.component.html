@@ -11,9 +11,18 @@
       <form class="px-4">
         <h5 class="form-title"><strong>Create an Account</strong></h5>
         <div class="form-group">
-          <label for="InputName">Name</label>
-          <input (keyup)="onKey($event)" type="name" ng-model="this.username" class="form-control form-control-sm" id="InputName" placeholder="Enter your name">
-        </div>
+          <label for="name">Name</label>
+          <input (keyup)="onKey($event)" type="text" id="name" name="name" class="form-control form-control-sm" required minlength="3" placeholder="Enter your name" [(ngModel)]="this.username" #name="ngModel">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
+
+            <div  *ngIf="name.errors?.required" class="alert alert-info" role="alert">
+              <small>Name is required.</small>
+            </div>
+            <div *ngIf="name.errors?.minlength" class="alert alert-info" role="alert">
+              <small>Name must be at least 3 characters long.</small>
+            </div>
+            </div>
+            </div>
         <div class="form-group">
           <label for="InputEmail">Email address</label>
           <input (keyup)="onKey($event)" type="email" ng-model="this.email" class="form-control form-control-sm" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter your email address">
@@ -22,13 +31,9 @@
           <label for="InputPassword">Create password</label>
           <input (keyup)="onKey($event)" type="password" ng-model="this.password" class="form-control form-control-sm" id="InputPassword" placeholder="Enter your password">
         </div>
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="Check">
-          <label class="form-check-label" for="Check"><small>I agree to the terms and conditions</small></label>
-        </div>
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-sm modal-color" data-toggle="modal" id="myBtn" data-target="#termsModal">
+        <button type="button" class="btn btn-primary btn-sm modal-color termsAndCond" data-toggle="modal" id="myBtn" data-target="#termsModal">
           Read Terms and Conditions
         </button>
 
@@ -51,6 +56,10 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="Check">
+          <label class="form-check-label" for="Check"><small>I agree to the terms and conditions</small></label>
         </div>
         <div class="text-center">
           <button (click)="onClickMe()" type="submit" class="btn btn-primary w-100 purpleBtn"> Create Account</button>

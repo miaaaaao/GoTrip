@@ -21,7 +21,7 @@ export class SignUpPageComponent implements OnInit {
     onKey(event: any) {
 
       switch (event.target.id) {
-        case "InputName":
+        case "name":
           this.username = event.target.value;
           break;
         case "InputEmail":
