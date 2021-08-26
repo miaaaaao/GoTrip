@@ -50,29 +50,11 @@ export class SignUpPageComponent implements OnInit {
     console.log("New User signed up");
 
        try {
-          await user.signUp()
-          .then((loggedUser) => {
-            let user = loggedUser.id; // get logged user ID
-            this.currentUser.userId = user; // Update the currentUser service user ID
-      
-            const queryUser = new Parse.Query(Parse.User);
-      
-            const User = new Parse.User();
-            User.id = user;
-            queryUser.equalTo('objectId', User.id);
-      
-            queryUser.find()
-            .then(async resp=>{
-               let username =  await resp[0].get('username');
-               this.currentUser.name = username; // Update the currentUser service username
-          
-             })
-          })
+          await user.signUp();
           this.router.navigate(['dashboard']); // Move user to dahsboar after create account
         } catch (error) {
           // Show the error message somewhere and let the user try again.
           alert("Error: " + error.code + " " + error.message);
         }
-
   }
 }
