@@ -44,6 +44,7 @@ export class GetFriendsService {
         photo: friend.get('photo') ? friend.get('photo').url() : null ,
         status: 'pending',
       })
+      
      
     });
 
@@ -65,7 +66,7 @@ export class GetFriendsService {
     let ownerData = await queryOwner.find(); // Search data about the user on Parse
     
     let userNameOwner = await ownerData[0].get('username');
-    let photoOwner = await ownerData[0].get('photo');
+    let photoOwner = await ownerData[0].get('photo')._url;
 
     //Saing the owner's data on the friends array
     listFriends.push({
