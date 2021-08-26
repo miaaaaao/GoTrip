@@ -22,4 +22,9 @@ export class currentUser {
             this.updateUICurrentUser.next();
         }
     }
+
+    cleanCurrentUser(){
+        this.name = '';
+        this.userId = ''
+    }
 }

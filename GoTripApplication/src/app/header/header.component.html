@@ -10,22 +10,22 @@
       <!-- button -->
       <div class="collapse navbar-collapse" id="navbarText">
           <!--Show this button if there is a user-->
-        <ul *ngIf="user" class="navbar-nav mr-auto">
+        <ul *ngIf="loggedUser" class="navbar-nav mr-auto">
           <a routerLink="/create" class="btn btn-outline-primary my-2 my-sm-0" type="button">New Trip</a>
         </ul>
         <!--Show this button if there is NO user-->
-        <ul *ngIf="!user" class="navbar-nav mr-auto">
+        <ul *ngIf="!loggedUser" class="navbar-nav mr-auto">
             <a routerLink=""  class="btn btn-outline-primary my-2 my-sm-0" type="button">Log in to plan now</a>
           </ul>
       </div>
       <!-- user profile dropdown -->
-      <div class="dropdown pe-4" *ngIf="user">
+      <div class="dropdown pe-4" *ngIf="loggedUser">
         <a class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="true" aria-haspopup="true">
           <img src="{{photoUrl}}" width="40" height="40" class="rounded-circle">
         </a>
         <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenuLink">
           <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
-          <li><a class="dropdown-item"  routerLink="/" (click)="logOut()">Logout</a></li>
+          <li><a class="dropdown-item" (click)="logOut()">Logout</a></li>
         </ul>
       </div>
     </div>

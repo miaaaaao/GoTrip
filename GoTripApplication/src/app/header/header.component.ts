@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { currentUser } from '../services/getCurrentUserData.service';
 import * as Parse from 'parse';
 import {File} from "@angular/compiler-cli/src/ngtsc/file_system/testing/src/mock_file_system";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,11 +12,12 @@ import {File} from "@angular/compiler-cli/src/ngtsc/file_system/testing/src/mock
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   private updateHead:any;
+  loggedUser:boolean = false;
 
   @Input()
   user: string;
   photoUrl: string;
-  constructor(private currentUser: currentUser)  {
+  constructor(private currentUser: currentUser, private router:Router)  {
     this.user = '';
     this.photoUrl = '';
     //Subject to update the navigation when the user login
@@ -34,15 +36,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.user = currentUser.id;
       const photo = currentUser.get('photo');
       this.photoUrl = photo.url();
+      this.loggedUser = true;
     }
   }
   /*
   * Write here the logout function
   */
-  logOut(){
-    Parse.User.logOut().then(() => {
-      const currentUser = Parse.User.current();  // this will now be null
-    });
+  async logOut(){
+    await Parse.User.logOut()
+    this.currentUser.cleanCurrentUser();
+    this.loggedUser = false;
+    this.getUserDate() // Update the header to remove the button to create new trips and the user profile photo
+    this.router.navigate(['/']);
   }
   ngOnDestroy(){
     this.updateHead.unsubscribe();
