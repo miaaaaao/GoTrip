@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
     this.currentTrips = this.getTrip.currentTrips; // Store open trips
     this.oldTrips = this.getTrip.oldTrips; // store finished trips
     this.isLoading = false; // Hide spinner
+    this.userName = this.currentUser.name;
   }
 
   /*

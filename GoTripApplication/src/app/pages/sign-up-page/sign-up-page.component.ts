@@ -42,7 +42,7 @@ export class SignUpPageComponent implements OnInit {
     user.set("username", this.username);
     user.set("password", this.password);
     user.set("email", this.email);
-    user.set("photo.jpg", parseFile)
+    user.set("photo.jpg", parseFile) // Save the default avatar as user photo
 
     console.log(this);
 
