@@ -4,7 +4,9 @@
     border-bottom: 1px solid #EBECF0;
     z-index: 99999;
   }
-  
+  .navbar-brand{
+    cursor: pointer;
+  }
   .btn {
     background-color: white;
     color: #605DEC;

@@ -49,6 +49,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.getUserDate() // Update the header to remove the button to create new trips and the user profile photo
     this.router.navigate(['/']);
   }
+  /*
+  * Function to run when the user clicks on the logo
+  */
+  logoButton(){
+    console.log('Changing page now')
+    if(this.loggedUser){
+      this.router.navigate(['/dashboard']); // Logged users go to the dashboard
+    } else {
+      this.router.navigate(['/']); // unlogged users go the to login page
+    }
+  }
+  /*
+  * Destroy the subscription
+  */
   ngOnDestroy(){
     this.updateHead.unsubscribe();
   }
