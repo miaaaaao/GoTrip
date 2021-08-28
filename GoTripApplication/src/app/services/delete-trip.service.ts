@@ -1,3 +1,7 @@
+/*
+* This one if to save function to delete the trip
+*/
+
 import { Injectable } from '@angular/core';
 import * as Parse from 'parse';
 
@@ -75,6 +79,4 @@ export class DeleteTripService {
 
     }
     
-  
-
 }

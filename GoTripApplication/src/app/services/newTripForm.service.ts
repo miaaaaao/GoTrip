@@ -2,7 +2,6 @@
 * These functions are used on the create new trip page.
 *
 */
-
 import { Injectable } from '@angular/core';
 import * as Parse from 'parse';
 

@@ -31,3 +31,12 @@
     min-height: 100vh;
 
 }
+
+.background-img-404 {
+    background:url('../../images/404.jpg');
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+
+}

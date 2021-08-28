@@ -1,3 +1,6 @@
+/*
+* Fucntions ot be used on the page that show details about selected sights
+*/
 import { Injectable } from '@angular/core';
 
 @Injectable({
