@@ -1,3 +1,7 @@
+/*
+* This service stores all function related to the friends cards
+*/
+
 import { Injectable } from '@angular/core';
 import * as Parse from 'parse';
 

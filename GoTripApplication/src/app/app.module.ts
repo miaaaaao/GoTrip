@@ -7,7 +7,6 @@ import { Router, RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 
-
 import { getTrip } from './services/getTrip.service';
 import { createNewTrip } from './services/newTripForm.service';
 import { currentUser } from './services/getCurrentUserData.service';
@@ -15,7 +14,6 @@ import { getTripDetails } from '../app/services/getTripDetails.service';
 import { acceptInvitation } from './services/acceptInvitation.service';
 import { rejectInvitation } from './services/rejectInvitation.service';
 import { finishTrip } from './services/finishTrip.service';
-import { getSights } from './services/getSights.service';
 
 import { env } from './env'
 
@@ -48,6 +46,7 @@ import { FriendsCardComponent } from './trip-details/friends-card/friends-card.c
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
 //This is the route array
@@ -66,6 +65,7 @@ const appRoutes: Routes = [
     {path: 'place', component: SightDetailComponent},
   ] },
   { path: 'profile', component: ProfileComponent },
+  { path: '**', component: NotFoundComponent }
 
 ];
 
@@ -100,6 +100,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     ProfileComponent,
+    NotFoundComponent,
 
 
   ],
@@ -121,7 +122,6 @@ const appRoutes: Routes = [
     rejectInvitation,
     getTripDetails,
     finishTrip,
-    getSights,
     env
   ],
   bootstrap: [AppComponent]

@@ -1,3 +1,7 @@
+/*
+* Functions related to the vote sights located on the trip details page
+*/
+
 import { Injectable } from '@angular/core';
 import * as Parse from 'parse';
 
