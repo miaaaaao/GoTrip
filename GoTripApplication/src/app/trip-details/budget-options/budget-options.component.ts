@@ -26,7 +26,6 @@ export class BudgetOptionsComponent implements OnInit, DoCheck {
     return results;
 }
 
-
   winnerBudget(){
     let totalMembers = this.currentTrip.invitedFriends.length;
     let voteOne = this.currentTrip.budget.totalVote.one;
@@ -51,20 +50,16 @@ export class BudgetOptionsComponent implements OnInit, DoCheck {
           calculateWinner = false // if there are repeated votes [2,2] and they are the largest number, the winner can not be calculated untill the team find a democratic budget.
         }
       }
-     
-     
+
       //Store the winner
       if(calculateWinner){
         this.winner = allVotes.findIndex(el=> el == largestValue);
       }
       
-
     }else {
-      
       this.winner = -1; // no winner
       return
     }
-
   }
 
   ngDoCheck(){
