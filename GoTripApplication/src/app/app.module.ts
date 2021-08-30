@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatetimerangepickerModule } from "angular-datetimerangepicker";
 import { Router, RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 
 import { getTrip } from './services/getTrip.service';
 import { createNewTrip } from './services/newTripForm.service';
@@ -13,7 +14,6 @@ import { getTripDetails } from '../app/services/getTripDetails.service';
 import { acceptInvitation } from './services/acceptInvitation.service';
 import { rejectInvitation } from './services/rejectInvitation.service';
 import { finishTrip } from './services/finishTrip.service';
-import { getSights } from './services/getSights.service';
 
 import { env } from './env'
 
@@ -46,6 +46,7 @@ import { FriendsCardComponent } from './trip-details/friends-card/friends-card.c
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
 //This is the route array
@@ -66,6 +67,7 @@ const appRoutes: Routes = [
     ]
   },
   { path: 'profile', component: ProfileComponent },
+  { path: '**', component: NotFoundComponent }
 
 ];
 
@@ -109,7 +111,9 @@ const appRoutes: Routes = [
     NgSelectModule,
     DatetimerangepickerModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    PasswordStrengthMeterModule
   ],
   providers: [
     getTrip,
@@ -119,7 +123,6 @@ const appRoutes: Routes = [
     rejectInvitation,
     getTripDetails,
     finishTrip,
-    getSights,
     env
   ],
   bootstrap: [AppComponent]

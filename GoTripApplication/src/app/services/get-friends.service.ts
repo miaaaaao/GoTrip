@@ -1,3 +1,7 @@
+/*
+* This service stores all function related to the friends cards
+*/
+
 import { Injectable } from '@angular/core';
 import * as Parse from 'parse';
 
@@ -16,6 +20,10 @@ export class GetFriendsService {
 
   async getFrieds(){
     let listFriends:{}[] = [];
+
+    let user = new Parse.User();
+    user.id = this.currentUser.userId;
+    
 
 
     let TripPlan = Parse.Object.extend('TripsPlan');
@@ -40,6 +48,7 @@ export class GetFriendsService {
         photo: friend.get('photo') ? friend.get('photo').url() : null ,
         status: 'pending',
       })
+      
      
     });
 
@@ -53,7 +62,22 @@ export class GetFriendsService {
     
     });
 
-    //Find friends who does not have account
+    //Add the trip owner
+    let tripOwner = await tripList[0].get('owner'); //Getting owner ID
+    let queryOwner =  new Parse.Query(Parse.User);
+    queryOwner.equalTo('objectId', tripOwner.id)
+
+    let ownerData = await queryOwner.find(); // Search data about the user on Parse
+    
+    let userNameOwner = await ownerData[0].get('username');
+    let photoOwner = await ownerData[0].get('photo')._url;
+
+    //Saing the owner's data on the friends array
+    listFriends.push({
+      name: userNameOwner,
+      photo: photoOwner,
+      status: 'organizer'
+    })
 
 
     return listFriends

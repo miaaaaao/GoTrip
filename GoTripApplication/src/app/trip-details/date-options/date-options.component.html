@@ -7,7 +7,7 @@
             <h5>Dates</h5>
         </div>
     </div>
-    <div class="row mb-3">
+    <div class="row mb-3 list" [ngClass]="{'win': winner === 0}">
         <div class="col">
             <span class="lightGrey">{{currentTrip.date.one.start | date:'shortDate'}} - {{currentTrip.date.one.end | date:'shortDate'}}</span>
         </div>
@@ -25,7 +25,7 @@
             <label class="form-check-label" for="inlineRadio1">{{currentTrip.date.totalVote.one}}</label>
         </div>
     </div>
-    <div class="row mb-3">
+    <div class="row mb-3 list" [ngClass]="{'win': winner === 1}">
         <div class="col">
             <span class="lightGrey">{{currentTrip.date.two.start | date:'shortDate'}} - {{currentTrip.date.two.start | date:'shortDate'}}</span>
         </div>
@@ -43,7 +43,7 @@
             <label class="form-check-label" for="inlineRadio1">{{currentTrip.date.totalVote.two}}</label>
         </div>
     </div>
-    <div class="row mb-4">
+    <div class="row mb-4 list" [ngClass]="{'win': winner === 2}">
         <div class="col">
             <span class="lightGrey">{{currentTrip.date.three.start | date:'shortDate'}} - {{currentTrip.date.three.start | date:'shortDate'}}</span>
         </div>

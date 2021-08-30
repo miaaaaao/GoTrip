@@ -19,6 +19,9 @@
             <div class="col pending px-1" *ngIf="friend.status == 'pending'">
                 <span class="align-middle">PENDING</span>
             </div>
+            <div class="col organizer px-1" *ngIf="friend.status == 'organizer'">
+                <span class="align-middle">ORGANIZER</span>
+            </div>
         </div>
         <div class="row" *ngIf="!friend">
             <div class="col-3">

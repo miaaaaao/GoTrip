@@ -1,13 +1,13 @@
 <!--
-    This is the page shows the trips cards. 
+    This is the page shows the trips cards.
 
 -->
 
 <div class="container-fluid mainContainer">
     <div class="container">
         <div class="row">
-            <div class="col-6">
-                <h2>Hello <span class="textHighlightBlue">{{userName}}</span> Ready to the 
+            <div class="col-sm-9 col-md-6">
+                <h2>Hello <span class="textHighlightBlue">{{userName}}</span>! <br> Ready for the
                     next adventure?</h2>
             </div>
         </div>
@@ -17,17 +17,17 @@
                 <span class="textSecundary fs-5">Current Trip <span *ngIf="currentTrips.length > 0">({{currentTrips.length}})</span></span>
             </div>
             <div class="col-12" style="min-height: 170px;" *ngIf="!isLoading">
-                <div class="row row-cols-4" style="min-height: 166px;">
-                    <div *ngFor="let trip of currentTrips" class="col-3" >
+                <div class="row row-cols-sm-1 row-cols-md-4" style="min-height: 166px;">
+                    <div *ngFor="let trip of currentTrips" class="col-md-6 col-lg-3 col-sm-5" >
                         <!-- Trip card component -->
                         <app-active-trip-card [tripPlan]="trip" (updateDashboad)="update()"></app-active-trip-card>
                     </div>
                     <!-- Create trip planner -->
-                    <div class="col-3">
+                    <div class="col-md-6 col-lg-3 col-sm-5">
                         <app-create-new-trip-plan-button></app-create-new-trip-plan-button>
                     </div>
                 </div>
-            </div> 
+            </div>
             <!--Show Spinner while getting data-->
             <div *ngIf="isLoading" class="d-flex justify-content-center">
                 <div class="spinner-grow text-primary" role="status">
@@ -41,8 +41,8 @@
                 <span class="textSecundary fs-5">Past Trip <span *ngIf="oldTrips.length > 0">({{oldTrips.length}})</span></span>
             </div>
             <div class="col-12" style="min-height: 170px;">
-                <div *ngIf="oldTrips.length >= 1" class="row row-cols-4" style=" min-height: 166px;">
-                    <div *ngFor="let pastTrip of oldTrips" class="col-3">
+                <div *ngIf="oldTrips.length >= 1" class="row row-cols-sm-1 row-cols-md-4" style=" min-height: 166px;">
+                    <div *ngFor="let pastTrip of oldTrips" class="col-sm-12 col-md-6 col-lg-3">
                         <!-- past Trip card component -->
                        <app-old-trip-card [pastTrip]="pastTrip"></app-old-trip-card>
                     </div>
@@ -52,7 +52,7 @@
                         <span class="text-muted">No Past trip available</span>
                     </figure>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 </div>
