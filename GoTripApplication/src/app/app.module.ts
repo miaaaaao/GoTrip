@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgSelectModule } from '@ng-select/ng-select';
+<<<<<<< HEAD
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+=======
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+>>>>>>> bc761163ef87de2f852aa9bd691028fc2376dc2c
 import { DatetimerangepickerModule } from "angular-datetimerangepicker";
 import { Router, RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -102,6 +106,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     ProfileComponent,
+    NotFoundComponent,
 
 
   ],
