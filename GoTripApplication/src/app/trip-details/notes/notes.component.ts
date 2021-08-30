@@ -49,7 +49,7 @@ export class NotesComponent implements OnInit {
     newNote.set("tripId",)
     newNote.set("createdAt", Date())
 
-    var objectId = Notes.id;
+    //var objectId = Notes.id;
 
     newNote.save()
 
