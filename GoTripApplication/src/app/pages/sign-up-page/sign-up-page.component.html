@@ -3,18 +3,16 @@
     <div class="col-8 px-0">
       <!--Background Component-->
       <app-background-image origin="signup"></app-background-image>
-      <div class="img-fluid card-overlay">
-
-      </div>
     </div>
     <div class="col-4 px-4">
       <form class="px-4">
         <h5 class="form-title"><strong>Create an Account</strong></h5>
         <div class="form-group">
           <label for="InputName">Name</label>
-          <input type="name" class="form-control form-control-sm" id="InputName" placeholder="Enter your name">
+          <input  type="name" class="form-control form-control-sm" id="InputName" placeholder="Enter your name">
         </div>
         <div class="form-group">
+<<<<<<< HEAD
           <<<<<<< HEAD <label for="exampleInputEmail1">Email address</label>
             <input type="email" class="form-control form-control-sm" id="exampleInputEmail1"
               aria-describedby="emailHelp" placeholder="Enter your email address">
@@ -33,6 +31,14 @@
           <input type="password" class="form-control form-control-sm" id="InputPassword1"
             placeholder="Enter your password">
           >>>>>>> 0e9eb500f71484a7a814441b20ee775158ba0c8d
+=======
+          <label  for="InputEmail1">Email address</label>
+          <input type="email" class="form-control form-control-sm" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter your email address">
+        </div>
+        <div class="form-group">
+          <label for="InputPassword1">Create password</label>
+          <input  type="password" class="form-control form-control-sm" id="InputPassword1" placeholder="Enter your password">
+>>>>>>> a0a410bdfc9672f5aa22f3d48e913b6069d4754f
         </div>
         <div class="form-group form-check">
           <input type="checkbox" class="form-check-input" id="Check1">
@@ -67,7 +73,7 @@
           </div>
         </div>
         <div>
-          <button type="submit" class="btn btn-primary btn-block log-in">Create Account</button>
+          <button (click)="onClickMe()" type="submit" class="btn btn-primary btn-block log-in">Create Account</button>
         </div>
 
         <div class="text-center">

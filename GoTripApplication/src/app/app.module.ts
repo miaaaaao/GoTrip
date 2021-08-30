@@ -57,12 +57,14 @@ const appRoutes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordPageComponent },
   { path: 'invitation', component: InvitationPageComponent },
 
-  { path: 'details/:id', component: TripDetailsComponent, children: [
-    {path: 'sights', component: AllSightsComponent},
-    {path: 'map', component: MapComponent},
-    {path: 'notes', component: NotesComponent},
-    {path: 'place', component: SightDetailComponent},
-  ] },
+  {
+    path: 'details/:id', component: TripDetailsComponent, children: [
+      { path: 'sights', component: AllSightsComponent },
+      { path: 'map', component: MapComponent },
+      { path: 'notes', component: NotesComponent },
+      { path: 'place', component: SightDetailComponent },
+    ]
+  },
   { path: 'profile', component: ProfileComponent },
 
 ];
@@ -98,7 +100,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     ProfileComponent,
-  
+
 
   ],
   imports: [
