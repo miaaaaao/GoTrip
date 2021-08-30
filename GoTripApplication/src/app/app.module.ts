@@ -103,8 +103,6 @@ const appRoutes: Routes = [
     FooterComponent,
     ProfileComponent,
     NotFoundComponent
-
-
   ],
   imports: [
     BrowserModule,
