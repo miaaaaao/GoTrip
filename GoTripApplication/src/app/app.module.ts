@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgSelectModule } from '@ng-select/ng-select';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatetimerangepickerModule } from "angular-datetimerangepicker";
 import { Router, RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -58,12 +58,14 @@ const appRoutes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordPageComponent },
   { path: 'invitation', component: InvitationPageComponent },
 
-  { path: 'details/:id', component: TripDetailsComponent, children: [
-    {path: 'sights', component: AllSightsComponent},
-    {path: 'map', component: MapComponent},
-    {path: 'notes', component: NotesComponent},
-    {path: 'place', component: SightDetailComponent},
-  ] },
+  {
+    path: 'details/:id', component: TripDetailsComponent, children: [
+      { path: 'sights', component: AllSightsComponent },
+      { path: 'map', component: MapComponent },
+      { path: 'notes', component: NotesComponent },
+      { path: 'place', component: SightDetailComponent },
+    ]
+  },
   { path: 'profile', component: ProfileComponent },
   { path: '**', component: NotFoundComponent }
 
@@ -100,20 +102,19 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     ProfileComponent,
-    NotFoundComponent,
 
 
   ],
-    imports: [
-        BrowserModule,
-        RouterModule.forRoot(appRoutes),
-        NgSelectModule,
-        DatetimerangepickerModule,
-        FormsModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        PasswordStrengthMeterModule
-    ],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
+    NgSelectModule,
+    DatetimerangepickerModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    PasswordStrengthMeterModule
+  ],
   providers: [
     getTrip,
     createNewTrip,
