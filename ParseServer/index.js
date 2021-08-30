@@ -23,7 +23,7 @@ const config = {
   masterKey: process.env.MASTER_KEY || '==HyUH78YT$5%33==*&99', 
   serverURL: process.env.SERVER_URL || 'https://gotrip-app.herokuapp.com/api', // Don't forget to change to https if needed
   liveQuery: {
-    classNames: ['Comment'], // List of classes to support for query subscriptions
+    classNames: ['Comment', 'Note'], // List of classes to support for query subscriptions
   },
   publicServerURL: 'https://gotrip-app.herokuapp.com/api', // change by the Heroku url to make it able confirm and reset the email and password
   //verifyUserEmails: true,

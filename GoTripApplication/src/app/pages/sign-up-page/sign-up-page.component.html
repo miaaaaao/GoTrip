@@ -5,13 +5,26 @@
       <app-background-image origin="signup"></app-background-image>
     </div>
     <div class="col-4 px-4">
+
+
+
       <form class="px-4">
         <h5 class="form-title"><strong>Create an Account</strong></h5>
         <div class="form-group">
-          <label for="InputName">Name</label>
-          <input  type="name" class="form-control form-control-sm" id="InputName" placeholder="Enter your name">
-        </div>
+          <label for="name">Name</label>
+          <input (keyup)="onKey($event)" type="text" id="name" name="name" class="form-control form-control-sm" required minlength="3" placeholder="Enter your name" [(ngModel)]="this.username" #name="ngModel">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
+
+            <div  *ngIf="name.errors?.required" class="alert alert-info" role="alert">
+              <small>Name is required.</small>
+            </div>
+            <div *ngIf="name.errors?.minlength" class="alert alert-info" role="alert">
+              <small>Name must be at least 3 characters long.</small>
+            </div>
+            </div>
+            </div>
         <div class="form-group">
+<<<<<<< HEAD
 <<<<<<< HEAD
           <<<<<<< HEAD <label for="exampleInputEmail1">Email address</label>
             <input type="email" class="form-control form-control-sm" id="exampleInputEmail1"
@@ -43,17 +56,36 @@
         <div class="form-group form-check">
           <input type="checkbox" class="form-check-input" id="Check1">
           <label class="form-check-label" for="Check1"><small>I agree to the terms and conditions</small></label>
+=======
+          <label for="InputEmail">Email address</label>
+          <input (keyup)="onKey($event)" type="email" ng-model="this.email" class="form-control form-control-sm" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter your email address">
         </div>
+        <div class="form-group">
+          <label for="InputPassword">Create password</label>
+          <input (keyup)="onKey($event)" type="password" ng-model="this.password" class="form-control form-control-sm" id="InputPassword" placeholder="Enter your password">
+>>>>>>> bc761163ef87de2f852aa9bd691028fc2376dc2c
+        </div>
+        <password-strength-meter [password]="password"></password-strength-meter>
+
+
 
         <!-- Button trigger modal -->
+<<<<<<< HEAD
         <button type="button" class="btn btn-primary btn-sm modal-color" data-toggle="modal" id="myBtn"
           data-target="#termsModal">
+=======
+        <button type="button" class="btn btn-primary btn-sm modal-color termsAndCond" data-toggle="modal" id="myBtn" data-target="#termsModal">
+>>>>>>> bc761163ef87de2f852aa9bd691028fc2376dc2c
           Read Terms and Conditions
         </button>
 
         <!-- Modal -->
+<<<<<<< HEAD
         <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModal"
           aria-hidden="true">
+=======
+        <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModal" aria-hidden="true">
+>>>>>>> bc761163ef87de2f852aa9bd691028fc2376dc2c
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -63,30 +95,57 @@
                 </button>
               </div>
               <div class="modal-body">
+<<<<<<< HEAD
                 ...
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Save changes</button>
+=======
+                <p>The modal works! In here we should put the Terms and Conditions of the use of the app. </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary log-in" data-dismiss="modal">Close</button>
+
+>>>>>>> bc761163ef87de2f852aa9bd691028fc2376dc2c
               </div>
             </div>
           </div>
         </div>
+<<<<<<< HEAD
         <div>
           <button (click)="onClickMe()" type="submit" class="btn btn-primary btn-block log-in">Create Account</button>
+=======
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="Check">
+          <label class="form-check-label" for="Check"><small>I agree to the terms and conditions</small></label>
+        </div>
+        <div class="text-center">
+          <button (click)="onClickMe()" type="submit" class="btn btn-primary w-100 purpleBtn"> Create Account</button>
+>>>>>>> bc761163ef87de2f852aa9bd691028fc2376dc2c
         </div>
 
         <div class="text-center">
-          <a href=" "><small>I already have an account</small></a>
+            <a href=" "><small>I already have an account</small></a>
         </div>
       </form>
+
     </div>
   </div>
 
   <script>
+<<<<<<< HEAD
     $(document).ready(function () {
       $("#myBtn").click(function () {
         $("#termsModal").modal();
       });
     });
   </script>
+=======
+    $(document).ready(function() {
+      $("#myBtn").click(function() {
+        $("#termsModal").modal();
+      });
+    });
+  </script>
+>>>>>>> bc761163ef87de2f852aa9bd691028fc2376dc2c

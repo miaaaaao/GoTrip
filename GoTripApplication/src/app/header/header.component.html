@@ -1,31 +1,27 @@
 <nav class="navbar navbar-expand-lg navbar-light pt-0">
     <div class="container px-0">
-  
+
       <!-- logo & name -->
-      <a class="ms-2 navbar-brand" routerLink=''>
+      <a class="ms-2 navbar-brand" (click)="logoButton()">
         <img src="assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
           GoTrip
       </a>
-  
+
       <!-- button -->
       <div class="collapse navbar-collapse" id="navbarText">
           <!--Show this button if there is a user-->
-        <ul *ngIf="user" class="navbar-nav mr-auto">
+        <ul *ngIf="loggedUser" class="navbar-nav mr-auto">
           <a routerLink="/create" class="btn btn-outline-primary my-2 my-sm-0" type="button">New Trip</a>
         </ul>
         <!--Show this button if there is NO user-->
-        <ul *ngIf="!user" class="navbar-nav mr-auto">
+        <ul *ngIf="!loggedUser" class="navbar-nav mr-auto">
             <a routerLink=""  class="btn btn-outline-primary my-2 my-sm-0" type="button">Log in to plan now</a>
           </ul>
       </div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
       <!-- user profile dropdown -->
-      <div class="dropdown pe-4" *ngIf="user">
+      <div class="dropdown pe-4" *ngIf="loggedUser">
         <a class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="true" aria-haspopup="true">
-          <img src="assets/default.jpg" width="40" height="40" class="rounded-circle">
+          <img src="{{photoUrl}}" width="40" height="40" class="rounded-circle">
         </a>
         <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenuLink">
           <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
@@ -34,4 +30,3 @@
       </div>
     </div>
   </nav>
-  
