@@ -102,6 +102,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     ProfileComponent,
+    NotFoundComponent
 
 
   ],
