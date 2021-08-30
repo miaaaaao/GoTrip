@@ -17,12 +17,14 @@ export class ProfileComponent implements OnInit {
   username: string | undefined;
   useremail: string | undefined;
   photoUrl: string;
+  fileName: string;
 
   constructor(
     private formBuilder: FormBuilder,
   ) {
     this.username = '';
     this.photoUrl = '';
+    this.fileName = '';
   }
 
   ngOnInit(): void {
@@ -37,9 +39,15 @@ export class ProfileComponent implements OnInit {
 
   onSubmit(): void {
     const user = Parse.User.current();
-    user?.setUsername(this.profileForm.value.name);
-    user?.setEmail(this.profileForm.value.email);
-    user?.setPassword(this.profileForm.value.newPass);
+    if (this.profileForm.value.name != "") {
+      user?.setUsername(this.profileForm.value.name);
+    }
+    if (this.profileForm.value.email != "") {
+      user?.setEmail(this.profileForm.value.email);
+    }
+    if (this.profileForm.value.newPass != "") {
+      user?.setPassword(this.profileForm.value.newPass);
+    }
     user?.save()
       .then(() => {
         // Execute any logic that should take place after the object is saved.
@@ -51,5 +59,9 @@ export class ProfileComponent implements OnInit {
       });
     console.warn('Your profile has been updated', this.profileForm.value);
     this.profileForm.reset();
+  }
+
+  onFileSelected(event: Event) {
+
   }
 }
