@@ -81,7 +81,7 @@ export class TripDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getInfoAboutThisTrip() // ===>> add this later
+    this.getInfoAboutThisTrip() 
 
     this.updateUIBudget = this.voteBudgetService.updateUIBudgetChanged.subscribe(el=>{
       this.getInfoAboutThisTrip()

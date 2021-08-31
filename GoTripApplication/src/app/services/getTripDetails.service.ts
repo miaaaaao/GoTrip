@@ -71,6 +71,9 @@ export class getTripDetails {
       }
 
       async getBasicInfo(id:string){ 
+        if(this.currentUser.userId == ''){
+          await this.currentUser.getCurrentUser() // this will run if the detail page is refreshed
+        }
         /* 
         * This function is to get the Title, City and Find out if the user is the 
         * owner and if he/she accepted the invitation
@@ -97,13 +100,14 @@ export class getTripDetails {
             */
             let owner = trip[0].get('owner')
             owner.id == this.currentUser.userId ? this.currentTrip.status.isTheOwner = true : this.currentTrip.status.isTheOwner = false;
+            
             /*
             * Find if the user has accepted the invitation in case he is not the trip owner.
             */
             if(!this.currentTrip.status.isTheOwner){
                 let user = new Parse.User();
                 user.id = this.currentUser.userId;
-
+                
                 let queryPendingList = new Parse.Query(tripPlan);
                 queryPendingList.equalTo('listUsersPending2', user); // First find the trips plan where the user were invited
                 queryPendingList.equalTo("objectId", tripPlan.id); // Find specific trip plan
