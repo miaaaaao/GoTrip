@@ -1,32 +1,32 @@
-.full{
+.map{
     width: auto;
     height: 70mh;
     min-height: 400px;
     min-width: 400px;
     border: 1px solid red
   }
-  
+
   .heading {
       color: #72768C;
       font-size: 1.5em;
       font-weight: lighter;
   }
-  
+
   .subheading {
       color: #72768C;
   }
-  
+
   .highlight{
       color: #605DEC;
       font-weight: bold;
   }
-  
+
   .btn-primary{
       background-color: #605DEC;
       color: white;
       border: 1px solid #605DEC;
   }
-  
+
   .previous {
       background-color: white !important;
       border: 1px solid #605DEC;
