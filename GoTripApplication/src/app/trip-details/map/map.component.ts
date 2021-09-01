@@ -18,7 +18,7 @@ export class MapComponent implements OnInit {
   public constructor() {
 
    this.platform = new H.service.Platform({
-      "apikey": "uV_gz_P-XiJZdNYt9pAoRFfhx0jeG20iT0bRQ236wzo"
+      "apikey": "HERE_API"
     });
   }
 
@@ -37,5 +37,5 @@ export class MapComponent implements OnInit {
     console.log(map)
   }
 
-  
+
 }
