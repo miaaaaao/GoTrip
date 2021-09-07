@@ -6,6 +6,7 @@ import { DatetimerangepickerModule } from "angular-datetimerangepicker";
 import { Router, RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 import { getTrip } from './services/getTrip.service';
 import { createNewTrip } from './services/newTripForm.service';
@@ -112,7 +113,8 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    PasswordStrengthMeterModule
+    PasswordStrengthMeterModule,
+    CurrencyMaskModule
   ],
   providers: [
     getTrip,

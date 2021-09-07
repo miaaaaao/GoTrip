@@ -36,17 +36,17 @@
                         </div>
                         <div class="col">
                             <label class="form-label">Option 1 <abbr title="This field is mandatory">*</abbr></label>
-                            <input type="text" name="budget_1" ngModel class="form-control" placeholder="E.g., $100" required pattern="^[0-9]+$" #budgetOne="ngModel">
+                            <input type="text" name="budget_1" currencyMask [options]="{ prefix: '€ ', align: 'left', precision: 0}" ngModel class="form-control" placeholder="E.g., $100" required pattern="^[0-9]+$" #budgetOne="ngModel">
                             <div *ngIf="!budgetOne.valid && budgetOne.dirty" class="inputErrorMessage">
                                 <span>Use only numbers (no , or .)</span>
                             </div>
                             <label class="form-label mt-3">Option 2 <abbr title="This field is mandatory">*</abbr></label>
-                            <input type="text" name="budget_2" ngModel class="form-control" placeholder="E.g., $200" required pattern="^[0-9]+$" #budgetTwo="ngModel">
+                            <input type="text" name="budget_2" currencyMask [options]="{ prefix: '€ ', align: 'left', precision: 0}" ngModel class="form-control" placeholder="E.g., $200" required pattern="^[0-9]+$" #budgetTwo="ngModel">
                             <div *ngIf="!budgetTwo.valid && budgetTwo.dirty" class="inputErrorMessage">
                                 <span>Use only numbers (no , or .)</span>
                             </div>
                             <label class="form-label mt-3">Option 3 <abbr title="This field is mandatory">*</abbr></label>
-                            <input type="text" name="budget_3" ngModel class="form-control" placeholder="E.g., $300" required pattern="^[0-9]+$" #budgetThree="ngModel">
+                            <input type="text" name="budget_3" currencyMask [options]="{ prefix: '€ ', align: 'left', precision: 0}" ngModel class="form-control" placeholder="E.g., $300" required pattern="^[0-9]+$" #budgetThree="ngModel">
                             <div *ngIf="!budgetThree.valid && budgetThree.dirty" class="inputErrorMessage">
                                 <span>Use only numbers (no , or .)</span>
                             </div>

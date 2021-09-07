@@ -9,7 +9,7 @@
     </div>
     <div class="row mb-3 list" [ngClass]="{'win': winner === 0}">
         <div class="col">
-            <span class="lightGrey">${{currentTrip ? currentTrip.budget.one : 0}}</span>
+            <span class="lightGrey">€{{currentTrip ? currentTrip.budget.one : 0}}</span>
         </div>
         <div class="form-check form-check-inline col d-flex justify-content-end mx-0" >
             <input 
@@ -27,7 +27,7 @@
     </div>
     <div class="row mb-3 list" [ngClass]="{'win': winner === 1}">
         <div class="col">
-            <span class="lightGrey">${{currentTrip ? currentTrip.budget.two : 0}}</span>
+            <span class="lightGrey">€{{currentTrip ? currentTrip.budget.two : 0}}</span>
         </div>
         <div class="form-check form-check-inline col d-flex justify-content-end mx-0" >
             <input 
@@ -45,7 +45,7 @@
     </div>
     <div class="row mb-4 list" [ngClass]="{'win': winner === 2}">
         <div class="col">
-            <span class="lightGrey">${{currentTrip ? currentTrip.budget.three : 0}}</span>
+            <span class="lightGrey">€{{currentTrip ? currentTrip.budget.three : 0}}</span>
         </div>
         <div class="form-check form-check-inline col d-flex justify-content-end mx-0" >
             <input 
