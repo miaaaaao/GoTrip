@@ -36,7 +36,8 @@ export class GetAddedSightService {
         this.addedSights.push({
           title: results[i].get('name'),
           id: results[i].id,
-          geoPoint: results[i].get('geoPoint'),
+          lat: results[i].get('geoPoint').latitude,
+          lon: results[i].get('geoPoint').longitude,
           votes: results[i].get('totalVotes')
         })
       }
