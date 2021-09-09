@@ -35,8 +35,9 @@ export class GetAddedSightService {
       for(let i = 0; i < results.length; i++){
         this.addedSights.push({
           title: results[i].get('name'),
-          xid: results[i].get('xid'),
+          xid: results[i].get('XID'),
           geoPoint: results[i].get('geoPoint'),
+          votes: results[i].get('totalVotes')
         })
       }
       console.log(this.addedSights)

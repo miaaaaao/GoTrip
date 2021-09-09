@@ -39,6 +39,11 @@ export class MapComponent implements OnInit, OnDestroy {
 
   }
 
+  removeSight(xid:any){
+    console.log(xid)
+
+  }
+
   ngOnDestroy(){
     this.getAddedSightService.cleanSightList()
   }
