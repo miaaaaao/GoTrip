@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import * as Parse from 'parse';
-import { TripDetailsComponent } from '../trip-details.component';
+import { getTripDetails } from '../../services/getTripDetails.service';
+
+import { ActivatedRoute, Router } from '@angular/router';
+
 interface Note {
   text: string;
   user: string;
@@ -14,22 +17,31 @@ interface Note {
 })
 
 
-
 export class NotesComponent implements OnInit {
-  newNoteText = ''
+  newNoteText = '';
   currentUser = Parse.User.current();
-  // tripId = Parse.TripsPlan.current();
+  tripId: string = '';
   Note = Parse.Object.extend("Note");
+  query = new Parse.Query('Note');
+  subscription = this.query.subscribe();
 
 
-  // Parse.Note.
-  constructor() {
+
+
+
+  constructor(private getTripDetails: getTripDetails) {
+
+    this.tripId = getTripDetails.currentTrip.id
 
     this.notes = [];
-    const query = new Parse.Query(this.Note);
-    console.log(query)
-    // query.get('')
+
+    console.log(this.query)
+
+
   }
+
+
+
   notes: Array<Note>;
 
 
@@ -38,25 +50,19 @@ export class NotesComponent implements OnInit {
 
 
   onKey(event: any) { // without type info
-    // this.newNoteText = event.target.value
+    this.newNoteText = event.target.value
   }
   onClickMe() {
     const newNote = new this.Note();
-    // check if User is logged in before submitting text
-    newNote.set("user", 'sazzelz') // only for testing, delete when login works
-    // newNote.set("user", this.currentUser)
+    // TODO: check if User is logged in before submitting text
+    newNote.set("user", this.currentUser?.id)
     newNote.set("text", this.newNoteText)
-    newNote.set("tripId",)
+    newNote.set("tripId", this.tripId)
     newNote.set("createdAt", Date())
-
-    var objectId = Notes.id;
-
     newNote.save()
-
-    this.newNoteText = ''
-
-
   }
+
+
 
 }
 
