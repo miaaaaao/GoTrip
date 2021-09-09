@@ -21,7 +21,7 @@
       <span class="subheading">{{sight.title}} <span class="details">({{sight.votes}} people voted)</span></span>
     </div>
     <div class="col-4 pull-right d-flex justify-content-end" *ngIf="isTheOwner">
-      <button type="button" name="button" class="btn btn-outline-danger" (click)="removeSight(sight.xid)">Remove</button>
+      <button type="button" name="button" class="btn btn-outline-danger" (click)="removeSight(sight.id)">Remove</button>
     </div>
   </div>
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { getTripDetails } from '../../services/getTripDetails.service';
 
 import { GetAddedSightService } from '../../services/get-added-sight.service';
+import { AddSightService } from '../../services/add-sight.service';
 
 declare var L: any;
 
@@ -17,7 +18,7 @@ export class MapComponent implements OnInit, OnDestroy {
   geoLocation: any;
   allSights: any;
 
-  public constructor(private getTripDetails: getTripDetails, private getAddedSightService: GetAddedSightService) {
+  public constructor(private getTripDetails: getTripDetails, private getAddedSightService: GetAddedSightService, private AddSightService: AddSightService) {
     this.geoLocation = this.getTripDetails.currentTrip.geoLocation; // Save current city geolocation
   }
 
@@ -39,8 +40,17 @@ export class MapComponent implements OnInit, OnDestroy {
 
   }
 
-  removeSight(xid:any){
+  async removeSight(xid:any){
+    //remove the selected sight
     console.log(xid)
+    await this.AddSightService.removeSight({sightServerId: xid})
+
+    //clean list
+    this.getAddedSightService.cleanSightList()
+
+    //get all sights added
+    this.getAddedSightService.getSights() 
+    this.allSights = this.getAddedSightService.addedSights;
 
   }
 
