@@ -1,11 +1,13 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatetimerangepickerModule } from "angular-datetimerangepicker";
-import { Router, RouterModule, Routes } from '@angular/router';
+import { Router, RouterModule, Routes, CanActivate } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
+import { CurrencyMaskModule } from "ng2-currency-mask";
+import { catchError, map } from 'rxjs/operators';
 
 import { getTrip } from './services/getTrip.service';
 import { createNewTrip } from './services/newTripForm.service';
@@ -14,6 +16,7 @@ import { getTripDetails } from '../app/services/getTripDetails.service';
 import { acceptInvitation } from './services/acceptInvitation.service';
 import { rejectInvitation } from './services/rejectInvitation.service';
 import { finishTrip } from './services/finishTrip.service';
+import { AuthGuard } from './auth/auth.guard';
 
 import { env } from './env'
 
@@ -51,25 +54,26 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 //This is the route array
 const appRoutes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'create', component: NewTripFormComponent },
-  { path: '', component: LoginPageComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'create', component: NewTripFormComponent, canActivate: [AuthGuard] },
+  { path: '', component: LoginPageComponent, canActivate: [AuthGuard] },
   { path: 'signup', component: SignUpPageComponent },
   { path: 'forgot-password', component: ForgotPasswordPageComponent },
   { path: 'invitation', component: InvitationPageComponent },
 
   {
-    path: 'details/:id', component: TripDetailsComponent, children: [
+    path: 'details/:id', component: TripDetailsComponent, canActivate: [AuthGuard], children: [
       { path: 'sights', component: AllSightsComponent },
       { path: 'map', component: MapComponent },
       { path: 'notes', component: NotesComponent },
       { path: 'place', component: SightDetailComponent },
     ]
   },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: '**', component: NotFoundComponent }
 
 ];
+
 
 @NgModule({
   declarations: [
@@ -114,7 +118,8 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    PasswordStrengthMeterModule
+    PasswordStrengthMeterModule,
+    CurrencyMaskModule
   ],
   providers: [
     getTrip,
@@ -124,7 +129,8 @@ const appRoutes: Routes = [
     rejectInvitation,
     getTripDetails,
     finishTrip,
-    env
+    env,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
