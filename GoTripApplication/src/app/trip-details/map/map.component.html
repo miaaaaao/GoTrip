@@ -9,7 +9,7 @@
   <span class="heading">Selected sites</span>
   <div class="container selSites">
     <span class="subheading">Unteres Schloss</span>
-    <div class="pull-right">
+    <div class="pull-right" *ngIf="isTheOwner">
       <button type="button" name="button" class="btn btn-outline-danger">Remove</button>
     </div>
   </div>

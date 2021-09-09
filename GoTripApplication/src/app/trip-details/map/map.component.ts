@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { getTripDetails } from '../../services/getTripDetails.service';
 
 declare var L: any;
 
@@ -10,12 +11,15 @@ declare var L: any;
 
 export class MapComponent implements OnInit {
   public map: any;
+  isTheOwner: boolean = false;
 
-  public constructor() {
-    
+  public constructor(private getTripDetails: getTripDetails) {
+   
   }
 
   public ngOnInit() { 
+    this.isTheOwner = this.getTripDetails.currentTrip.status.isTheOwner; // Search if the user is the owner. If yes he can remove the sights
+
     this.map = L.map('map', {
       scrollWheelZoom: false,
     }).setView([51.1657, 10.4515], 15);
