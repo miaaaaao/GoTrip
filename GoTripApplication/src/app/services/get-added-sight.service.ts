@@ -12,6 +12,10 @@ export class GetAddedSightService {
 
   constructor(private getTripDetails: getTripDetails) { }
 
+  cleanSightList(){
+    this.addedSights = []
+  }
+
   async getSights(){
     let Sight = Parse.Object.extend('Sight');
     const querySights = new Parse.Query(Sight);

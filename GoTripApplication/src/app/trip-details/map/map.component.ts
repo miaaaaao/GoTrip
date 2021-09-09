@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { getTripDetails } from '../../services/getTripDetails.service';
 
 import { GetAddedSightService } from '../../services/get-added-sight.service';
@@ -11,7 +11,7 @@ declare var L: any;
   styleUrls: ['./map.component.css']
 })
 
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
   public map: any;
   isTheOwner: boolean = false;
   geoLocation: any;
@@ -37,6 +37,10 @@ export class MapComponent implements OnInit {
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
 
+  }
+
+  ngOnDestroy(){
+    this.getAddedSightService.cleanSightList()
   }
 
 }
