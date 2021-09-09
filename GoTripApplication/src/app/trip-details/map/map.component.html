@@ -18,7 +18,7 @@
   <span class="heading mb-2">Selected sites</span>
   <div class="row selSites my-2" *ngFor="let sight of allSights">
     <div class="col-8">
-      <span class="subheading">{{sight.title}} <span class="details">({{sight.votes}} people voted)</span></span>
+      <span class="subheading">{{sight.title}} <span class="details">({{sight.votes}} {{sight.votes > 1 ? 'people' : 'person'}} voted)</span></span>
     </div>
     <div class="col-4 pull-right d-flex justify-content-end" *ngIf="isTheOwner">
       <button type="button" name="button" class="btn btn-outline-danger" (click)="removeSight(sight.id)">Remove</button>
