@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
-declare var H: any;
+declare var L: any;
 
 @Component({
   selector: 'app-map',
@@ -9,33 +9,25 @@ declare var H: any;
 })
 
 export class MapComponent implements OnInit {
-  title = 'here-project';
-  private platform: any;
-
-  @ViewChild("map")
-  public mapElement!: ElementRef;
-
+  public map: any;
 
   public constructor() {
-
-    this.platform = new H.service.Platform({
-      'apikey': '{HERE_API}'
-    });
+    
   }
 
-  public ngOnInit(): void { }
+  public ngOnInit() { 
+    this.map = L.map('map', {
+      scrollWheelZoom: false,
+    }).setView([51.1657, 10.4515], 15);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(this.map);
+
+  }
 
   public ngAfterViewInit() {
-
-    let defaultLayers = this.platform.createDefaultLayers();
-
-    let map = new H.Map(
-      this.mapElement.nativeElement,
-      defaultLayers.vector.normal.map,
-      {
-        zoom: 10,
-        center: { lat: 51.233334, lng: 6.78333 }
-      });
-    console.log(map)
+      
   }
+
 }
