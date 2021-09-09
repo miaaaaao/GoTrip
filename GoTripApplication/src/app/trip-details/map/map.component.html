@@ -7,8 +7,8 @@
 </div>
 <div class="selSites">
   <span class="heading">Selected sites</span>
-  <div class="container selSites">
-    <span class="subheading">Unteres Schloss</span>
+  <div class="container selSites my-4" *ngFor="let sight of allSights">
+    <span class="subheading">{{sight.title}}</span>
     <div class="pull-right" *ngIf="isTheOwner">
       <button type="button" name="button" class="btn btn-outline-danger">Remove</button>
     </div>
