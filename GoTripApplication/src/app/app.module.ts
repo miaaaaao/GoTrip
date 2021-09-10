@@ -52,6 +52,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
+
 //This is the route array
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [ AuthGuard ] },
@@ -106,7 +107,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     ProfileComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

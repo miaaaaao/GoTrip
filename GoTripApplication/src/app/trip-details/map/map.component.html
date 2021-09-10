@@ -1,20 +1,27 @@
 <div class="row mb-4">
     <span class="heading">See the chosen places in the map</span>
 </div>
-<div #map class="map" >
+<div class="row"> 
+  <div class="col-12" id="map">
+
+  </div>
 </div>
-<div>
-    <small class="subheading"> <span class="highlight">Use your mouse to create a Geofencing area.</span> With Geofencing you can define and select an area from which you would like to receive notifications regarding awesome nearby places you can visit with just a few steps.
-</small>
+<div class="row mt-2">
+    <div class="col-9">
+      <small class=""> <span class="highlight">Use your mouse to create a Geofencing area.</span> With Geofencing you can define and select an area from which you would like to receive notifications regarding awesome nearby places you can visit with just a few steps.</small>
+    </div>
+    <div class="col-3">
+      <button type="button" class="btn btn-outline-primary">Create Geofancing</button>
+    </div>
 </div>
-<div class="selSites">
-  <span class="heading">Selected sites</span>
-  <div class="container selSites">
-    <span class="subheading">Unteres Schloss</span>
-    <div class="pull-right">
-      <button type="button" name="button" class="btn btn-outline-danger">Remove</button>
+<div class="row selSites mt-5">
+  <span class="heading mb-2">Selected sites</span>
+  <div class="row selSites my-2" *ngFor="let sight of allSights">
+    <div class="col-8">
+      <span class="subheading">{{sight.title}} <span class="details">({{sight.votes}} {{sight.votes > 1 ? 'people' : 'person'}} voted)</span></span>
+    </div>
+    <div class="col-4 pull-right d-flex justify-content-end" *ngIf="isTheOwner">
+      <button type="button" name="button" class="btn btn-outline-danger" (click)="removeSight(sight.id)">Remove</button>
     </div>
   </div>
-  <hr class="solid">
-
 </div>
