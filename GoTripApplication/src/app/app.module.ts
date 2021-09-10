@@ -9,6 +9,7 @@ import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { catchError, map } from 'rxjs/operators';
 
+
 import { getTrip } from './services/getTrip.service';
 import { createNewTrip } from './services/newTripForm.service';
 import { currentUser } from './services/getCurrentUserData.service';
@@ -16,6 +17,9 @@ import { getTripDetails } from '../app/services/getTripDetails.service';
 import { acceptInvitation } from './services/acceptInvitation.service';
 import { rejectInvitation } from './services/rejectInvitation.service';
 import { finishTrip } from './services/finishTrip.service';
+import { noteService } from './services/getNotesData.service';
+
+
 import { AuthGuard } from './auth/auth.guard';
 
 import { env } from './env'
@@ -127,10 +131,11 @@ const appRoutes: Routes = [
     currentUser,
     acceptInvitation,
     rejectInvitation,
+    noteService,
     getTripDetails,
     finishTrip,
     env,
-    AuthGuard
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })
