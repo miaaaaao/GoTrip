@@ -104,7 +104,7 @@ export class AllSightsComponent implements OnInit, OnDestroy {
         this.lon = resp.lon;
         this.getAmount() // get number of elements
         this.getSightList() // Starts the fucntion that will look for sights based on the lat and lon
-       
+        this.getTripDetails.saveGeoLocation(resp.lat,resp.lon)
       } else {}
      
      
