@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import * as Parse from 'parse';
-import { TripDetailsComponent } from '../trip-details.component';
+import { getTripDetails } from '../../services/getTripDetails.service';
+
+import { ActivatedRoute, Router } from '@angular/router';
+import { noteService } from 'src/app/services/getNotesData.service';
+
 interface Note {
   text: string;
   user: string;
@@ -10,53 +14,73 @@ interface Note {
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
-  styleUrls: ['./notes.component.css']
+  styleUrls: ['./notes.component.css'],
 })
-
-
-
 export class NotesComponent implements OnInit {
-  newNoteText = ''
+  newNoteText = '';
   currentUser = Parse.User.current();
-  // tripId = Parse.TripsPlan.current();
-  Note = Parse.Object.extend("Note");
+  tripId: string = '';
+  notes: any[] = []
+  noteValue = ""
+  Note = Parse.Object.extend("Note"); // for creating Notes
+  // query = new Parse.Query('Note'); // query for notes array 
+  // subscription: any = ''// probably not possible but will try first 
 
 
-  // Parse.Note.
-  constructor() {
+  constructor(private getTripDetails: getTripDetails, private noteSvc: noteService, private zone: NgZone) {
 
-    this.notes = [];
-    const query = new Parse.Query(this.Note);
-    console.log(query)
-    // query.get('')
+    // this.tripId = getTripDetails.currentTrip.id
+
   }
-  notes: Array<Note>;
 
-
-  ngOnInit(): void {
+  ngOnInit() {
+    this.noteSvc.startToUpdate()
+      .subscribe(note => {
+        this.zone.run(() => {
+          this.notes.unshift(note)
+        })
+      })
   }
+  ngOnDestroy() {
+    this.noteSvc.stopUpdate()
+  }
+
+  sendNote(note: string) {
+    this.noteSvc.sendNote(note)
+      .subscribe(success => {
+
+      }, error => {
+        alert(error)
+      }, () => {
+        this.noteValue = ''
+      })
+  }
+
+  getNoteClass(note: any) {
+    if (note.me) {
+      return 'right'
+    } else {
+      return 'left'
+    }
+  }
+
+
 
 
   onKey(event: any) { // without type info
-    // this.newNoteText = event.target.value
+    this.newNoteText = event.target.value
   }
   onClickMe() {
     const newNote = new this.Note();
-    // check if User is logged in before submitting text
-    newNote.set("user", 'sazzelz') // only for testing, delete when login works
-    // newNote.set("user", this.currentUser)
+    // TODO: check if User is logged in before submitting text
+    newNote.set("user", this.currentUser?.id)
     newNote.set("text", this.newNoteText)
-    newNote.set("tripId",)
+    newNote.set("tripId", this.tripId)
     newNote.set("createdAt", Date())
-
-    //var objectId = Notes.id;
-
     newNote.save()
-
-    this.newNoteText = ''
-
-
   }
+
+
 
 }
 

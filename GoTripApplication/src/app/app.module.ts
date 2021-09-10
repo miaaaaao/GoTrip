@@ -9,6 +9,7 @@ import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { catchError, map } from 'rxjs/operators';
 
+
 import { getTrip } from './services/getTrip.service';
 import { createNewTrip } from './services/newTripForm.service';
 import { currentUser } from './services/getCurrentUserData.service';
@@ -16,6 +17,9 @@ import { getTripDetails } from '../app/services/getTripDetails.service';
 import { acceptInvitation } from './services/acceptInvitation.service';
 import { rejectInvitation } from './services/rejectInvitation.service';
 import { finishTrip } from './services/finishTrip.service';
+import { noteService } from './services/getNotesData.service';
+
+
 import { AuthGuard } from './auth/auth.guard';
 
 import { env } from './env'
@@ -55,22 +59,22 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 //This is the route array
 const appRoutes: Routes = [
-  { path: 'dashboard', component: DashboardComponent, canActivate: [ AuthGuard ] },
-  { path: 'create', component: NewTripFormComponent, canActivate: [ AuthGuard ] },
-  { path: '', component: LoginPageComponent,  canActivate: [ AuthGuard ] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'create', component: NewTripFormComponent, canActivate: [AuthGuard] },
+  { path: '', component: LoginPageComponent, canActivate: [AuthGuard] },
   { path: 'signup', component: SignUpPageComponent },
   { path: 'forgot-password', component: ForgotPasswordPageComponent },
   { path: 'invitation', component: InvitationPageComponent },
 
   {
-    path: 'details/:id', component: TripDetailsComponent, canActivate: [ AuthGuard ], children: [
+    path: 'details/:id', component: TripDetailsComponent, canActivate: [AuthGuard], children: [
       { path: 'sights', component: AllSightsComponent },
       { path: 'map', component: MapComponent },
       { path: 'notes', component: NotesComponent },
       { path: 'place', component: SightDetailComponent },
     ]
   },
-  { path: 'profile', component: ProfileComponent, canActivate: [ AuthGuard ] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: '**', component: NotFoundComponent }
 
 ];
@@ -126,11 +130,12 @@ const appRoutes: Routes = [
     currentUser,
     acceptInvitation,
     rejectInvitation,
+    noteService,
     getTripDetails,
     finishTrip,
     env,
-    AuthGuard
-],
+    AuthGuard,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
