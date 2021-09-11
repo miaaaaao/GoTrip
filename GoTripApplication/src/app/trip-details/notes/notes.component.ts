@@ -3,7 +3,7 @@ import * as Parse from 'parse';
 import { getTripDetails } from '../../services/getTripDetails.service';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { noteService } from 'src/app/services/getNotesData.service';
+import { noteService } from '../../services/getNotesData.service';
 
 interface Note {
   text: string;
@@ -33,7 +33,8 @@ export class NotesComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.noteSvc.parseLive(); // Start the Parse live query subscription
     this.noteSvc.startToUpdate()
       .subscribe(note => {
         this.zone.run(() => {
@@ -41,6 +42,7 @@ export class NotesComponent implements OnInit {
         })
       })
   }
+
   ngOnDestroy() {
     this.noteSvc.stopUpdate()
   }

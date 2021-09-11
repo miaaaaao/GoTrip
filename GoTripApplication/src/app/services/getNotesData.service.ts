@@ -15,20 +15,26 @@ class Note {
 
 @Injectable()
 export class noteService {
-    private subscription: any
-
+    private subscription: any;
 
     constructor(private currentUser: currentUser) {
-        if (!this.subscription) {
-            this.subscription = new Parse.Query('Notes');
-        }
+        
         // this.newsQuery.equalTo('title', 'broadcast');
-        return this.subscription.subscribe();
+        //return this.subscription.subscribe();
     }
 
+    /*
+    * This function get the subscription from Parse live query and save it in 
+    * the variable subscription
+    */
+    async parseLive(){
+        if (!this.subscription) {
+            let query = new Parse.Query('Note');  
+            this.subscription = await query.subscribe();
+        }
+    }
 
-
-    startToUpdate(): Observable<string> {
+    startToUpdate(){
         return new Observable(observer => {
             this.subscription.on('create', (news: any) => {
                 let note: Note = new Note()
@@ -48,6 +54,7 @@ export class noteService {
             //   })
             // })
         })
+       
     }
 
     stopUpdate() {
