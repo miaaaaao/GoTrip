@@ -19,11 +19,11 @@ export class noteService {
 
 
     constructor(private currentUser: currentUser) {
-        if (!this.subscription) {
-            this.subscription = new Parse.Query('Notes');
-        }
-        // this.newsQuery.equalTo('title', 'broadcast');
-        return this.subscription.subscribe();
+        // if (!this.subscription) {
+        //     this.subscription = new Parse.Query('Notes');
+        // }
+        // // this.newsQuery.equalTo('title', 'broadcast');
+        // return this.subscription.subscribe();
     }
 
 
