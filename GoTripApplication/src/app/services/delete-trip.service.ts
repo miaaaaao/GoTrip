@@ -31,7 +31,7 @@ export class DeleteTripService {
       budget.id = findBudget[0].id
       
       await budget.destroy()
-
+      console.log('budget removed')
 
       //Find date and delete it
       let Date = Parse.Object.extend('Date')
@@ -44,6 +44,7 @@ export class DeleteTripService {
       date.id = findDate[0].id
       
       await date.destroy()
+      console.log('Dates removed')
 
       //Find NonUserInvited and delete it
       let Friends = Parse.Object.extend('NonUserInvited')
@@ -53,9 +54,13 @@ export class DeleteTripService {
       queryFriends.equalTo('tripsPlanId', tripPlan);
       let findFriends = await queryFriends.find()
 
-      friends.id = findFriends[0].id
+      if(findFriends[0]){
+        friends.id = findFriends[0].id
       
-      await friends.destroy()
+        await friends.destroy()
+        console.log('Friends removed')
+      }
+      
 
       //Find sights and delete it
       let Sight = Parse.Object.extend('Sight')
@@ -65,13 +70,19 @@ export class DeleteTripService {
       querySight.equalTo('tripsPlanId', tripPlan);
       let findSights = await querySight.find()
 
-      sight.id = findSights[0].id
+      if(findSights[0]){
+        sight.id = findSights[0].id
       
-      await sight.destroy()
+        await sight.destroy()
+        console.log('sights removed')
+
+      }
+     
 
       ///Find tripPlan and delete it
 
       await tripPlan.destroy()
+      console.log('trip removed')
 
     } catch(err){
       console.log(err)

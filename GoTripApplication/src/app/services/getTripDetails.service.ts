@@ -25,6 +25,10 @@ export class getTripDetails {
         }, 
         title: '',
         destination: '',
+        geoLocation: {
+          lat: 0,
+          lon: 0
+        },
         budget: {
           one: 0,
           two: 0,
@@ -153,5 +157,11 @@ export class getTripDetails {
             console.log(err) // Show error in the console
         }
         
+      }
+
+      saveGeoLocation(lat:number, lon:number){
+        this.currentTrip.geoLocation.lat = lat;
+        this.currentTrip.geoLocation.lon = lon;
+
       }
 }

@@ -33,10 +33,11 @@ export class BasicInfoComponent implements OnInit {
     this.router.navigate(['../../dashboard']) // Go back to dasboard after change to finished
   }
 
-  deleteTrip(){
-    this.deleteTripService.deleteTrip(this.tripId).then(res=>{
-      this.router.navigate(['../../dashboard']) // Go back to dashboard
+  async deleteTrip(){
+    await this.deleteTripService.deleteTrip(this.tripId).then(res=>{
+      console.log('Trip deleted')
     })
+    this.router.navigate(['../../dashboard']) // Go back to dashboard
   }
 
   decline(){
