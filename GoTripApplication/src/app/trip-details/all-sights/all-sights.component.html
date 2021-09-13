@@ -8,12 +8,21 @@
         <span class="heading">Explore {{city}}</span>
         <span class="subheading">Found <span class="highlight">({{count}})</span> nice places to visit</span>
     </div>
+    <!--Message to the trip organizer-->
     <div class="row alert mx-4" *ngIf="isTheOwner" >
         <div class="col-12 d-flex justify-content-center" >
             <i class="fa fa-info-circle fa-1x primaryColour" aria-hidden="true"></i>
-            <span> Click Add Button to add the sight to the map</span>
+            <span>Click Add Button to add the sight to the map. Only available once your friends like the place </span>
         </div> 
     </div>
+     <!--Message to the trip friends-->
+     <div class="row alert mx-4" *ngIf="!isTheOwner" >
+        <div class="col-12 d-flex justify-content-center" >
+            <i class="fa fa-info-circle fa-1x primaryColour" aria-hidden="true"></i>
+            <span>Select the places you want to visit. The organizer will add to the map the most voted ones</span>
+        </div> 
+    </div>
+
     <!--Show Spinner while getting data-->
     <div *ngIf="isLoading" class="row d-flex justify-content-center align-items-center" style="min-height:200px">
         <div class="spinner-grow text-primary" role="status">
