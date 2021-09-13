@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
   useremail: string | undefined;
   photoUrl: string;
   fileName: string;
-
+  selectedFile?: File;
   constructor(
     private formBuilder: FormBuilder,
   ) {
@@ -48,6 +48,12 @@ export class ProfileComponent implements OnInit {
     if (this.profileForm.value.newPass != "") {
       user?.setPassword(this.profileForm.value.newPass);
     }
+    if (this.selectedFile)
+    {
+      const parseFile = new Parse.File(this.selectedFile.name, this.selectedFile);
+      const user = Parse.User.current()
+      user?.set('photo', parseFile);
+    }
     user?.save()
       .then(() => {
         // Execute any logic that should take place after the object is saved.
@@ -62,7 +68,12 @@ export class ProfileComponent implements OnInit {
     this.profileForm.reset();
   }
 
-  onFileSelected(event: Event) {
-
+  onFileSelected(event: any) {
+    if (event.target) {
+      const file: File = event.target.files[0];
+      if (file) {
+        this.selectedFile = file;
+      }
+    }
   }
 }
