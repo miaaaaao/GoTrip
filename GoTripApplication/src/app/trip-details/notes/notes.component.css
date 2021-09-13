@@ -63,11 +63,10 @@
 .typebox {
   background: #ffffff;
   border-radius: 6px;
-  border: 25px;
-  /* padding: 10px; */
   display: flex;
+  flex-grow: initial;
   flex-direction: row;
-  align-items: left;
+  align-items: stretch;
 }
 
 .input-group {
@@ -79,4 +78,23 @@
   /* margin: 10px; */
   border-radius: 6px;
   align-items: stretch;
+}
+
+ol.list {
+  list-style-type: none;
+  list-style-position: inside;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+.note-me {
+  text-align: right;
+  font-weight: 500;
+  color: #999eb7;
+}
+
+.note-user {
+  text-align: left;
+  font-weight: 500;
+  color: #999eb7;
 }

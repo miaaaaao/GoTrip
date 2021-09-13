@@ -6,15 +6,15 @@
     <div class="row">
         <div>
             <div class="">
-                <ul class="">
+                <ol class="list">
                     <li [ngClass]="getNoteClass(note)" class="clearfix" *ngFor="let note of notes">
                         <div *ngIf="note.me">
                             <div class="">
                                 <div class="header">
-                                    <div class="pull-right primary-font">{{note.user}}</div>
+                                    <div class="note-me">{{note.user}}</div>
                                     <div>
                                     </div>
-                                    <p style="text-align: right;">{{note.body}}</p>
+                                    <p style="text-align: right; font-size: 90%;">{{note.body}}</p>
                                 </div>
                                     </div>
                             
@@ -22,13 +22,13 @@
                         <div *ngIf="!note.me">
                             <div class="chat-body clearfix">
                                 <div class="header">
-                                    <div class="text-muted">{{note.user}}</div>
+                                    <div class="note-user">{{note.user}}</div>
                                 </div>
-                                <p>{{note.body}}</p>
+                                <p style="font-size: 90%;">{{note.body}}</p>
                             </div>
                         </div>
                     </li>
-                </ul>
+                </ol>
             </div>
             <div id="footer" class="">
                 <div class="input-group">
