@@ -15,7 +15,7 @@
     </div>
 </div>
 <div class="row selSites mt-5">
-  <span class="heading mb-2">Selected sites ({{allSights.length}})</span>
+  <span class="heading mb-2">Selected sites ({{ allSights ? allSights.length : '0'}})</span>
   <div class="row selSites my-2" *ngFor="let sight of allSights">
     <div class="col-8">
       <span class="subheading">{{sight.title}} <span class="details">({{sight.votes}} {{sight.votes > 1 ? 'people' : 'person'}} voted)</span></span>

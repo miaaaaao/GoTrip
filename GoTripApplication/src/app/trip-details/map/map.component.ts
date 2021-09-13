@@ -19,9 +19,8 @@ export class MapComponent implements OnInit, OnDestroy {
   geoLocation: any; // Geolocation of the selected city
   allSights: any; // array with a list of all sights added to the trip
 
-  public constructor(private getTripDetails: getTripDetails, private getAddedSightService: GetAddedSightService, private AddSightService: AddSightService) {
-    this.geoLocation = this.getTripDetails.currentTrip.geoLocation;
-    // Save current city geolocation
+  public constructor(private getTripDetails: getTripDetails, private getAddedSightService: GetAddedSightService, private AddSightService: AddSightService, private env:env) {
+    this.geoLocation = this.getTripDetails.currentTrip.geoLocation; // Save current city geolocation
   }
 
    async ngOnInit() {
@@ -42,7 +41,7 @@ export class MapComponent implements OnInit, OnDestroy {
     id: 'mapbox/streets-v11',
     tileSize: 512,
     zoomOffset: -1,
-    // accessToken: this.env.MAPBOX_API,
+    accessToken: this.env.MAPBOX_API,
 }).addTo(this.map);
 
     for (let i = 0; i < this.allSights.length; i++){
