@@ -3,7 +3,7 @@ import * as Parse from 'parse';
 import { getTripDetails } from '../../services/getTripDetails.service';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { noteService } from '../../services/getNotesData.service';
+import { NoteService } from '../../services/getNotesData.service';
 
 interface Note {
   text: string;
@@ -17,28 +17,23 @@ interface Note {
   styleUrls: ['./notes.component.css'],
 })
 export class NotesComponent implements OnInit {
-  newNoteText = '';
   currentUser = Parse.User.current();
-  tripId: string = '';
   notes: any[] = []
   noteValue = ""
-  Note = Parse.Object.extend("Note"); // for creating Notes
-  // query = new Parse.Query('Note'); // query for notes array 
-  // subscription: any = ''// probably not possible but will try first 
 
 
-  constructor(private getTripDetails: getTripDetails, private noteSvc: noteService, private zone: NgZone) {
-
-    // this.tripId = getTripDetails.currentTrip.id
+  constructor(private getTripDetails: getTripDetails, private noteSvc: NoteService, private zone: NgZone) {
 
   }
 
   async ngOnInit() {
-    await this.noteSvc.parseLive(); // Start the Parse live query subscription
+    await this.noteSvc.parseLive(); // Start the Parse live query subscription 
+    this.notes = await this.noteSvc.getNotes()
+
     this.noteSvc.startToUpdate()
       .subscribe(note => {
         this.zone.run(() => {
-          this.notes.unshift(note)
+          this.notes.push(note)
         })
       })
   }
@@ -69,18 +64,6 @@ export class NotesComponent implements OnInit {
 
 
 
-  onKey(event: any) { // without type info
-    this.newNoteText = event.target.value
-  }
-  onClickMe() {
-    const newNote = new this.Note();
-    // TODO: check if User is logged in before submitting text
-    newNote.set("user", this.currentUser?.id)
-    newNote.set("text", this.newNoteText)
-    newNote.set("tripId", this.tripId)
-    newNote.set("createdAt", Date())
-    newNote.save()
-  }
 
 
 

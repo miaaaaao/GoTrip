@@ -17,7 +17,7 @@ import { getTripDetails } from '../app/services/getTripDetails.service';
 import { acceptInvitation } from './services/acceptInvitation.service';
 import { rejectInvitation } from './services/rejectInvitation.service';
 import { finishTrip } from './services/finishTrip.service';
-import { noteService } from './services/getNotesData.service';
+import { NoteService } from './services/getNotesData.service';
 
 
 import { AuthGuard } from './auth/auth.guard';
@@ -130,7 +130,7 @@ const appRoutes: Routes = [
     currentUser,
     acceptInvitation,
     rejectInvitation,
-    noteService,
+    NoteService,
     getTripDetails,
     finishTrip,
     env,
