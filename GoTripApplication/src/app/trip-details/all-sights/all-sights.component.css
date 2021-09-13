@@ -33,3 +33,17 @@
     border: 1px solid #605DEC;
     color: #605DEC !important;
 }
+
+.alert {
+    
+    border-radius: 6px;
+    background-color: #E9E8FC;
+    color: #605DEC;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+i {
+    padding-top: 3px;
+    padding-right: 6px;
+}
