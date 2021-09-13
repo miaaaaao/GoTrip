@@ -1,4 +1,8 @@
-<div class="container" style="margin-top:20px;">
+<p style="color: #999eb7; font-weight: 500; ">
+    Share information with your mates
+</p>
+<div class="container" style="margin: top 60px;">
+
     <div class="row">
         <div>
             <div class="">
@@ -7,28 +11,20 @@
                         <div *ngIf="note.me">
                             <div class="">
                                 <div class="header">
-                                    <small class=" text-muted">
-                                        <span class="glyphicon glyphicon-time"></span>
-                                    </small>
-                                    <strong class="pull-right primary-font">{{note.user}}</strong>
+                                    <div class="pull-right primary-font">{{note.user}}</div>
+                                    <div>
+                                    </div>
+                                    <p style="text-align: right;">{{note.body}}</p>
                                 </div>
-                                <p>
-                                    {{note.body}}
-                                </p>
-                            </div>
+                                    </div>
+                            
                         </div>
                         <div *ngIf="!note.me">
-
                             <div class="chat-body clearfix">
                                 <div class="header">
-                                    <strong class="primary-font">{{note.user}}</strong>
-                                    <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span>
-                                    </small>
+                                    <div class="text-muted">{{note.user}}</div>
                                 </div>
-                                <p>
-                                    {{note.body}}
-                                </p>
+                                <p>{{note.body}}</p>
                             </div>
                         </div>
                     </li>
@@ -36,13 +32,13 @@
             </div>
             <div id="footer" class="">
                 <div class="input-group">
-                    <input id="btn-input" #note [(ngModel)]="noteValue" type="text" class="form-control input-sm"
+                    <input id="btn-input" #note [(ngModel)]="noteValue" type="text" class="typebox"
                         placeholder="Type your note here...">
-                    <span class="">
-                        <button [disabled]="noteValue.length == 0" class="" id="btn-chat"
-                            (click)="sendNote(note.value)">
-                            Send</button>
-                    </span>
+                        
+                    <button [disabled]="noteValue.length == 0" class="btn-chat" id="btn-chat" 
+                        (click)="sendNote(note.value)">
+                        <i class="fa  fa-paper-plane" style="margin-right: 6px;"> </i>Send
+                    </button>
                 </div>
             </div>
 
