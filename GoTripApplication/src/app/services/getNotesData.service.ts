@@ -1,74 +1,93 @@
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { currentUser } from './getCurrentUserData.service';
+import { getTripDetails } from './getTripDetails.service';
 import * as Parse from 'parse';
+
+// type Note = {
+//     body: String
+//     user: String
+//     me: Boolean
+//     date: Date
+// }
 
 class Note {
     public body: String = "";
     public user: String = "";
     public me: Boolean = false;
-
-    constructor() {
-    }
+    public date: Date = new Date()
+    constructor() { }
 
 }
 
-@Injectable()
-export class noteService {
-    private subscription: any;
 
-    constructor(private currentUser: currentUser) {
-        
-        // this.newsQuery.equalTo('title', 'broadcast');
-        //return this.subscription.subscribe();
+@Injectable()
+export class NoteService {
+    private subscription: any;
+    private query: any
+    user: any = this.currentUser;
+
+    constructor(private currentUser: currentUser, private getTripDetails: getTripDetails,) {
     }
 
     /*
     * This function get the subscription from Parse live query and save it in 
     * the variable subscription
     */
-    async parseLive(){
+    async parseLive() {
         if (!this.subscription) {
-            let query = new Parse.Query('Note');  
-            this.subscription = await query.subscribe();
+            this.query = new Parse.Query('Note');
+            this.subscription = await this.query.subscribe();
         }
     }
 
-    startToUpdate(){
+    async getNotes() {
+
+        // this method works, but maybe subscription open is the better option
+        this.query.equalTo('tripId', this.getTripDetails.currentTrip.id)
+        let notes: any = []
+        let results = await this.query.find()
+        for (let i = 0; i < results.length; i++) {
+            let note = new Note()
+            const object = results[i];
+            let user = object.get('user')
+            let from = object.get('from')
+            note.body = object.get('note')
+            note.date = object.get('createdAt')
+            note.user = from != null ? from : 'Anonymous'
+            note.me = user != null ? (user === this.user.userId) : false
+            notes.push(note)
+        }
+        return notes
+    }
+
+    startToUpdate() {
         return new Observable(observer => {
             this.subscription.on('create', (news: any) => {
-                let note: Note = new Note()
-                // TODO: it's not possible to get other user's info
+                let note = new Note()
                 let user = news.get('user')
                 let from = news.get('from')
                 note.body = news.get('note')
+                note.date = news.get('createdAt')
                 note.user = from != null ? from : 'Anonymous'
-                note.me = user != null ? (user.id === this.subscription.currentUser.id) : false
-                // console.log(note)
-                // observer.next(note)
+                note.me = user != null ? (user === this.user.userId) : false
+                observer.next(note)
             })
-            // TODO: other events
-            // this.subscription.on('update', (news) => {
-            //   this.zone.run(()=> {
-            //     this.title = news.get('note')
-            //   })
-            // })
         })
-       
     }
 
     stopUpdate() {
         this.subscription.unsubscribe()
     }
 
-    public sendNote(note: string): Observable<boolean> {
-        // TODO: change the object to note or something else later
-        var News = Parse.Object.extend("News");
+    sendNote(note: string): Observable<boolean> {
+        var News = Parse.Object.extend("Note");
         var news = new News();
 
         news.set("note", note);
-        news.set("user", currentUser);
-        // news.set("from", Parse.User.current().get('username'))
+        news.set("user", this.user.userId);
+        news.set("from", this.user.name)
+        news.set("tripId", this.getTripDetails.currentTrip.id)
 
         return new Observable(observer => {
             news.save(null, {

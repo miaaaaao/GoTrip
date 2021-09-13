@@ -1,16 +1,29 @@
 /* Chat containers */
 .container {
     border: 2px solid #dedede;
-    background-color: #f1f1f1;
-    border-radius: 5px;
+    background-color: #FFFFFF;
+    border-radius: 6px;
     padding: 10px;
     margin: 10px 0;
+    border-radius: 4px;
+    width: 597px;
+    height: 96px;
+    left: 471px;
+    top: 843px;
+    
+
+  
   }
   
   /* Darker chat container */
   .darker {
     border-color: #ccc;
-    background-color: #ddd;
+    background-color: #912626;
+    position: absolute;
+    width: 781px;
+    height: 683px;
+    left: 440px;
+    top: 287px;
   }
   
   /* Clear floats */
