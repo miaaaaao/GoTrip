@@ -26,10 +26,21 @@ export class VoteService {
     let Sight = Parse.Object.extend('Sight');
     let sight = new Sight();
 
+
     let TripPlan = Parse.Object.extend('TripsPlan');
     let tripPlan = new TripPlan();
     tripPlan.id = this.getTripDetails.currentTrip.id; // Create a new object with the tripPlan ID
 
+   //Check if the sight was alread added
+   let sightQuery = new Parse.Query(Sight)
+   sightQuery.equalTo('XID', place.xid);
+   sightQuery.equalTo('tripsPlanId', tripPlan)
+   await sightQuery.find().then(resp=>{
+     if(resp[0]){
+      sight.id = resp[0].id
+     }
+   })
+   
     const user = new Parse.User(); // Create a user object with the loged user
     user.id = this.currentUser.userId;
     sight.relation('votes').add(user); // Add the user ID to the relational data
