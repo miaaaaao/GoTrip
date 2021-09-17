@@ -29,6 +29,7 @@ export class NotesComponent implements OnInit {
   async ngOnInit() {
     await this.noteSvc.parseLive(); // Start the Parse live query subscription 
     this.notes = await this.noteSvc.getNotes()
+   
 
     this.noteSvc.startToUpdate()
       .subscribe(note => {

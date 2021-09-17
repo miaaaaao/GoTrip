@@ -1,47 +1,71 @@
-<p style="color: #999eb7; font-weight: 500; ">
-    Share information with your mates
+<p style="color: #999eb7; font-weight: 500">
+  Share information with your mates
 </p>
-<div class="container" style="margin: top 60px;">
-
-    <div class="row">
-        <div>
-            <div class="">
-                <ol class="list">
-                    <li [ngClass]="getNoteClass(note)" class="clearfix" *ngFor="let note of notes">
-                        <div *ngIf="note.me">
-                            <div class="">
-                                <div class="header">
-                                    <div class="note-me">{{note.user}}</div>
-                                    <div>
-                                    </div>
-                                    <p style="text-align: right; font-size: 90%;">{{note.body}}</p>
-                                </div>
-                                    </div>
-                            
-                        </div>
-                        <div *ngIf="!note.me">
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <div class="note-user">{{note.user}}</div>
-                                </div>
-                                <p style="font-size: 90%;">{{note.body}}</p>
-                            </div>
-                        </div>
-                    </li>
-                </ol>
-            </div>
-            <div id="footer" class="">
-                <div class="input-group">
-                    <input id="btn-input" #note [(ngModel)]="noteValue" type="text" class="typebox"
-                        placeholder="Type your note here...">
-                        
-                    <button [disabled]="noteValue.length == 0" class="btn-chat" id="btn-chat" 
-                        (click)="sendNote(note.value)">
-                        <i class="fa  fa-paper-plane" style="margin-right: 6px;"> </i>Send
-                    </button>
+<div class="container" style="margin: top 60px">
+  <div class="row">
+    <div>
+      <div class="">
+        <ol class="list">
+          <li
+            [ngClass]="getNoteClass(note)"
+            class="clearfix"
+            *ngFor="let note of notes"
+          >
+            <div *ngIf="note.me">
+              <div class="">
+                <div class="header">
+                  <img
+                    [src]="note.photo ? note.photo : 'assets/default.jpg'"
+                    class="image"
+                    style="width: 30px; height: 30px; border-radius: 15px"
+                  />
+                  <div class="note-me">
+                    {{ note.user }}
+                  </div>
+                  <div></div>
+                  <p style="text-align: left; font-size: 90%">
+                    {{ note.body }}
+                  </p>
                 </div>
+              </div>
             </div>
-
+            <div *ngIf="!note.me">
+              <div class="chat-body clearfix">
+                <div class="header">
+                  <img
+                    [src]="note.photo ? note.photo : 'assets/default.jpg'"
+                    style="width: 30px; height: 30px; border-radius: 15px"
+                  />
+                  <div class="note-user">{{ note.user }}</div>
+                </div>
+                <p style="font-size: 90%; text-align: justify">
+                  {{ note.body }}
+                </p>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div id="footer" class="">
+        <div class="input-group">
+          <input
+            id="btn-input"
+            #note
+            [(ngModel)]="noteValue"
+            type="text"
+            class="typebox"
+            placeholder="Type your note here..."
+          />
+          <button
+            [disabled]="noteValue.length == 0"
+            class="btn-chat"
+            id="btn-chat"
+            (click)="sendNote(note.value)"
+          >
+            <i class="fa fa-paper-plane" style="margin-right: 6px"> </i>Send
+          </button>
         </div>
+      </div>
     </div>
+  </div>
 </div>

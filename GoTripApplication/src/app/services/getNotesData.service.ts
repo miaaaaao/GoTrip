@@ -16,6 +16,7 @@ class Note {
     public user: String = "";
     public me: Boolean = false;
     public date: Date = new Date()
+    public photo: String =""
     constructor() { }
 
 }
@@ -43,6 +44,7 @@ export class NoteService {
 
     async getNotes() {
 
+
         // this method works, but maybe subscription open is the better option
         this.query.equalTo('tripId', this.getTripDetails.currentTrip.id)
         let notes: any = []
@@ -54,6 +56,14 @@ export class NoteService {
             let from = object.get('from')
             note.body = object.get('note')
             note.date = object.get('createdAt')
+
+            let noteWriter =  new Parse.Query(Parse.User);
+            noteWriter.equalTo('objectId', user)
+    
+            let ownerData = await noteWriter.find(); // Search data about the user on Parse     
+         
+
+            note.photo = await ownerData[0].get('photo')._url;
             note.user = from != null ? from : 'Anonymous'
             note.me = user != null ? (user === this.user.userId) : false
             notes.push(note)
@@ -82,11 +92,16 @@ export class NoteService {
 
     sendNote(note: string): Observable<boolean> {
         var News = Parse.Object.extend("Note");
+        const currentUser:any = Parse.User.current()
+        const photo = currentUser.get('photo');
         var news = new News();
+        console.log(this.user)
 
         news.set("note", note);
         news.set("user", this.user.userId);
         news.set("from", this.user.name)
+        // news.set("photo", this.user.get('photo').url())
+        news.set("photo", currentUser.get('photo'))
         news.set("tripId", this.getTripDetails.currentTrip.id)
 
         return new Observable(observer => {
