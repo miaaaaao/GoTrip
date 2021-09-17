@@ -93,15 +93,14 @@ export class NoteService {
     sendNote(note: string): Observable<boolean> {
         var News = Parse.Object.extend("Note");
         const currentUser:any = Parse.User.current()
-        const photo = currentUser.get('photo');
+        // const photo = currentUser.get('photo');
         var news = new News();
-        console.log(this.user)
-
         news.set("note", note);
         news.set("user", this.user.userId);
         news.set("from", this.user.name)
-        // news.set("photo", this.user.get('photo').url())
-        news.set("photo", currentUser.get('photo'))
+        // let photo = currentUser[0].get('photo')._url;
+        // news.set("photo", photo )
+        // news.set("photo", currentUser.photo)
         news.set("tripId", this.getTripDetails.currentTrip.id)
 
         return new Observable(observer => {

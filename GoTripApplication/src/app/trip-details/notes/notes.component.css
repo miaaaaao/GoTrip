@@ -44,30 +44,33 @@
 }
 
 .btn-chat {
+  position: absolute;
+  top: 10px;
+  right: 10px;
   background-color: #605dec;
   color: white;
-  border-radius: 6xp;
-  padding: 12px;
-  align-items: right;
-  justify-content: center;
-  flex-direction: row;
-  display: flex;
-  position: sticky;
-  left: 75.56%;
-  right: 17.92%;
-  top: 71.38%;
-  bottom: 25.06%;
-  border: 25px;
-  margin: 0px 0;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 6px;
+}
+.typebox {
+  width: 85%;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  background-color: #ffffff;
+  font-size: 16px;
 }
 
 .input-group {
+  display: flex;
+  position: relative;
   background-color: #f3f5fc;
   padding: 10px;
-  /* display: flex;
-  flex-direction: row; */
   border-radius: 6px;
-  /* align-items: stretch; */
+  /* 
+  display: flex;
+  flex-direction: row;
+  align-items: stretch; */
 }
 
 ol.list {
@@ -87,18 +90,4 @@ ol.list {
   text-align: left;
   font-weight: 500;
   color: #999eb7;
-}
-
-.typebox {
-  width: 75%;
-  /* height: 150px; */
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: 2px solid #ffffff;
-  border-radius: 4px;
-  background-color: #ffffff;
-  font-size: 16px;
-  resize: none;
-  position: relative;
 }
