@@ -19,12 +19,15 @@ export class ProfileComponent implements OnInit {
   photoUrl: string;
   fileName: string;
   selectedFile?: File;
+  previewUploaded: boolean;
+
   constructor(
     private formBuilder: FormBuilder,
   ) {
     this.username = '';
     this.photoUrl = '';
     this.fileName = '';
+    this.previewUploaded = false;
   }
 
   ngOnInit(): void {
@@ -32,8 +35,14 @@ export class ProfileComponent implements OnInit {
     if (user) {
       this.username = user.getUsername();
       this.useremail = user.getEmail();
-      const photo = user.get('photo');
-      this.photoUrl = photo.url();
+      if (this.previewUploaded) {
+        const photo = user.get('photoPreview');
+        this.photoUrl = photo.url();
+      }
+      else {
+        const photo = user.get('photo');
+        this.photoUrl = photo.url();
+      }
     }
   }
 
@@ -74,6 +83,18 @@ export class ProfileComponent implements OnInit {
       const file: File = event.target.files[0];
       if (file) {
         this.selectedFile = file;
+        const parseFile = new Parse.File(this.selectedFile.name, this.selectedFile);
+        const user = Parse.User.current()
+        user?.set('photoPreview', parseFile);
+        user?.save().then(() => {
+          // Execute any logic that should take place after the object is saved
+          const photo = user.get('photoPreview');
+          this.photoUrl = photo.url();
+        }, (error) => {
+          // Execute any logic that should take place if the save fails.
+          // error is a Parse.Error with an error code and message.
+          alert('Failed to upload photo ' + error.message);
+        });
       }
     }
   }
