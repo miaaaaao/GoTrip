@@ -46,7 +46,6 @@ export class NotesComponent implements OnInit {
   sendNote(note: string) {
     this.noteSvc.sendNote(note)
       .subscribe(success => {
-
       }, error => {
         alert(error)
       }, () => {

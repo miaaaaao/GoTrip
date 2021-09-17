@@ -46,26 +46,48 @@
           </li>
         </ol>
       </div>
-      <div id="footer" class="">
-        <div class="input-group">
-          <input
-            id="btn-input"
-            #note
-            [(ngModel)]="noteValue"
-            type="text"
-            class="typebox"
-            placeholder="Type your note here..."
-          />
-          <button
-            [disabled]="noteValue.length == 0"
-            class="btn-chat"
-            id="btn-chat"
-            (click)="sendNote(note.value)"
-          >
-            <i class="fa fa-paper-plane" style="margin-right: 6px"> </i>Send
-          </button>
-        </div>
+      <div id="footer" class="input-group">
+        <textarea
+          id="btn-input"
+          #note
+          [(ngModel)]="noteValue"
+          type="text"
+          placeholder="Type your note here..."
+          class="typebox"
+        ></textarea>
+        <button
+          [disabled]="noteValue.length == 0"
+          class="btn-chat"
+          id="btn-chat"
+          (click)="sendNote(note.value)"
+        >
+          <i class="fa fa-paper-plane" style="margin-right: 6px"> </i>Send
+        </button>
       </div>
+      <!-- <div id="footer" class="">
+        <div class="input-group">
+          <div class="typebox">
+            <textarea
+              id="btn-input"
+              #note
+              [(ngModel)]="noteValue"
+              type="text"
+              placeholder="Type your note here..."
+            ></textarea>
+          </div>
+
+          <div>
+            <button
+              [disabled]="noteValue.length == 0"
+              class="btn-chat"
+              id="btn-chat"
+              (click)="sendNote(note.value)"
+            >
+              <i class="fa fa-paper-plane" style="margin-right: 6px"> </i>Send
+            </button>
+          </div>
+        </div>
+      </div> -->
     </div>
   </div>
 </div>
