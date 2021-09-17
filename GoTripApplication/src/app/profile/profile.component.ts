@@ -19,7 +19,6 @@ export class ProfileComponent implements OnInit {
   photoUrl: string;
   fileName: string;
   selectedFile?: File;
-  previewUploaded: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,7 +26,6 @@ export class ProfileComponent implements OnInit {
     this.username = '';
     this.photoUrl = '';
     this.fileName = '';
-    this.previewUploaded = false;
   }
 
   ngOnInit(): void {
@@ -35,14 +33,8 @@ export class ProfileComponent implements OnInit {
     if (user) {
       this.username = user.getUsername();
       this.useremail = user.getEmail();
-      if (this.previewUploaded) {
-        const photo = user.get('photoPreview');
-        this.photoUrl = photo.url();
-      }
-      else {
-        const photo = user.get('photo');
-        this.photoUrl = photo.url();
-      }
+      const photo = user.get('photo');
+      this.photoUrl = photo.url();
     }
   }
 
